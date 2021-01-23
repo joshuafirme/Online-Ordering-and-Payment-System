@@ -12,5 +12,11 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('dashboard');
 });
+
+Route::get('maintenance/menu_category', 'Maintenance\CategoryAndMenuCtr@index');
+Route::post('maintenance/store', 'Maintenance\CategoryAndMenuCtr@store');
+Route::get('maintenance/category_menu/show/{id}', 'Maintenance\CategoryAndMenuCtr@show');
+Route::post('maintenance/update', 'Maintenance\CategoryAndMenuCtr@update');
+Route::delete('/maintenance/category_menu/delete/{id}', 'Maintenance\CategoryAndMenuCtr@delete');
