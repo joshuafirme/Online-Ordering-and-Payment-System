@@ -166,12 +166,12 @@
          
                     <!-- sidebar menu: : style can be found in sidebar.less -->
                     <ul class="sidebar-menu">
-                        <li class="active">
+                        <li>
                             <a href="{{ url('/') }}">
                                 <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                             </a>
                         </li>
-                        <li class="treeview">
+                        <li class="treeview active">
                             <a href="#">
                                 <i class="fa fa-wrench"></i>
                                 <span>Maintenance</span>
@@ -179,7 +179,7 @@
                             </a>
                             <ul class="treeview-menu">
                                 <li><a href="{{ url('maintenance/menu_category') }}"><i class="fa fa-angle-double-right"></i> Menu and Category</a></li>
-                                <li><a href="pages/charts/flot.html"><i class="fa fa-angle-double-right"></i> Gallery</a></li>
+                                <li><a href="{{ url('maintenance/gallery') }}"><i class="fa fa-angle-double-right"></i> Gallery</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -204,6 +204,7 @@
         <script src="{{asset('js/plugins/datatables/jquery.dataTables.min.js')}}" type="text/javascript"></script>
         <script src="{{asset('js/plugins/datatables/dataTables.bootstrap.js')}}" type="text/javascript"></script>
               
-        <script src="{{asset('js/js/category_menu.js')}}"></script>
+        <script src="{{asset('js/js/maintenance/category_menu.js')}}"></script>
+        <script src="{{asset('js/js/maintenance/gallery.js')}}"></script>
     </body>
 </html>

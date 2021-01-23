@@ -27,5 +27,19 @@ class CategoryAndMenu extends Model
         return $res;
     }
 
-   
+    public function getCategory(){
+        $res = DB::table($this->table.' as G')
+                ->select('id', 'category')
+                ->get();
+
+        return $res->unique('category');
+    }
+
+    public function getMenu($category){
+        $res = DB::table($this->table)
+        ->where('category', $category)
+        ->pluck('menu');
+
+        return $res;
+    }
 }

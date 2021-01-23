@@ -37,13 +37,20 @@ $(document).on('click', '#btn-edit', function(){
   console.log(id);
 
   $.ajax({
-    url:"/maintenance/category_menu/show/"+id,
+    url:"/maintenance/gallery/show/"+id,
     type:"GET",
     success:function(response){
       console.log(response);
       $('#id').val(response[0].id);
       $('#edit-category').val(response[0].category);
       $('#edit-menu').val(response[0].menu);
+      if(response[0].image !== null){
+        var img_source = '../../storage/'+response[0].image;
+      }
+      else{
+        var img_source = '../assets/img-placeholer.png';
+      }
+      $('#img-view').attr('src', img_source);
     }
    });
 }); 
@@ -66,19 +73,16 @@ $(document).on('click', '#btn-edit', function(){
         $.ajax({
             url: '/maintenance/category_menu/delete/'+ id,
             type: 'DELETE',
-            success:function(data){
-                setTimeout(function(){
-                    $('#btn-yes').remove();
-                //    $('.delete-success').show();
-                //    $('.cancel-delete').text('Ok');
-                    $('.loader').css('display', 'none');
-                   // $('#proconfirmModal').modal('hide');
-                    row.fadeOut(500, function () {
-                      table.row(row).remove().draw()
-                      
-                      });
-                   
-                }, 1000);
+            success:function(){
+              $('.delete-success').css('display', 'inline');
+              setTimeout(function(){
+                  row.fadeOut(500, function () {
+                    table.row(row).remove().draw()
+                    $('#deleteModal').modal('toggle');
+                    });
+                 
+              }, 2000);
+              $('.delete-success').css('display', 'none');
             }
         });
       

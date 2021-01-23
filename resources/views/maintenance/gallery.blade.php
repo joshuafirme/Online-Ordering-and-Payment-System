@@ -35,14 +35,15 @@
             <div class="col-xs-12">
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">Menu and Category Maintenance</h3>                                    
+                        <h3 class="box-title">Gallery Maintenance</h3>                                    
                     </div><!-- /.box-header -->
                     <div class="box-body table-responsive">
-                        <table id="category-menu-table" class="table table-bordered table-hover">
+                        <table id="gallery-table" class="table table-bordered table-hover">
                             <thead>
                                 <tr>
                                     <th>Category</th>
                                     <th>Menu</th>
+                                    <th>Image</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -55,7 +56,7 @@
 
     </section><!-- /.content -->
 
-@extends('maintenance.modals.category_menu_modal')
+@extends('maintenance.modals.gallery_modal')
 @section('modals')
 @endsection
 
