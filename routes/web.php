@@ -22,11 +22,10 @@ Route::get('maintenance/category/show/{id}', 'Maintenance\CategoryCtr@show');
 Route::post('maintenance/update', 'Maintenance\CategoryCtr@update');
 Route::delete('maintenance/category/delete/{id}', 'Maintenance\CategoryCtr@delete');
 
-//GALLERY MAINTENANCE
-Route::get('maintenance/gallery', 'Maintenance\GalleryCtr@index'); 
-Route::get('maintenance/gallery/show/{id}', 'Maintenance\GalleryCtr@show'); 
-Route::post('maintenance/gallery/store', 'Maintenance\GalleryCtr@store'); 
-Route::post('maintenance/gallery/update', 'Maintenance\GalleryCtr@update'); 
-Route::get('maintenance/menu/{category}', 'Maintenance\GalleryCtr@getMenu');  
-Route::delete('maintenance/gallery/delete/{id}', 'Maintenance\GalleryCtr@delete');
+//MENU MAINTENANCE
+Route::get('maintenance/menu', 'Maintenance\MenuCtr@index'); 
+Route::get('maintenance/menu/show/{id}', 'Maintenance\MenuCtr@show'); 
+Route::post('maintenance/menu/store', 'Maintenance\MenuCtr@store'); 
+Route::post('maintenance/menu/update', 'Maintenance\MenuCtr@update');   
+Route::delete('maintenance/menu/delete/{id}', 'Maintenance\MenuCtr@delete');
 

@@ -42,13 +42,7 @@ $(document).on('click', '#btn-edit', function(){
       console.log(response);
       $('#id').val(response[0].id);
       $('#edit-category').val(response[0].category);
-   //   if(response[0].image !== null){
-  //      var img_source = '../../storage/'+response[0].image;
-  //    }
-  //    else{
- //       var img_source = '../assets/img-placeholer.png';
- //     }
- //     $('#img-view').attr('src', img_source);
+  
     }
    });
 }); 

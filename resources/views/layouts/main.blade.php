@@ -187,7 +187,7 @@
                             </a>
                             <ul class="treeview-menu">
                                 <li><a href="{{ url('maintenance/category') }}"><i class="fa fa-angle-double-right"></i> Category</a></li>
-                                <li><a href="pages/charts/flot.html"><i class="fa fa-angle-double-right"></i> Gallery</a></li>
+                                <li><a href="pages/charts/flot.html"><i class="fa fa-angle-double-right"></i> Menu</a></li>
                             </ul>
                         </li>
                     </ul>

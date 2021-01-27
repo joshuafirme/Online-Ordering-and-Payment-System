@@ -179,7 +179,7 @@
                             </a>
                             <ul class="treeview-menu">
                                 <li><a href="{{ url('maintenance/category') }}"><i class="fa fa-angle-double-right"></i> Category</a></li>
-                                <li><a href="{{ url('maintenance/gallery') }}"><i class="fa fa-angle-double-right"></i> Gallery</a></li>
+                                <li><a href="{{ url('maintenance/menu') }}"><i class="fa fa-angle-double-right"></i> Menu</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -204,7 +204,7 @@
         <script src="{{asset('js/plugins/datatables/jquery.dataTables.min.js')}}" type="text/javascript"></script>
         <script src="{{asset('js/plugins/datatables/dataTables.bootstrap.js')}}" type="text/javascript"></script>
               
-        <script src="{{asset('js/js/maintenance/category_menu.js')}}"></script>
-        <script src="{{asset('js/js/maintenance/gallery.js')}}"></script>
+        <script src="{{asset('js/js/maintenance/category.js')}}"></script>
+        <script src="{{asset('js/js/maintenance/menu.js')}}"></script>
     </body>
 </html>
