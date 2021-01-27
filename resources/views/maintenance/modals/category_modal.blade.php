@@ -9,21 +9,16 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Add Menu and Category</h4>
+          <h4 class="modal-title">Add Category</h4>
         </div>
         <div class="modal-body">
-          <form action="{{action('Maintenance\CategoryAndMenuCtr@store')}}" method="POST">
+          <form action="{{action('Maintenance\CategoryCtr@store')}}" method="POST">
             {{ csrf_field() }}
             <div class="row">
 
               <div class="col-md-12" style="margin-bottom: 10px;">
                 <label class="col-form-label">Category</label>
                 <input type="text" class="form-control" name="category" id="category" required>
-              </div>
-  
-              <div class="col-md-12">
-                <label class="col-form-label">Menu</label>
-                <input type="text" class="form-control" name="menu" id="menu" required>
               </div>
   
             </div>
@@ -46,10 +41,10 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Edit Menu and Category</h4>
+        <h4 class="modal-title">Edit Category</h4>
       </div>
       <div class="modal-body">
-        <form action="{{action('Maintenance\CategoryAndMenuCtr@update')}}" method="POST">
+        <form action="{{action('Maintenance\CategoryCtr@update')}}" method="POST">
           {{ csrf_field() }}
           <div class="row">
 
@@ -58,11 +53,6 @@
             <div class="col-md-12" style="margin-bottom: 10px;">
               <label class="col-form-label">Category</label>
               <input type="text" class="form-control" name="category" id="edit-category" required>
-            </div>
-
-            <div class="col-md-12">
-              <label class="col-form-label">Menu</label>
-              <input type="text" class="form-control" name="menu" id="edit-menu" required>
             </div>
 
           </div>

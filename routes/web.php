@@ -15,12 +15,12 @@ Route::get('/', function () {
     return view('dashboard');
 });
 
-//MENU CATEGORY AND MAINTENANCE
-Route::get('maintenance/menu_category', 'Maintenance\CategoryAndMenuCtr@index');
-Route::post('maintenance/store', 'Maintenance\CategoryAndMenuCtr@store');
-Route::get('maintenance/category_menu/show/{id}', 'Maintenance\CategoryAndMenuCtr@show');
-Route::post('maintenance/update', 'Maintenance\CategoryAndMenuCtr@update');
-Route::delete('maintenance/category_menu/delete/{id}', 'Maintenance\CategoryAndMenuCtr@delete');
+//CATEGORY MAINTENANCE
+Route::get('maintenance/category', 'Maintenance\CategoryCtr@index');
+Route::post('maintenance/store', 'Maintenance\CategoryCtr@store');
+Route::get('maintenance/category/show/{id}', 'Maintenance\CategoryCtr@show');
+Route::post('maintenance/update', 'Maintenance\CategoryCtr@update');
+Route::delete('maintenance/category/delete/{id}', 'Maintenance\CategoryCtr@delete');
 
 //GALLERY MAINTENANCE
 Route::get('maintenance/gallery', 'Maintenance\GalleryCtr@index'); 

@@ -11,18 +11,17 @@ $(document).ready(function(){
   fetchCategoryAndMenu();
    
     function fetchCategoryAndMenu(){
-      $('#category-menu-table').DataTable({
+      $('#category-table').DataTable({
      
         processing: true,
         serverSide: true,
 
         ajax:{
-         url: "/maintenance/menu_category",
+         url: "/maintenance/category",
         }, 
 
         columns:[       
          {data: 'category', name: 'category'},
-         {data: 'menu', name: 'menu'},
          {data: 'action', name: 'action'},
         ]
         
@@ -43,14 +42,13 @@ $(document).on('click', '#btn-edit', function(){
       console.log(response);
       $('#id').val(response[0].id);
       $('#edit-category').val(response[0].category);
-      $('#edit-menu').val(response[0].menu);
-      if(response[0].image !== null){
-        var img_source = '../../storage/'+response[0].image;
-      }
-      else{
-        var img_source = '../assets/img-placeholer.png';
-      }
-      $('#img-view').attr('src', img_source);
+   //   if(response[0].image !== null){
+  //      var img_source = '../../storage/'+response[0].image;
+  //    }
+  //    else{
+ //       var img_source = '../assets/img-placeholer.png';
+ //     }
+ //     $('#img-view').attr('src', img_source);
     }
    });
 }); 
@@ -59,19 +57,18 @@ $(document).on('click', '#btn-edit', function(){
 
 
   // delete
-  var id, category, menu;
+  var id, category;
   $(document).on('click', '#btn-delete', function(){
       row = $(this).closest("tr")
       id = $(this).attr('delete-id');
       console.log(id);
       category =  $(this).closest("tr").find('td:eq(0)').text();
-      menu =  $(this).closest("tr").find('td:eq(1)').text();
       $('#deleteModal').modal('show');
-      $('.delete-message').html('Are you sure do you want to delete category <b>'+ category +'</b> and <b> '+ menu +'</b> menu?');
+      $('.delete-message').html('Are you sure do you want to delete category <b>'+ category +'?');
     }); 
     $('#btn-yes').click(function(){
         $.ajax({
-            url: '/maintenance/category_menu/delete/'+ id,
+            url: '/maintenance/category/delete/'+ id,
             type: 'DELETE',
             success:function(){
               $('.delete-success').css('display', 'inline');

@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Maintenance;
 
 use App\Http\Controllers\Controller;
 use App\Maintenance\Gallery;
-use App\Maintenance\CategoryAndMenu;
 use Illuminate\Http\Request;
 use Input;
 use Illuminate\Support\Facades\DB;

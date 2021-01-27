@@ -41,8 +41,6 @@
                         <table id="gallery-table" class="table table-bordered table-hover">
                             <thead>
                                 <tr>
-                                    <th>Category</th>
-                                    <th>Menu</th>
                                     <th>Image</th>
                                     <th>Action</th>
                                 </tr>

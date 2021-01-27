@@ -178,7 +178,7 @@
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a href="{{ url('maintenance/menu_category') }}"><i class="fa fa-angle-double-right"></i> Menu and Category</a></li>
+                                <li><a href="{{ url('maintenance/category') }}"><i class="fa fa-angle-double-right"></i> Category</a></li>
                                 <li><a href="{{ url('maintenance/gallery') }}"><i class="fa fa-angle-double-right"></i> Gallery</a></li>
                             </ul>
                         </li>

@@ -3,16 +3,16 @@
 namespace App\Http\Controllers\Maintenance;
 
 use App\Http\Controllers\Controller;
-use App\Maintenance\CategoryAndMenu;
+use App\Maintenance\Category;
 use Illuminate\Http\Request;
 use Input;
 use Illuminate\Support\Facades\DB;
 
-class CategoryAndMenuCtr extends Controller
+class CategoryCtr extends Controller
 {
     public function index(){
 
-        $cm = $this->displayCategoryAndMenu();
+        $cm = $this->displayCategory();
 
         if(request()->ajax())
         {
@@ -26,45 +26,44 @@ class CategoryAndMenuCtr extends Controller
                 ->rawColumns(['action'])
                 ->make(true);
         }
-        return view('maintenance/menu_category');
+        return view('maintenance/category');
     }
 
-    public function displayCategoryAndMenu(){
-        $cm = new CategoryAndMenu;
-        return $cm->getCategoryAndMenu();
+    public function displayCategory(){
+        $cm = new Category;
+        return $cm->getCategory();
     }
 
     public function store(Request $request){
-        $cm = new CategoryAndMenu;
+        $cm = new Category;
         $cm->category = $request->input('category');
-        $cm->menu = $request->input('menu');
         $cm->save();
 
-        return redirect('/maintenance/menu_category')->with('success', 'Data Saved');
+        return redirect('/maintenance/category')->with('success', 'Data Saved');
     }
 
     public function show($id){
-        $cm = new CategoryAndMenu;
+        $cm = new Category;
         return $cm->show($id);
     }
 
     public function update(Request $request){
-        $cm = new CategoryAndMenu;
+        $cm = new Category;
         $cm->id = $request->input('id');
         $cm->category = $request->input('category');
         $cm->menu = $request->input('menu');
         
-        CategoryAndMenu::where('id', $cm->id)
+        Category::where('id', $cm->id)
         ->update([
             'category' => $cm->category,
             'menu' => $cm->menu,
             ]);
 
-        return redirect('/maintenance/menu_category')->with('success', 'Data Updated');
+        return redirect('/maintenance/category')->with('success', 'Data Updated');
     }
 
     public function delete($id){
-        $cm = CategoryAndMenu::findOrFail($id);
+        $cm = Category::findOrFail($id);
         $cm->delete();
         return $cm;
     }
