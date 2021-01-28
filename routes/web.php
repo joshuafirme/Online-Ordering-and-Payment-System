@@ -29,3 +29,6 @@ Route::post('maintenance/menu/store', 'Maintenance\MenuCtr@store');
 Route::post('maintenance/menu/update', 'Maintenance\MenuCtr@update');   
 Route::delete('maintenance/menu/delete/{id}', 'Maintenance\MenuCtr@delete');
 
+//CASHIERING MAINTENANCE
+Route::get('transaction/cashiering', 'Transaction\CashieringCtr@index'); 
+Route::get('transaction/cashiering/search/{search_key}', 'Transaction\CashieringCtr@search');

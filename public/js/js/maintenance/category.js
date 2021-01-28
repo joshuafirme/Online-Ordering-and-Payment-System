@@ -36,12 +36,12 @@ $(document).on('click', '#btn-edit', function(){
   console.log(id);
 
   $.ajax({
-    url:"/maintenance/gallery/show/"+id,
+    url:"/maintenance/category/show/"+id,
     type:"GET",
     success:function(response){
       console.log(response);
       $('#id').val(response[0].id);
-      $('#edit-category').val(response[0].category);
+      $('#edit_category').val(response[0].category);
   
     }
    });

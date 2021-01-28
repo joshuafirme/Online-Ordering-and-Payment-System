@@ -185,9 +185,23 @@
                                 <span>Maintenance</span>
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
+
                             <ul class="treeview-menu">
                                 <li><a href="{{ url('maintenance/category') }}"><i class="fa fa-angle-double-right"></i> Category</a></li>
-                                <li><a href="pages/charts/flot.html"><i class="fa fa-angle-double-right"></i> Menu</a></li>
+                                <li><a href="{{ url('maintenance/menu') }}"><i class="fa fa-angle-double-right"></i> Menu</a></li>
+                            </ul>
+                        </li>
+                        
+
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-wrench"></i>
+                                <span>Transaction</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="{{ url('transaction/cashiering') }}"><i class="fa fa-angle-double-right"></i> Cashiering</a></li>
+                                <li><a href="{{ url('transaction/delivery') }}"><i class="fa fa-angle-double-right"></i> Delivery</a></li>
                             </ul>
                         </li>
                     </ul>

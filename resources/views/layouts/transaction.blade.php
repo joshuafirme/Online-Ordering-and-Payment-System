@@ -172,7 +172,7 @@
                             </a>
                         </li>
 
-                        <li class="treeview">
+                        <li class="treeview active">
                             <a href="#">
                                 <i class="fa fa-bar-chart-o"></i>
                                 <span>Transaction</span>
@@ -216,8 +216,9 @@
         <!-- DATA TABES SCRIPT -->
         <script src="{{asset('js/plugins/datatables/jquery.dataTables.min.js')}}" type="text/javascript"></script>
         <script src="{{asset('js/plugins/datatables/dataTables.bootstrap.js')}}" type="text/javascript"></script>
-              
-        <script src="{{asset('js/js/maintenance/category.js')}}"></script>
-        <script src="{{asset('js/js/maintenance/menu.js')}}"></script>
+             
+        <!-- Cashiering SCRIPT -->
+        <script src="{{asset('js/js/transaction/cashiering.js')}}"></script>
+
     </body>
 </html>

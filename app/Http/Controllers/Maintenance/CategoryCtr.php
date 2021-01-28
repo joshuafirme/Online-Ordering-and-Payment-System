@@ -51,12 +51,10 @@ class CategoryCtr extends Controller
         $cm = new Category;
         $cm->id = $request->input('id');
         $cm->category = $request->input('category');
-        $cm->menu = $request->input('menu');
         
         Category::where('id', $cm->id)
         ->update([
-            'category' => $cm->category,
-            'menu' => $cm->menu,
+            'category' => $cm->category
             ]);
 
         return redirect('/maintenance/category')->with('success', 'Data Updated');
