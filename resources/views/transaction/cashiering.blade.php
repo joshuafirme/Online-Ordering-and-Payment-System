@@ -49,6 +49,7 @@
                             </thead>
                             <tbody>
                                 <tr>
+                                    <input type="hidden" id="id">
                                     <th><input type="number" min="0" class="form-control" value="1" id="qty"></th>
                                     <th><input type="text" class="form-control" readonly id="description"></th>
                                     <th><input type="text" class="form-control" readonly id="category"></th>
@@ -65,16 +66,20 @@
                                     <th>Description</th>
                                     <th>Category</th>
                                     <th>Price</th>
+                                    <th>Qty</th>
                                     <th>Amount</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach($tray as $data)
                                 <tr>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
+                                    <th>{{ $data->description }}</th>
+                                    <th>{{ $data->category }}</th>
+                                    <th>{{ $data->price }}</th>
+                                    <th>{{ $data->qty }}</th>
+                                    <th>{{ $data->amount }}</th>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
 
@@ -82,19 +87,19 @@
                             <thead>
                                 <tr>
                                     <th>Total Amount</th>
-                                    <th>P99</th>
+                                    <th>₱<span id="txt_total_amount">{{ $totalAmount }}</span></th>
                                 </tr>
                                 <tr>
                                     <th>Tendered</th>
-                                    <th><input type="text" class="form-control"></th>
+                                    <th><input type="text" class="form-control" id="txt_tendered"></th>
                                 </tr>
                                 <tr>
                                     <th>Change</th>
-                                    <th>P99</th>
+                                    <th>₱<span id="txt_change"></span></th>
                                 </tr>
                             </thead>
                         </table>
-                        <button class="btn btn-sm btn-success" style="margin-top: 10px">Process</button>
+                        <button class="btn btn-sm btn-success" style="margin-top: 10px" id="btn-process">Process</button>
                  
                     </div>
                 </div>

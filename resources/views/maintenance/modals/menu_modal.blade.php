@@ -20,7 +20,7 @@
                 <label class="col-form-label">Category</label>
                 <select class="form-control" name="category" id="category" required>               
                     @foreach($category as $data)
-                    <option value={{ $data->category }}>{{ $data->category }}</option>
+                    <option value={{ $data->id }}>{{ $data->category }}</option>
                       @endforeach
                 </select>
               </div>
@@ -52,7 +52,7 @@
  
              <div class="col-md-6" style="margin-top: 15px;">
                <label class="col-form-label">Image</label>
-               <input type="file" name="image" id="image" required>
+               <input type="file" name="image" id="image">
              </div>
 
  

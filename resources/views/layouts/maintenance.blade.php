@@ -195,6 +195,18 @@
                                 <li><a href="{{ url('maintenance/menu') }}"><i class="fa fa-angle-double-right"></i> Menu</a></li>
                             </ul>
                         </li>
+
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-file-o"></i>
+                                <span>Reports</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="{{ url('reports/gross_sale') }}"><i class="fa fa-dollar"></i> Gross Sale</a></li>
+                                <li><a href="{{ url('reports/best_seller') }}"><i class="fa fa-dollar"></i> Best Seller</a></li>
+                            </ul>
+                        </li>
                     </ul>
                 </section>
                 <!-- /.sidebar -->

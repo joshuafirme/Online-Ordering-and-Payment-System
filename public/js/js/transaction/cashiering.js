@@ -1,10 +1,14 @@
 
 $(document).ready(function(){
-
-    console.log('casdhiering');
+    $.ajaxSetup({
+        headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+      });
   
   //search menu
   $(document).on('keyup', '#txt_search', function(){
+
     var search_key = $(this).val();
   
     $.ajax({
@@ -14,21 +18,27 @@ $(document).ready(function(){
 
        if(response.length > 0){
         console.log(response);
+        $('#id').val(response[0].id);
         $('#description').val(response[0].description);
         $('#category').val(response[0].category);
         $('#price').val(response[0].price);
         computeAmount();
        }
        else{
-        $('#description').val('');
-        $('#category').val('');
-        $('#price').val('');
-        $('#amount').val('');
+        clearFields();
        }
 
       }
     });
   }); 
+
+  function clearFields(){     
+    $('#id').val('');
+    $('#description').val('');
+    $('#category').val('');
+    $('#price').val('');
+    $('#amount').val('');
+  }
   
   //search menu
   $(document).on('keyup', '#qty', function(){
@@ -46,7 +56,62 @@ $(document).ready(function(){
 
 
   $(document).on('click', '#btn-add', function(){
-    alert('');
+
+    var menu_id = $('#id').val();
+    var amount = $('#amount').val();
+    var qty = $('#qty').val();
+
+    console.log(menu_id);
+    console.log(amount);
+    $.ajax({
+        url:"/transaction/cashiering/add",
+        type:"POST",
+        data:{
+            menu_id:menu_id,
+            amount:amount,
+            qty:qty
+        },
+        success:function(response){
+            console.log(response);
+            $('#tray_table').load('cashiering #tray_table');
+            $('#txt_total_amount').load('cashiering #txt_total_amount');
+        }
+      });
+  }); 
+
+  $(document).on('keyup', '#txt_tendered', function(){
+
+    var tendered = $(this).val();
+    $('#txt_change').text(computeChange(tendered));
+  }); 
+
+  function computeChange(tendered){
+    var total_amount = $('#txt_total_amount').text();
+
+    return tendered - total_amount;
+  }
+
+
+  $(document).on('click', '#btn-process', function(){
+
+    $.ajax({
+        url:"/transaction/cashiering/process",
+        type:"POST",
+        beforeSend:function(){
+            $('#btn-process').text('Please wait...')
+        },
+        success:function(response){
+            console.log(response);
+          setTimeout(function(){
+            $('#tray_table').load('cashiering #tray_table');
+            $('#txt_total_amount').load('cashiering #txt_total_amount');
+            $('#txt_change').text('0');
+            $('#txt_tendered').val(0);
+            clearFields();
+            $('#btn-process').text('Process');
+          },1000)
+        }
+      });
   }); 
 
 
