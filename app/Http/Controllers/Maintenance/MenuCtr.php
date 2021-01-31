@@ -11,21 +11,24 @@ use Illuminate\Support\Facades\DB;
 
 class MenuCtr extends Controller
 {
+    private $tbl_menu = 'tblmenu';
+    private $tbl_cat = 'tblcategory';
+
     public function index(){
 
-        $g = $this->displayMenu();
+        $menu = $this->displayMenu();
         if(request()->ajax())
         {
-            return datatables()->of($g)
-                ->addColumn('action', function($g){
-                    $button = ' <a class="btn btn-sm btn-primary" id="btn-edit-menu" edit-id="'. $g->id .'" 
+            return datatables()->of($menu)
+                ->addColumn('action', function($menu){
+                    $button = ' <a class="btn btn-sm btn-primary" id="btn-edit-menu" edit-id="'. $menu->id .'" 
                     data-toggle="modal" data-target="#editModal"><i class="fa fa-edit"></i></a>';
-                    $button .= '<a class="btn btn-sm" id="btn-delete" delete-id="'. $g->id .'"><i style="color:#DC3545;" class="fa fa-trash-o"></i></a>';
+                    $button .= '<a class="btn btn-sm" id="btn-delete" delete-id="'. $menu->id .'"><i style="color:#DC3545;" class="fa fa-trash-o"></i></a>';
                     return $button;
                 })
-                ->addColumn('image', function($g){
-                    if($g->image){
-                        $img = '<img src="../../storage/'. $g->image .'" style="width:200px; max-height:200px;">';
+                ->addColumn('image', function($menu){
+                    if($menu->image){
+                        $img = '<img src="../../storage/'. $menu->image .'" style="width:200px; max-height:200px;">';
                     }
                     else{
                         $img = '<img src="../../storage/img-placeholder.png" style="width:200px; max-height:200px;">';
@@ -40,13 +43,20 @@ class MenuCtr extends Controller
     }
 
     public function getCategory(){
-        $c = new Category;
-        return $c->getCategory();
+        $res = DB::table($this->tbl_cat)
+        ->select($this->tbl_cat.'.*')
+        ->get();
+
+        return $res;
     }
 
     public function displayMenu(){
-        $g = new Menu;
-        return $g->getMenu();
+        $res = DB::table($this->tbl_menu.' as M')
+        ->select('M.*', 'category')
+        ->leftJoin($this->tbl_cat.' AS C', 'C.id', '=', 'M.category_id')    
+        ->get();
+
+        return $res;
     }
 
     public function store(Request $request){
@@ -111,8 +121,13 @@ class MenuCtr extends Controller
 
     
     public function show($id){
-        $g = new Menu;
-        return $g->show($id);
+        $res = DB::table($this->tbl_menu.' as M')
+        ->select('M.*', 'category')
+        ->leftJoin($this->tbl_cat.' AS C', 'C.id', '=', 'M.category_id')  
+        ->where('M.id', $id)
+        ->get();
+
+        return $res;
     }
 
     public function delete($id){

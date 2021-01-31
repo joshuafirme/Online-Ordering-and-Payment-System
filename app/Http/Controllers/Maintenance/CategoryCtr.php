@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 
 class CategoryCtr extends Controller
 {
+    private $tbl_cat = 'tblcategory';
     public function index(){
 
         $cm = $this->displayCategory();
@@ -30,8 +31,11 @@ class CategoryCtr extends Controller
     }
 
     public function displayCategory(){
-        $cm = new Category;
-        return $cm->getCategory();
+        $res = DB::table($this->tbl_cat)
+        ->select($this->tbl_cat.'.*')
+        ->get();
+
+        return $res;
     }
 
     public function store(Request $request){
@@ -43,8 +47,12 @@ class CategoryCtr extends Controller
     }
 
     public function show($id){
-        $cm = new Category;
-        return $cm->show($id);
+        $res = DB::table($this->tbl_cat)
+        ->select($this->tbl_cat.'.*')
+        ->where('id', $id)
+        ->get();
+
+        return $res;
     }
 
     public function update(Request $request){
