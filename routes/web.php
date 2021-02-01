@@ -44,3 +44,6 @@ Route::delete('maintenance/menu/delete/{id}', 'Maintenance\MenuCtr@delete');
 
 //UTILITIES------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Route::get('utilities/user', 'Utilities\UserCtr@index'); 
+Route::post('utilities/user/store', 'Utilities\UserCtr@store'); 
+Route::post('utilities/user/update', 'Utilities\UserCtr@update'); 
+Route::get('utilities/user/show/{id}', 'Utilities\UserCtr@showUserDetails'); 

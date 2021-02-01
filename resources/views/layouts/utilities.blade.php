@@ -241,9 +241,13 @@
         <!-- AdminLTE App -->
         <script src="{{asset('js/AdminLTE/app.js')}}" type="text/javascript"></script>
         <!-- DATA TABES SCRIPT -->
+
+          <!-- DATA TABES SCRIPT -->
+          <script src="{{asset('js/plugins/datatables/jquery.dataTables.min.js')}}" type="text/javascript"></script>
+          <script src="{{asset('js/plugins/datatables/dataTables.bootstrap.js')}}" type="text/javascript"></script>
              
-        <!-- Cashiering SCRIPT -->
-        <script src="{{asset('js/js/transaction/cashiering.js')}}"></script>
+        <!-- User SCRIPT -->
+        <script src="{{asset('js/js/utilities/user.js')}}"></script>
 
     </body>
 </html>
