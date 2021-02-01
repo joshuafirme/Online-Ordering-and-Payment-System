@@ -15,8 +15,15 @@ Route::get('/', function () {
     return view('dashboard');
 });
 
+//Login
 Route::get('user-login', 'LoginCtr@index');
 Route::post('user-login/login', 'LoginCtr@login');
+//Google Login
+Route::get('user-login/google', 'Customer\LoginCtr@redirectToGoogle');
+Route::get('user-login/google/callback', 'Customer\LoginCtr@handleGoogleCallback');
+
+//GALLERY MAINTENANCE------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Route::get('home', 'Customer\HomeCtr@index');
 
 //GALLERY MAINTENANCE------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Route::get('maintenance/gallery', 'Maintenance\GalleryCtr@index');

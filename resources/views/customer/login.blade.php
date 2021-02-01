@@ -81,7 +81,7 @@
 
         
     <div class="form-group">
-        <a href="{{ url('google-login') }}" class="btn btn-primary btn-block btn-google">Google Log in</a>
+        <a href="{{ url('user-login/google') }}" class="btn btn-primary btn-block btn-google">Google Log in</a>
         <a class="signup-link" href="{{ url('/signup') }}">Don't have an account? <span >Sign up</span></a>
     </div>  
     </form>

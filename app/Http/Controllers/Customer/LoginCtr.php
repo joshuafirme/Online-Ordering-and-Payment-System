@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Customer;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Socialite;
+use Redirect;
 
 class LoginCtr extends Controller
 {
@@ -25,30 +28,30 @@ class LoginCtr extends Controller
             $this->googleLogin($user->email, $user->name, $user->avatar);
   
         } catch (Exception $e) {
-            return redirect('customer-login/google');
+            return redirect('user-login/google');
         }
     }
 
     public function googleLogin($email, $name, $avatar){
 
-        $account =  DB::table($this->tbl_cust_acc)->where('email', $email)->get();  
+        $account =  DB::table('tblcustomer')->where('email', $email)->get();  
 
         if($account->count() > 0)
         {
             $this->putToSession($email, $avatar);
-            return redirect('/homepage')->send();
+            return redirect('/home')->send();
         }
         else
         {
             $this->putToSession($email, $avatar);
 
-            $cust_acc = new CustomerAccount;
-            $cust_acc->_prefix = 'CUST-'. date('yy').'-';
-            $cust_acc->fullname = $name;
-            $cust_acc->email = $email;
-            $cust_acc->save();
+            DB::table('tblcustomer')
+                ->insert([
+                    'fullname' => $name,
+                    'email' => $email
+                ]);
             
-            return redirect('/homepage')->send();
+            return redirect('/home')->send();
         }
     }
 
@@ -63,10 +66,10 @@ class LoginCtr extends Controller
     public function isLoggedIn(){
         if(session()->get('is-customer-logged') == 'yes'){
    
-           return 'yes';
+            return Redirect::to('/home'); 
         }
         else{
-            return 'no';
+            return Redirect::to('/user-login'); 
         }
     }
 }
