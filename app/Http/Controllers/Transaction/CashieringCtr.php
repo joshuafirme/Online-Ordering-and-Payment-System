@@ -60,9 +60,15 @@ class CashieringCtr extends Controller
         return DB::table('tblcashiering')->sum('amount');
     }
 
+
+
     public function displayTray(){
         $c = new Cashiering;
         return $c->getTray();
+    }
+
+    public function removeFromTray(){
+        DB::table('tblcashiering')->delete();
     }
 
     public function process(){

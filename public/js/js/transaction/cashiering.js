@@ -114,6 +114,21 @@ $(document).ready(function(){
       });
   }); 
 
+  $(document).on('click', '#btn-remove', function(){
+    var id = $(this).attr('delete-id');
+    console.log(id);
+    $.ajax({
+        url:"/transaction/cashiering/remove/"+id,
+        type:"GET",
+        success:function(){
+            $('#tray_table').load('cashiering #tray_table');
+            $('#txt_total_amount').load('cashiering #txt_total_amount');
+            computeAmount();
+         
+        }
+      });
+  }); 
+
 
   });
     

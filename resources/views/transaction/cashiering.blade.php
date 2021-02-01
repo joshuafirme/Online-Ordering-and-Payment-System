@@ -68,6 +68,7 @@
                                     <th>Price</th>
                                     <th>Qty</th>
                                     <th>Amount</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -78,6 +79,7 @@
                                     <th>{{ $data->price }}</th>
                                     <th>{{ $data->qty }}</th>
                                     <th>{{ $data->amount }}</th>
+                                    <th><button id="btn-remove" delete-id="{{$data->id}}" style="color:#AA0000;">&times;</button></th>
                                 </tr>
                                 @endforeach
                             </tbody>

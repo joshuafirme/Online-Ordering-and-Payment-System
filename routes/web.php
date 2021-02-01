@@ -18,6 +18,10 @@ Route::get('/', function () {
 Route::get('user-login', 'LoginCtr@index');
 Route::post('user-login/login', 'LoginCtr@login');
 
+//GALLERY MAINTENANCE------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Route::get('maintenance/gallery', 'Maintenance\GalleryCtr@index');
+Route::post('maintenance/gallery/store', 'Maintenance\GalleryCtr@store');
+Route::get('/maintenance/gallery/delete/{id}', 'Maintenance\GalleryCtr@delete');
 
 //CATEGORY MAINTENANCE------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Route::get('maintenance/category', 'Maintenance\CategoryCtr@index');
@@ -31,6 +35,7 @@ Route::get('transaction/cashiering', 'Transaction\CashieringCtr@index');
 Route::get('transaction/cashiering/search/{search_key}', 'Transaction\CashieringCtr@search');
 Route::post('transaction/cashiering/add', 'Transaction\CashieringCtr@addToTray');
 Route::post('transaction/cashiering/process', 'Transaction\CashieringCtr@process');
+Route::get('transaction/cashiering/remove/{id}', 'Transaction\CashieringCtr@removeFromTray');
 
 //REPORTS MAINTENANCE------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Route::get('reports/gross_sale', 'Reports\GrossSaleCtr@index'); 
@@ -47,3 +52,10 @@ Route::get('utilities/user', 'Utilities\UserCtr@index');
 Route::post('utilities/user/store', 'Utilities\UserCtr@store'); 
 Route::post('utilities/user/update', 'Utilities\UserCtr@update'); 
 Route::get('utilities/user/show/{id}', 'Utilities\UserCtr@showUserDetails'); 
+
+
+
+//CUSTOMER------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Route::get('customer/customer-login', 'Customer\loginCtr@index');
+Route::get('google-login', 'Customer\GoogleLoginCtr@redirectToGoogle');
+Route::get('google-login/callback', 'Customer\GoogleLoginCtr@handleGoogleCallback');

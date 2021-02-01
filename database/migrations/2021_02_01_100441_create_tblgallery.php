@@ -15,8 +15,7 @@ class CreateTblgallery extends Migration
     {
         Schema::create('tblgallery', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('category_menu_id');
-            $table->string('image');
+            $table->string('gallery');
             $table->timestamps();
         });
     }

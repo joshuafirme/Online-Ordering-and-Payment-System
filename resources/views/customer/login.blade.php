@@ -32,18 +32,32 @@
     .btn {        
         font-size: 15px;
         font-weight: bold;
-        background-color: #08AEFA;
-        color: #fff;
     }
-    .btn:hover {        
-        color: #fff;
-    }
+    .btn-google{
+	display: block;
+	width: 100%;
+	height: 40px;
+	outline: none;
+	color: black;
+	border: 2px solid #30377A;
+	font-size: 11pt;
+	color: #30377A;
+	font-family: 'Poppins', sans-serif;
+	margin: 1rem 0;
+	cursor: pointer;
+	transition: .5s;
+	background: url('https://img.icons8.com/color/48/000000/google-logo.png') #f2f2f2;
+	background-position: left;	
+    background-repeat: no-repeat;
+	background-size: 40px 40px;
+	background-color: #fff;
+}
 </style>
 </head>
-<body style="background-image: url('img/davids_grill_logo.jpg'); background-repeat: no-repeat;">
+<body style="background-image: url('../img/davids_grill_logo.jpg'); background-repeat: no-repeat;">
 <div class="login-form">
     
-    <form action="{{ url('/user-login/login') }}" method="POST">
+    <form action="" method="POST">
         {{ csrf_field() }}
         
         @if(\Session::has('invalid'))
@@ -62,8 +76,14 @@
             <input type="password" class="form-control" placeholder="Password" required="required" name="password" id="password">
         </div>
         <div class="form-group">
-            <button type="submit" class="btn btn-block">Log in</button>
+            <button type="submit" class="btn btn-primary btn-block">Log in</button>
         </div>      
+
+        
+    <div class="form-group">
+        <a href="{{ url('google-login') }}" class="btn btn-primary btn-block btn-google">Google Log in</a>
+        <a class="signup-link" href="{{ url('/signup') }}">Don't have an account? <span >Sign up</span></a>
+    </div>  
     </form>
 </div>
 </body>
