@@ -7,10 +7,13 @@ use App\Maintenance\Category;
 use Illuminate\Http\Request;
 use Input;
 use Illuminate\Support\Facades\DB;
+use App\Utilities\User;
 
 class CategoryCtr extends Controller
 {
+    private $module = 'Maintenance';
     private $tbl_cat = 'tblcategory';
+
     public function index(){
 
         $cm = $this->displayCategory();

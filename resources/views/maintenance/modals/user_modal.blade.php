@@ -145,10 +145,10 @@
        </div>
        <div class="modal-body">
          <p class="delete-message"></p>
-         <p class="delete-success text-success delete-success" style="display: none">Data deleted successfully</p>
+         <p class="delete-success text-success" style="display: none">Data deleted successfully</p>
        </div>
        <div class="modal-footer">
-       <button class="btn btn-sm btn-outline-dark" id="btn-yes">Yes</button>
+       <button class="btn btn-sm btn-outline-dark" id="btn-confirm-del-user">Yes</button>
        <button class="btn btn-sm btn-danger cancel-delete" data-dismiss="modal">Cancel</button>
 
        </div>

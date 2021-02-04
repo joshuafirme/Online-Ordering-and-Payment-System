@@ -32,7 +32,7 @@ $(document).ready(function(){
 
 
 
-  //edit
+  //edit modal show
   $(document).on('click', '#btn-edit-user', function(){
     var id = $(this).attr('edit-id');
     console.log(id);
@@ -51,7 +51,47 @@ $(document).ready(function(){
           }
       });
     
-  });       
+  });  
+  
+  
+// delete
+var id, emp_name;
+$(document).on('click', '#btn-delete-user', function(){
+    row = $(this).closest("tr")
+    id = $(this).attr('delete-id');
+    console.log(id);
+    emp_name =  $(this).closest("tr").find('td:eq(1)').text();
+    $('#deleteModal').modal('show');
+    $('.delete-message').html('Are you sure do you want to delete user <b>'+ emp_name +'?');
+  }); 
+  
+  $('#btn-confirm-del-user').click(function(){
+      $.ajax({
+          url: '/utilities/user/delete/'+ id,
+          type: 'DELETE',
+          beforeSend:function(){
+            $('#btn-confirm-del-user').text('Deleting...');
+        },
+          success:function(){
+            setTimeout(function(){
+                
+                $('.delete-success').css('display', 'inline');  
+                row.fadeOut(500, function () {
+                  table.row(row).remove().draw() 
+                  });
+               
+            }, 2000);
+
+           setTimeout(function(){            
+                $('#btn-confirm-del-user').text('Yes');
+                $('#deleteModal').modal('hide');
+           },4000)
+                
+           $('.delete-success').css('display', 'none');
+          }
+      });
+    
+  });
 
 
   });

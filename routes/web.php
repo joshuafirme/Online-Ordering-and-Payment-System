@@ -15,10 +15,15 @@ Route::get('/', function () {
     return view('dashboard');
 });
 
-//Login
+//Employee Login------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Route::get('user-login', 'LoginCtr@index');
 Route::post('user-login/login', 'LoginCtr@login');
-//Google Login
+Route::get('logout-employee', 'LoginCtr@logout');
+
+//CUSTOMER------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Route::get('customer/customer-login', 'Customer\loginCtr@index');
+Route::get('google-login', 'Customer\GoogleLoginCtr@redirectToGoogle');
+Route::get('google-login/callback', 'Customer\GoogleLoginCtr@handleGoogleCallback');
 Route::get('user-login/google', 'Customer\LoginCtr@redirectToGoogle');
 Route::get('user-login/google/callback', 'Customer\LoginCtr@handleGoogleCallback');
 
@@ -59,10 +64,8 @@ Route::get('utilities/user', 'Utilities\UserCtr@index');
 Route::post('utilities/user/store', 'Utilities\UserCtr@store'); 
 Route::post('utilities/user/update', 'Utilities\UserCtr@update'); 
 Route::get('utilities/user/show/{id}', 'Utilities\UserCtr@showUserDetails'); 
+Route::delete('utilities/user/delete/{id}', 'Utilities\UserCtr@deleteUser'); 
 
 
 
-//CUSTOMER------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Route::get('customer/customer-login', 'Customer\loginCtr@index');
-Route::get('google-login', 'Customer\GoogleLoginCtr@redirectToGoogle');
-Route::get('google-login/callback', 'Customer\GoogleLoginCtr@handleGoogleCallback');
+
