@@ -13,7 +13,7 @@
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">Gross Sale</li>
+            <li class="active">Customer Information</li>
         </ol>
     </section>
 
@@ -28,38 +28,20 @@
     <!-- Main content -->
     <section class="content">
 
-
         <div class="row">
             <div class="col-xs-12">
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">Gross Sale</h3>   
-                        
-                        <div style="margin-top: 5px;">
-                            <div class="col-sm-2">
-                                <input type="date" class="form-control" id="date_from" value="{{ date('Y-m-d') }}">
-                            </div>
-                
-                            <div class="col-sm-2">
-                            <input type="date" class="form-control" id="date_to" value="{{ date('Y-m-d') }}">
-                            </div> 
-                        </div>
-
+                        <h3 class="box-title">Customer Information</h3>                                    
                     </div><!-- /.box-header -->
-                    
-            
-                    
                     <div class="box-body table-responsive">
-                        <table id="gross-sale-table" class="table table-bordered table-hover">
+                        <table id="customer-info-table" class="table table-bordered table-hover">
                             <thead>
                                 <tr>
-                                    <th>Trans ID</th>
-                                    <th>Description</th>
-                                    <th>Category</th>
-                                    <th>Qty</th>
-                                    <th>Amount</th>
-                                    <th>Order Type</th>
-                                    <th>Date time</th>
+                                    <th>Customer Name</th>
+                                    <th>Phone Number</th>
+                                    <th>Email</th>
+                                    <th>Member Since</th>
                                 </tr>
                             </thead>
                         </table>
@@ -71,8 +53,5 @@
 
     </section><!-- /.content -->
 
-@extends('maintenance.modals.category_modal')
-@section('modals')
-@endsection
 
 @endsection

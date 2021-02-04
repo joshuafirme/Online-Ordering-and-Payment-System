@@ -6,9 +6,12 @@ $(document).ready(function(){
           }
       });
 
-      fetchGrossSale();
+      var date_from = $('#date_from').val()
+      var date_to = $('#date_to').val();
+
+      fetchGrossSale(date_from, date_to);
      
-      function fetchGrossSale(){
+      function fetchGrossSale(date_from, date_to){
         $('#gross-sale-table').DataTable({
        
           processing: true,
@@ -16,6 +19,10 @@ $(document).ready(function(){
   
           ajax:{
            url: "/reports/gross_sale",
+           data:{
+               date_from:date_from,
+               date_to:date_to
+           }
           }, 
   
           columns:[    
@@ -30,6 +37,25 @@ $(document).ready(function(){
           
          });
       }
+
+
+      $('#date_from').change(function()
+      {
+         var date_from = $('#date_from').val()
+         var date_to = $('#date_to').val();
+   
+         $('#gross-sale-table').DataTable().destroy();
+         fetchGrossSale(date_from, date_to);
+      });
+   
+      $('#date_to').change(function()
+      {
+         var date_from = $('#date_from').val()
+         var date_to = $('#date_to').val();
+   
+         $('#gross-sale-table').DataTable().destroy();
+         fetchGrossSale(date_from, date_to);
+      });
 
 
   });

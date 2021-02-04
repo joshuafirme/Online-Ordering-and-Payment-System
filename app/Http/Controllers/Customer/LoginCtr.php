@@ -48,7 +48,8 @@ class LoginCtr extends Controller
             DB::table('tblcustomer')
                 ->insert([
                     'fullname' => $name,
-                    'email' => $email
+                    'email' => $email,
+                    'created_at' => date('Y-m-d')
                 ]);
             
             return redirect('/home')->send();

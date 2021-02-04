@@ -57,8 +57,9 @@
         <script src="{{asset('js/plugins/datatables/jquery.dataTables.min.js')}}" type="text/javascript"></script>
         <script src="{{asset('js/plugins/datatables/dataTables.bootstrap.js')}}" type="text/javascript"></script>
              
-        <!-- Cashiering SCRIPT -->
+        <!-- REPORTS SCRIPT -->
         <script src="{{asset('js/js/reports/gross_sale.js')}}"></script>
+        <script src="{{asset('js/js/reports/customer_info.js')}}"></script>
 
     </body>
 </html>

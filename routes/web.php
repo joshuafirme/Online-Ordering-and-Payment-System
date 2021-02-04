@@ -52,6 +52,9 @@ Route::get('transaction/cashiering/remove/{id}', 'Transaction\CashieringCtr@remo
 //REPORTS MAINTENANCE------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Route::get('reports/gross_sale', 'Reports\GrossSaleCtr@index'); 
 
+//Customer Information
+Route::get('reports/customer-info', 'Reports\CustomerInfoCtr@index'); 
+
 //MENU MAINTENANCE------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Route::get('maintenance/menu', 'Maintenance\MenuCtr@index'); 
 Route::get('maintenance/menu/show/{id}', 'Maintenance\MenuCtr@show'); 
