@@ -13,7 +13,7 @@
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">Gross Sale</li>
+            <li class="active">Best Seller</li>
         </ol>
     </section>
 
@@ -33,7 +33,7 @@
             <div class="col-xs-12">
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">Gross Sale</h3>   
+                        <h3 class="box-title">Best Seller</h3>   
                         
                         <div style="margin-top: 5px;">
                             <div class="col-sm-2">
@@ -43,23 +43,20 @@
                             <div class="col-sm-2">
                             <input type="date" class="form-control" id="date_to" value="{{ date('Y-m-d') }}">
                             </div> 
-                        </div>
+                        </div>  
 
                     </div><!-- /.box-header -->
                     
             
                     
                     <div class="box-body table-responsive">
-                        <table id="gross-sale-table" class="table table-bordered table-hover">
+                        <table id="best-seller-table" class="table table-bordered table-hover">
                             <thead>
                                 <tr>
-                                    <th>Trans ID</th>
                                     <th>Description</th>
                                     <th>Category</th>
-                                    <th>Qty</th>
-                                    <th>Amount</th>
+                                    <th>Number of Purchase</th>
                                     <th>Order Type</th>
-                                    <th>Date time</th>
                                 </tr>
                             </thead>
                         </table>

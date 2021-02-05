@@ -24,4 +24,5 @@ class CustomerInfoCtr extends Controller
                 ->select('tblcustomer.*', DB::raw('date(created_at) as created_at'))
                 ->get();
     }
+    
 }

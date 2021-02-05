@@ -60,6 +60,7 @@
         <!-- REPORTS SCRIPT -->
         <script src="{{asset('js/js/reports/gross_sale.js')}}"></script>
         <script src="{{asset('js/js/reports/customer_info.js')}}"></script>
+        <script src="{{asset('js/js/reports/best_seller.js')}}"></script>
 
     </body>
 </html>

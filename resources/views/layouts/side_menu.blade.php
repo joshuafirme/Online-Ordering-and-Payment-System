@@ -26,7 +26,7 @@
         <ul class="treeview-menu">
             <li><a href="{{ url('reports/customer-info') }}"><i class="fa fa-users"></i> Customer Information</a></li>
             <li><a href="{{ url('reports/gross_sale') }}"><i class="fa fa-dollar"></i> Gross Sale</a></li>
-            <li><a href="{{ url('reports/best_seller') }}"><i class="fa fa-bar-chart-o"></i> Best Seller</a></li>
+            <li><a href="{{ url('reports/best-seller') }}"><i class="fa fa-bar-chart-o"></i> Best Seller</a></li>
         </ul>
     </li>
 
