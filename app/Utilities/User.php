@@ -36,13 +36,13 @@ class User extends Model
     public function getAuthModules(){
         switch($this->getPosition()) {
             case 'Admin':
-                return array('Transaction', 'Maintenance', 'Reports', 'Utilities');
+                return array('Transaction', 'Maintenance', 'Reports', 'Utilities', 'Dashboard');
                 break;
             case 'Cashier':
-                return array('Transaction');
+                return array('Transaction', 'Dashboard');
                 break; 
             case 'Receptionist':
-                return array('Transaction');
+                return array('Transaction', 'Dashboard');
                 break;    
           }
     }

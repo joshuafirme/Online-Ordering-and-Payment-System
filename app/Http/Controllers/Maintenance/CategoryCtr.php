@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Input;
 use Illuminate\Support\Facades\DB;
 use App\Utilities\User;
+use App\Utilities\AuditTrail;
 
 class CategoryCtr extends Controller
 {
@@ -49,6 +50,9 @@ class CategoryCtr extends Controller
         $cm->category = $request->input('category');
         $cm->save();
 
+        $audit = new AuditTrail;
+        $audit->recordAction($this->module, 'Add Category');
+
         return redirect('/maintenance/category')->with('success', 'Data Saved');
     }
 
@@ -71,12 +75,19 @@ class CategoryCtr extends Controller
             'category' => $cm->category
             ]);
 
+            $audit = new AuditTrail;
+            $audit->recordAction($this->module, 'Update Category');
+
         return redirect('/maintenance/category')->with('success', 'Data Updated');
     }
 
     public function delete($id){
         $cm = Category::findOrFail($id);
         $cm->delete();
+
+        $audit = new AuditTrail;
+        $audit->recordAction($this->module, 'Delete Category');
+
         return $cm;
     }
     

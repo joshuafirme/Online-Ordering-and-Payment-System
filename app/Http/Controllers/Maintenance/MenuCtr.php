@@ -8,6 +8,8 @@ use App\Maintenance\Category;
 use Illuminate\Http\Request;
 use Input;
 use Illuminate\Support\Facades\DB;
+use App\Utilities\User;
+use App\Utilities\AuditTrail;
 
 class MenuCtr extends Controller
 {
@@ -80,6 +82,9 @@ class MenuCtr extends Controller
         }
         $this->storeImage($g->id);
 
+        $audit = new AuditTrail;
+        $audit->recordAction($this->module, 'Add Menu');
+
         return redirect('/maintenance/menu')->with('success', 'Data Saved');
     }
 
@@ -110,6 +115,9 @@ class MenuCtr extends Controller
         $this->storeImage($g->id);
         }
 
+        $audit = new AuditTrail;
+        $audit->recordAction($this->module, 'Update Menu');
+
         return redirect('/maintenance/menu')->with('success', 'Data updated successfully');
     }
 
@@ -137,6 +145,9 @@ class MenuCtr extends Controller
     public function delete($id){
         $g = Menu::findOrFail($id);
         $g->delete();
+
+        $audit = new AuditTrail;
+        $audit->recordAction($this->module, 'Delete Menu');
         return $g;
     }
 }

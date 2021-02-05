@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Utilities\User;
+use App\Utilities\AuditTrail;
 
 class GalleryCtr extends Controller
 {
@@ -35,10 +36,16 @@ class GalleryCtr extends Controller
             ]);
         }
 
+        $audit = new AuditTrail;
+        $audit->recordAction($this->module, 'Add Gallery');
+
         return redirect('/maintenance/gallery')->with('success', 'Image added successfully');
     }
 
     public function delete($id){
         DB::table('tblgallery')->delete($id);
+
+        $audit = new AuditTrail;
+        $audit->recordAction($this->module, 'Delete Gallery');
     }
 }

@@ -10,8 +10,11 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+//use App\Utilities\User;
 
 Route::get('/', function () {
+  //  $user = new User;
+  //  $user->isUserAuthorize('Dashboard');
     return view('dashboard');
 });
 
@@ -75,6 +78,8 @@ Route::delete('utilities/user/delete/{id}', 'Utilities\UserCtr@deleteUser');
 Route::get('utilities/backup-and-restore', 'Utilities\BackupAndRestoreCtr@index');
 Route::post('utilities/backup-and-restore/backup', 'Utilities\BackupAndRestoreCtr@backup');
 Route::post('utilities/backup-and-restore/restore', 'Utilities\BackupAndRestoreCtr@restore');
+//audit trail
+Route::get('utilities/audit-trail', 'Utilities\AuditTrailCtr@index');
 
 
 

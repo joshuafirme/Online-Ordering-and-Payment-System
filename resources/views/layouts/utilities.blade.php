@@ -59,8 +59,9 @@
           <script src="{{asset('js/plugins/datatables/jquery.dataTables.min.js')}}" type="text/javascript"></script>
           <script src="{{asset('js/plugins/datatables/dataTables.bootstrap.js')}}" type="text/javascript"></script>
              
-        <!-- User SCRIPT -->
+        <!-- Utilities SCRIPT -->
         <script src="{{asset('js/js/utilities/user.js')}}"></script>
+        <script src="{{asset('js/js/utilities/audit_trail.js')}}"></script>
 
     </body>
 </html>
