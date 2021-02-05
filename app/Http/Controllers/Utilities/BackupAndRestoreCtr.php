@@ -4,10 +4,17 @@ namespace App\Http\Controllers\Utilities;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Utilities\User;
 
 class BackupAndRestoreCtr extends Controller
 {
+    private $module = 'Utilities';
+
     public function index(){
+
+        $user = new User;
+        $user->isUserAuthorize($this->module);
+
         return view('/utilities/backup_restore');
     }
 

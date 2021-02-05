@@ -9,7 +9,13 @@ use Illuminate\Support\Facades\DB;
 
 class UserCtr extends Controller
 {
+    private $module = 'Utilities';
+
     public function index(){
+
+        $user = new User;
+        $user->isUserAuthorize($this->module);
+
         $user = $this->getUser();
         if(request()->ajax())
         {

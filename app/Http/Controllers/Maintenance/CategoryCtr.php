@@ -11,10 +11,13 @@ use App\Utilities\User;
 
 class CategoryCtr extends Controller
 {
-    private $module = 'Maintenance';
     private $tbl_cat = 'tblcategory';
+    private $module = 'Maintenance';
 
     public function index(){
+
+        $user = new User;
+        $user->isUserAuthorize($this->module);
 
         $cm = $this->displayCategory();
 

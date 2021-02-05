@@ -3,6 +3,8 @@
 namespace App\Utilities;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
+use Redirect;
 
 class User extends Model
 {
@@ -12,43 +14,46 @@ class User extends Model
     public function isLoggedIn(){
         if(session()->get('is-login') !== 'yes'){
    
-           return redirect()->to('/admin-login')->send();
+           return Redirect::to('/user-login');
+        }
+        else{
+            return Redirect::to('/');
         }
     }
 
     public function isUserAuthorize($module){
 
         $this->isLoggedIn();
-        
-        $emp = DB::table($this->table)
-        ->where([
-            ['username', session()->get('emp-username')],
-        ])
-        ->value('auth_modules');
-
-        $modules_arr = array('Transaction', 'Maintenance', 'Reports', 'Utilities');
+      
+        $modules_arr = $this->getAuthModules();
 
         if (!(in_array($module, $modules_arr)))
-        {
-            return false;
+        {      
+             dd('You are not authorized to access this module. Please see the administrator!');
         }
-        else{
-            return true;
-        }
+    }
+
+    public function getAuthModules(){
+        switch($this->getPosition()) {
+            case 'Admin':
+                return array('Transaction', 'Maintenance', 'Reports', 'Utilities');
+                break;
+            case 'Cashier':
+                return array('Transaction');
+                break; 
+            case 'Receptionist':
+                return array('Transaction');
+                break;    
+          }
     }
     
 
     public function getPosition(){
-        $position = DB::table($this->table)
+        return DB::table($this->table)
         ->where([
             ['username', session()->get('emp-username')],
         ])
-        ->value('position');
-
-        return $position;
+        ->value('role');
     }
 
-    public function notAuthMessage(){
-        dd('You are not authorized to access this module. Please see the administrator!');
-    }
 }

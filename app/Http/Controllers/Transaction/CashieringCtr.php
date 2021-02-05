@@ -8,11 +8,17 @@ use Illuminate\Support\Facades\DB;
 use App\Maintenance\Menu;
 use App\Transaction\Cashiering;
 use Input;
+use App\Utilities\User;
 
 class CashieringCtr extends Controller
 {
+    private $module = 'Transaction';
 
     public function index(){
+
+        $user = new User;
+        $user->isUserAuthorize($this->module);
+
         return view('transaction/cashiering',[
             'tray' => $this->displayTray(),
             'totalAmount' => $this->geTotalAmount()

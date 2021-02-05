@@ -5,10 +5,17 @@ namespace App\Http\Controllers\Reports;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Utilities\User;
 
 class BestSellerCtr extends Controller
 {
+    private $module = 'Reports';
+
     public function index(Request $request){
+
+        $user = new User;
+        $user->isUserAuthorize($this->module);
+
         
         $best_seller = $this->getItems($request->date_from, $request->date_to);
       
@@ -37,10 +44,10 @@ class BestSellerCtr extends Controller
             ->leftJoin('tblmenu as M', 'M.id', '=', 'S.menu_id')
             ->leftJoin('tblcategory as C', 'C.id', '=', 'M.category_id')  
             ->whereBetween(DB::raw('DATE(S.created_at)'), [$date_from, $date_to])
-            ->orderBy('S.qty')
+            ->orderBy('S.qty', 'desc')
             ->get();
 
-        return $res;
+        return $res->unique('description');
     }
 
     public function getNumberOfPurchase($desc, $date_from, $date_to){

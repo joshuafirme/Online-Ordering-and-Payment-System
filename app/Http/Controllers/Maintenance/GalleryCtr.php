@@ -5,10 +5,16 @@ namespace App\Http\Controllers\Maintenance;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Utilities\User;
 
 class GalleryCtr extends Controller
 {
+    private $module = 'Maintenance';
+
     public function index(){
+
+        $user = new User;
+        $user->isUserAuthorize($this->module);
         return view('maintenance/gallery',['gallery' => $this->getGallery()]);
     }
 

@@ -13,8 +13,12 @@ class MenuCtr extends Controller
 {
     private $tbl_menu = 'tblmenu';
     private $tbl_cat = 'tblcategory';
+    private $module = 'Maintenance';
 
     public function index(){
+
+        $user = new User;
+        $user->isUserAuthorize($this->module);
 
         $menu = $this->displayMenu();
         if(request()->ajax())

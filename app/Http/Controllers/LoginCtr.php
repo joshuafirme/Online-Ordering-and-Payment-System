@@ -21,6 +21,7 @@ class LoginCtr extends Controller
         if($this->isAuthUser($username, $password))
         {
             session()->put('emp-username', $username);
+            session()->put('is-login', 'yes');
             return Redirect::to('/');
         }
         else{
@@ -31,6 +32,7 @@ class LoginCtr extends Controller
     public function isAuthUser($username, $password){
         $result = DB::table('tbluser')
             ->where('username', $username)
+            ->where('password', $password)
             ->get();
         
         if($result->count() > 0){
@@ -43,7 +45,7 @@ class LoginCtr extends Controller
 
     public function logout(){
         session()->forget('emp-username');
-        session()->forget('is-login');
+        session()->put('is-login', 'no');
 
         return Redirect::to('/user-login'); 
     }

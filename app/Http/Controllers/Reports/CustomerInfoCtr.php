@@ -5,10 +5,16 @@ namespace App\Http\Controllers\Reports;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Utilities\User;
 
 class CustomerInfoCtr extends Controller
 {
-    public function index(){
+    private $module = 'Reports';
+
+    public function index(Request $request){
+
+        $user = new User;
+        $user->isUserAuthorize($this->module);
         
         if(request()->ajax())
         {
