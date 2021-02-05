@@ -71,6 +71,10 @@ Route::post('utilities/user/store', 'Utilities\UserCtr@store');
 Route::post('utilities/user/update', 'Utilities\UserCtr@update'); 
 Route::get('utilities/user/show/{id}', 'Utilities\UserCtr@showUserDetails'); 
 Route::delete('utilities/user/delete/{id}', 'Utilities\UserCtr@deleteUser'); 
+//backup and restore
+Route::get('utilities/backup-and-restore', 'Utilities\BackupAndRestoreCtr@index');
+Route::post('utilities/backup-and-restore/backup', 'Utilities\BackupAndRestoreCtr@backup');
+Route::post('utilities/backup-and-restore/restore', 'Utilities\BackupAndRestoreCtr@restore');
 
 
 
