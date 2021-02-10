@@ -53,6 +53,7 @@
 
         <ul class="treeview-menu">
             <li><a href="{{ url('utilities/user') }}"><i class="fa fa-angle-double-right"></i> User</a></li>
+            <li><a href="{{ url('utilities/comment-and-suggestion') }}"><i class="fa fa-angle-double-right"></i> Comments and Suggestion</a></li>
             <li><a href="{{ url('utilities/audit-trail') }}"><i class="fa fa-angle-double-right"></i> Audit Trail</a></li>
             <li><a href="{{ url('utilities/backup-and-restore') }}"><i class="fa fa-angle-double-right"></i> Backup and Restore</a></li>
         </ul>

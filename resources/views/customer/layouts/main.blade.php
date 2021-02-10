@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>David's Grill | Utilies</title>
+        <title>David's Grill | Comment and Suggestion</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
         <!-- bootstrap 3.0.2 -->
         <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
@@ -10,8 +10,6 @@
         <link href="{{asset('css/font-awesome.min.css')}}" rel="stylesheet" type="text/css" />
         <!-- Ionicons -->
         <link href="{{asset('css/ionicons.min.css')}}" rel="stylesheet" type="text/css" />
-        <!-- DATA TABLES -->
-        <link href="../../css/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />
         <!-- Theme style -->
         <link href="{{asset('css/AdminLTE.css')}}" rel="stylesheet" type="text/css" />
 
@@ -26,19 +24,10 @@
     </head>
     <body class="skin-black">
         <!-- header logo: style can be found in header.less -->
-        @include('layouts.header')
-        
+        @include('customer.layouts.header')
         <div class="wrapper row-offcanvas row-offcanvas-left">
             <!-- Left side column. contains the logo and sidebar -->
-            <aside class="left-side sidebar-offcanvas">
-                <!-- sidebar: style can be found in sidebar.less -->
-                <section class="sidebar">
-         
-                    <!-- sidebar menu: : style can be found in sidebar.less -->
-                    @include('layouts.side_menu')
-                </section>
-                <!-- /.sidebar -->
-            </aside>
+       
 
             @yield('content')
 
@@ -53,16 +42,5 @@
         <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
         <!-- AdminLTE App -->
         <script src="{{asset('js/AdminLTE/app.js')}}" type="text/javascript"></script>
-        <!-- DATA TABES SCRIPT -->
-
-          <!-- DATA TABES SCRIPT -->
-          <script src="{{asset('js/plugins/datatables/jquery.dataTables.min.js')}}" type="text/javascript"></script>
-          <script src="{{asset('js/plugins/datatables/dataTables.bootstrap.js')}}" type="text/javascript"></script>
-             
-        <!-- Utilities SCRIPT -->
-        <script src="{{asset('js/js/utilities/user.js')}}"></script>
-        <script src="{{asset('js/js/utilities/audit_trail.js')}}"></script>
-        <script src="{{asset('js/js/utilities/comment_and_suggestion.js')}}"></script>
-
     </body>
 </html>

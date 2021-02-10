@@ -22,7 +22,7 @@ class LoginCtr extends Controller
         {
             session()->put('emp-username', $username);
             session()->put('is-login', 'yes');
-            return Redirect::to('/');
+            return Redirect::to('dashboard');
         }
         else{
             return Redirect::to('/user-login')->with('invalid', 'Invalid username or password'); 

@@ -12,11 +12,7 @@
 */
 //use App\Utilities\User;
 
-Route::get('/', function () {
-  //  $user = new User;
-  //  $user->isUserAuthorize('Dashboard');
-    return view('dashboard');
-});
+Route::get('dashboard', 'DashboardCtr@index');
 
 //Employee Login------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Route::get('user-login', 'LoginCtr@index');
@@ -29,6 +25,9 @@ Route::get('google-login', 'Customer\GoogleLoginCtr@redirectToGoogle');
 Route::get('google-login/callback', 'Customer\GoogleLoginCtr@handleGoogleCallback');
 Route::get('user-login/google', 'Customer\LoginCtr@redirectToGoogle');
 Route::get('user-login/google/callback', 'Customer\LoginCtr@handleGoogleCallback');
+//comment and suggestion
+Route::get('customer/comment-and-suggestion', 'Customer\CommentAndSuggestionCtr@index');
+Route::post('customer/comment-and-suggestion/store', 'Customer\CommentAndSuggestionCtr@store');
 
 //GALLERY MAINTENANCE------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Route::get('home', 'Customer\HomeCtr@index');
@@ -74,6 +73,10 @@ Route::post('utilities/user/store', 'Utilities\UserCtr@store');
 Route::post('utilities/user/update', 'Utilities\UserCtr@update'); 
 Route::get('utilities/user/show/{id}', 'Utilities\UserCtr@showUserDetails'); 
 Route::delete('utilities/user/delete/{id}', 'Utilities\UserCtr@deleteUser'); 
+
+//comment and suggestion
+Route::get('utilities/comment-and-suggestion', 'Utilities\CommentAndSuggestionCtr@index');
+
 //backup and restore
 Route::get('utilities/backup-and-restore', 'Utilities\BackupAndRestoreCtr@index');
 Route::post('utilities/backup-and-restore/backup', 'Utilities\BackupAndRestoreCtr@backup');

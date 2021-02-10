@@ -33,7 +33,7 @@
                 <div class="box">
                     <div class="box-body table-responsive">
 
-                        <table id="" class="table table-bordered table-hover" style="width: 100%; margin-bottom:20px;">
+                        <table id="" class="table table-borderless table-hover" style="width: 100%; margin-bottom:20px;">
                             <thead>
                                 <tr>
                                     <th colspan="2">Search<input type="text" class="form-control" id="txt_search"></th>
@@ -60,7 +60,7 @@
                         </table>
 
                         <label for="">Tray</label>
-                        <table id="tray_table" class="table table-bordered table-hover" style="width: 100%; margin-bottom:20px;">
+                        <table id="tray_table" class="table table-borderless table-hover" style="width: 100%; margin-bottom:50px;">
                             <thead>
                                 <tr>
                                     <th>Description</th>
@@ -85,7 +85,7 @@
                             </tbody>
                         </table>
 
-                        <table id="" class="table table-bordered table-hover" style="width: 40%">
+                        <table id="" class="table table-borderless table-hover" style="width: 40%;">
                             <thead>
                                 <tr>
                                     <th>Total Amount</th>
