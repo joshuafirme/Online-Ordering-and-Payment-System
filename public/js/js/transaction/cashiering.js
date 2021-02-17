@@ -94,9 +94,22 @@ $(document).ready(function(){
 
   $(document).on('click', '#btn-process', function(){
 
+    var payment_method;
+
+        if($('#radio-cash').is(':checked')){
+          payment_method = 'Cash';
+        }
+        else if($('#radio-gcash').is(':checked')){
+          payment_method = 'GCash';
+        }
+
+
     $.ajax({
         url:"/transaction/cashiering/process",
         type:"POST",
+        data:{
+            payment_method:payment_method
+        },
         beforeSend:function(){
             $('#btn-process').text('Please wait...')
         },

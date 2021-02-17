@@ -26,9 +26,24 @@ class CashieringCtr extends Controller
     }
 
     public function search($search_key){
-        $m = new Menu;
-        return $m->getAvailableMenu($search_key);
+        
+        return $this->getAvailableMenu($search_key);
     }
+
+    
+
+    public function getAvailableMenu($search_key){
+        $res = DB::table('tblmenu as M')
+        ->select('M.*', 'category')
+        ->leftJoin('tblcategory AS C', 'C.id', '=', 'M.category_id')
+        ->where('M.description','LIKE', '%'.$search_key.'%')   
+        ->where('M.status', 'Available')   
+        ->get();
+
+        return $res;
+    }
+
+    
 
     public function addToTray(){
 
@@ -77,7 +92,9 @@ class CashieringCtr extends Controller
         DB::table('tblcashiering')->delete();
     }
 
-    public function process(){
+    public function process()
+    {
+        $payment_method = Input::input('payment_method');
 
         $c = new Cashiering;
 
@@ -87,6 +104,7 @@ class CashieringCtr extends Controller
                 'menu_id' => $data->menu_id,
                 'qty' => $data->qty,
                 'amount' => $data->amount,
+                'payment_method' => $payment_method,
                 'order_type' => 'Walk in',
                 'created_at' => date('Y-m-d h:m:s')
             ]);

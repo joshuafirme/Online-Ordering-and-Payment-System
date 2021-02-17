@@ -101,7 +101,22 @@
                                 </tr>
                             </thead>
                         </table>
+
+                            <div class="form-check" style="margin-top:10px;">
+                              <input class="form-check-input" type="radio" name="radio-payment-option" id="radio-cash" value="cash" checked required>
+                              <label class="form-check-label">
+                                Cash
+                              </label>
+                            </div>
+                            <div class="form-check mt-1 ml-2">
+                              <input class="form-check-input" type="radio" name="radio-payment-option" id="radio-gcash" value="gcash" required>
+                              <label class="form-check-label">
+                                Gcash
+                              </label>
+                            </div>
+  
                         <button class="btn btn-sm btn-success" style="margin-top: 10px" id="btn-process">Process</button>
+                        
                  
                     </div>
                 </div>
