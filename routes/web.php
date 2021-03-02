@@ -25,6 +25,8 @@ Route::get('google-login', 'Customer\GoogleLoginCtr@redirectToGoogle');
 Route::get('google-login/callback', 'Customer\GoogleLoginCtr@handleGoogleCallback');
 Route::get('user-login/google', 'Customer\LoginCtr@redirectToGoogle');
 Route::get('user-login/google/callback', 'Customer\LoginCtr@handleGoogleCallback');
+//gallery
+Route::get('customer/gallery', 'Customer\GalleryCtr@index');
 //comment and suggestion
 Route::get('customer/comment-and-suggestion', 'Customer\CommentAndSuggestionCtr@index');
 Route::post('customer/comment-and-suggestion/store', 'Customer\CommentAndSuggestionCtr@store');
