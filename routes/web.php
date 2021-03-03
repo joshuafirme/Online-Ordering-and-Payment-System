@@ -25,6 +25,11 @@ Route::get('google-login', 'Customer\GoogleLoginCtr@redirectToGoogle');
 Route::get('google-login/callback', 'Customer\GoogleLoginCtr@handleGoogleCallback');
 Route::get('user-login/google', 'Customer\LoginCtr@redirectToGoogle');
 Route::get('user-login/google/callback', 'Customer\LoginCtr@handleGoogleCallback');
+
+//GCASH PAYMENT-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Route::get('/payment', 'Customer\PaymentCtr@index');
+Route::get('/gcash-payment', 'Customer\PaymentCtr@gcashPayment')->name('gcashpayment');
+
 //gallery
 Route::get('customer/gallery', 'Customer\GalleryCtr@index');
 //comment and suggestion
