@@ -22,7 +22,7 @@ class PaymentCtr extends Controller
         if(empty($source_ss)) {
         $source = Paymongo::source()->create([
             'type' => 'gcash',
-            'amount' => 100.00,
+            'amount' => 5000.00,
             'currency' => 'PHP',
             'redirect' => [
                 'success' => route('gcashpayment'),

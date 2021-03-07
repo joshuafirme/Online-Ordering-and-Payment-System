@@ -99,6 +99,7 @@ class CashieringCtr extends Controller
         $c = new Cashiering;
 
         foreach($c->getTray() as $data){
+ 
             DB::table('tblgross_sale')
             ->insert([
                 'menu_id' => $data->menu_id,

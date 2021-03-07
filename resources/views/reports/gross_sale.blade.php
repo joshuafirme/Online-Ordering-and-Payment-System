@@ -43,6 +43,14 @@
                             <div class="col-sm-2">
                             <input type="date" class="form-control" id="date_to" value="{{ date('Y-m-d') }}">
                             </div> 
+
+                            <div class="col-sm-2">
+                                Total Sales: <span id="total-sales" style="font-size: 20px;"></span>
+                            </div>
+                            <div class="col-sm-1">
+                                <button id="btn-compute-sales" class="btn btn-sm btn-success">Compute Sales</button>
+                            </div> 
+                            <button class="btn btn-sm btn-secondary" id="btn-print-sales">Print</button>
                         </div>
 
                     </div><!-- /.box-header -->

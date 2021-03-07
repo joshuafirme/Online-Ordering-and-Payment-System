@@ -59,7 +59,9 @@ Route::post('transaction/cashiering/process', 'Transaction\CashieringCtr@process
 Route::get('transaction/cashiering/remove/{id}', 'Transaction\CashieringCtr@removeFromTray');
 
 //REPORTS MAINTENANCE------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Route::get('reports/gross_sale', 'Reports\GrossSaleCtr@index'); 
+Route::get('reports/gross_sale', 'Reports\GrossSaleCtr@index');
+Route::get('reports/gross_sale/computeTotalSales/{date_from}/{date_to}', 'Reports\GrossSaleCtr@computeTotalSales'); 
+Route::get('reports/gross_sale/previewPDF/{date_from}/{date_to}', 'Reports\GrossSaleCtr@previewPDF');
 
 //Customer Information
 Route::get('reports/customer-info', 'Reports\CustomerInfoCtr@index'); 

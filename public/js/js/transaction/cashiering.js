@@ -114,7 +114,7 @@ $(document).ready(function(){
             $('#btn-process').text('Please wait...')
         },
         success:function(response){
-            console.log(response);
+            
           setTimeout(function(){
             $('#tray_table').load('cashiering #tray_table');
             $('#txt_total_amount').load('cashiering #txt_total_amount');

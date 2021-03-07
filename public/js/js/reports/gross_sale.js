@@ -57,6 +57,32 @@ $(document).ready(function(){
          fetchGrossSale(date_from, date_to);
       });
 
+      $('#btn-compute-sales').click(function(){
+        var date_from = $('#date_from').val()
+        var date_to = $('#date_to').val();
+
+        computeTotalSales(date_from, date_to);
+      });
+
+      function computeTotalSales(date_from, date_to){
+            $.ajax({
+                url: '/reports/gross_sale/computeTotalSales/'+ date_from +'/'+ date_to,
+                type: 'GET',
+                success:function(data){
+                    $('#total-sales').text(data)
+                }
+            });
+          
+      }
+
+        //print pdf
+    $('#btn-print-sales').click(function(){  
+        var date_from = $('#date_from').val()
+        var date_to = $('#date_to').val();
+        window.open('/reports/gross_sale/previewPDF/'+date_from+'/'+date_to, '_blank'); 
+     
+      });
+
 
   });
     
