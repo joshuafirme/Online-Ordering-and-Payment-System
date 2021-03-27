@@ -12,9 +12,9 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
 <style>
 	.login-form {
-		width: 340px;
+		width: 440px;
     	margin: 50px auto;
-        margin-top: 250px
+        margin-top: 190px
 	}
     .login-form form {
     	margin-bottom: 15px;
@@ -32,34 +32,27 @@
     .btn {        
         font-size: 15px;
         font-weight: bold;
+        background-color: #08AEFA;
+        color: #fff;
     }
-    .btn-google{
-	display: block;
-	width: 100%;
-	height: 40px;
-	outline: none;
-	color: black;
-	border: 2px solid #30377A;
-	font-size: 11pt;
-	color: #30377A;
-	font-family: 'Poppins', sans-serif;
-	margin: 1rem 0;
-	cursor: pointer;
-	transition: .5s;
-	background: url('https://img.icons8.com/color/48/000000/google-logo.png') #f2f2f2;
-	background-position: left;	
-    background-repeat: no-repeat;
-	background-size: 40px 40px;
-	background-color: #fff;
-}
+    .btn:hover {        
+        color: #fff;
+    }
 </style>
 </head>
-<body style="background-image: url('../img/davids_grill_logo.jpg'); background-repeat: no-repeat;">
+<body style="background-image: url('img/davids_grill_logo.jpg'); background-repeat: no-repeat;">
 <div class="login-form">
     
-    <form action="{{ action('Customer\loginCtr@login') }}" method="POST">
-        @csrf
-        
+    <form action="{{ action('Customer\SignupCtr@signup') }}" method="POST">
+        {{ csrf_field() }}
+        @if(\Session::has('success'))
+        <div class="alert alert-success alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <h5><i class="icon fa fa-check-circle"></i> </h5>
+        {{ \Session::get('success') }}
+        </div>      
+        @endif
+
         @if(\Session::has('invalid'))
         <div class="alert alert-danger alert-dismissible">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -68,22 +61,29 @@
         </div>      
         @endif
 
-        <h2 class="text-center">Log in</h2>       
+        <h2 class="text-center">Signup</h2>       
         <div class="form-group">
-            <input type="text" class="form-control" placeholder="Username" required="required" name="username" id="username">
+            <input type="text" class="form-control" placeholder="Username" required="required" name="username">
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Fullname" required="required" name="fullname">
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Phone number" required="required" name="phone_no">
         </div>
         <div class="form-group">
             <input type="password" class="form-control" placeholder="Password" required="required" name="password" id="password">
         </div>
         <div class="form-group">
-            <button type="submit" class="btn btn-primary btn-block">Log in</button>
-        </div>      
-
+            <input type="password" class="form-control" placeholder="Confirm Password" required="required" name="password" id="confirm_password">
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-block">Signup</button>
+        </div>  
         
-    <div class="form-group">
-        <a href="{{ url('user-login/google') }}" class="btn btn-primary btn-block btn-google">Google Log in</a>
-        <a class="signup-link" href="{{ url('/signup') }}">Don't have an account? <span >Sign up</span></a>
-    </div>  
+        <div class="form-group">
+            <a class="signup-link" href="{{ url('/customer/customer-login') }}">Already have an account? <span >Log in</span></a>
+        </div>  
     </form>
 </div>
 </body>

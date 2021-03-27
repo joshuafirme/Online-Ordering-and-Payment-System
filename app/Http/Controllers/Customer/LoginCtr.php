@@ -7,11 +7,27 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Socialite;
 use Redirect;
+use Auth, Input;
 
 class LoginCtr extends Controller
 {
-    public function index(){
+    public function index()
+    {
+        Auth::logout();
         return view('customer/login');
+    }
+
+    public function login()
+    {
+        $data = Input::all();
+
+        if(Auth::attempt(['username' => $data['username'], 'password' => $data['password']]))
+        {
+            return Redirect::to('/home'); 
+        }
+        else{
+            return Redirect::to('/customer/customer-login')->with('invalid', 'Invalid username or password'); 
+        }
     }
 
     public function redirectToGoogle()
@@ -47,6 +63,7 @@ class LoginCtr extends Controller
 
             DB::table('tblcustomer')
                 ->insert([
+                    'username' => $email,
                     'fullname' => $name,
                     'email' => $email,
                     'created_at' => date('Y-m-d')

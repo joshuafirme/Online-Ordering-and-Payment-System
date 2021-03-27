@@ -20,21 +20,26 @@
 
         <!---====Items===-->
         <!---====Beef===-->
-        @foreach($alldayBreakfast as $data)
-        <div class="food-items">
-            <img src="{{asset('storage/'.$data->image)}}">
-            <div class="details">
-            <div class="details-sub">
-            <h3>{{ $data->description }}</h3>
-            <h3 class="price"> P{{ $data->price }}</h3>
-            @if($data->status == 'Available')
-                <button>Add to Cart</button>
-            @else
-                <p style="color: red;">Not Available</p>
-            @endif
+        @foreach($alldayBreakfast as $data)        
+            <form action="#" method="POST">
+                @csrf
+                <input type="hidden" name="menu_id" value="{{ $data->id }}">
+                <input type="hidden" name="amount" value="{{ $data->price }}">
+            <div class="food-items">
+                <img src="{{asset('storage/'.$data->image)}}">
+                <div class="details">
+                <div class="details-sub">
+                <h3>{{ $data->description }}</h3>
+                <h3 class="price"> P{{ $data->price }}</h3>
+                @if($data->status == 'Available')
+                    <button type="submit">Add to Cart</button>
+                @else
+            </form>
+                    <p style="color: red;">Not Available</p>
+                @endif
+                </div>
+                </div>
             </div>
-            </div>
-        </div>
         @endforeach
 
         

@@ -4,15 +4,21 @@ namespace App\Http\Controllers\Customer;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Auth, Redirect;
 
 class HomeCtr extends Controller
 {
     public function index(){
-        return view('customer/home',[
-            'gallery' => $this->displayGallery()
-        ]);
+        if(Auth::check()){
+            return view('customer/home',[
+                'gallery' => $this->displayGallery()
+            ]);
+        }
+        else{
+            return Redirect::to('/customer/customer-login'); 
+        }
     }
-//beef&pork
+
     public function beef_and_pork_view(){
         return view('customer/beef_porkpg',[
             'beefAndPork' => $this->displayBeefAndPork()

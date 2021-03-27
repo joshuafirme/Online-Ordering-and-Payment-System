@@ -8,8 +8,8 @@ use Redirect;
 
 class User extends Model
 {
-    protected $table = 'tbluser';
-    protected $fillable = ['id', '_prefix', 'fullname', 'password', 'username', 'contact_no', 'role'];
+    protected $table = 'tblcustomer';
+   // protected $fillable = ['id', '_prefix', 'fullname', 'password', 'username', 'contact_no', 'role'];
 
     public function isLoggedIn(){
         if(session()->get('is-login') !== 'yes'){
