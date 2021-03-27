@@ -26,6 +26,16 @@ Route::get('google-login/callback', 'Customer\GoogleLoginCtr@handleGoogleCallbac
 Route::get('user-login/google', 'Customer\LoginCtr@redirectToGoogle');
 Route::get('user-login/google/callback', 'Customer\LoginCtr@handleGoogleCallback');
 
+Route::get('menu/beef_and_pork', 'Customer\homeCtr@beef_and_pork_view');
+Route::get('menu/chicken_and_goat', 'Customer\homeCtr@chicken_and_goat_view');
+Route::get('menu/vegetables_and_seafoods', 'Customer\homeCtr@vegetables_and_seafoods_view');
+Route::get('menu/rice_and_soup', 'Customer\homeCtr@rice_and_soup_view');
+Route::get('menu/noodles_and_bilao', 'Customer\homeCtr@noodles_and_bilao_view');
+Route::get('menu/allday_breakfast', 'Customer\homeCtr@allday_breakfast_view');
+Route::get('menu/value_meals', 'Customer\homeCtr@value_meals_view');
+Route::get('menu/sizzling_plates', 'Customer\homeCtr@sizzling_plates_view');
+Route::get('menu/combo_meals', 'Customer\homeCtr@combo_meals_view');
+
 //GCASH PAYMENT-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Route::get('/payment', 'Customer\PaymentCtr@index');
 Route::get('/gcash-payment', 'Customer\PaymentCtr@gcashPayment')->name('gcashpayment');

@@ -16,6 +16,6 @@ class GalleryCtr extends Controller
     }
 
     public function displayGallery(){
-        return DB::table('tblgallery')->paginate(8);
+        return DB::table('tblgallery')->paginate();
     }
 }
