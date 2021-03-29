@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>David's Grill</title>
+      <!-- bootstrap 3.0.2 -->
+      <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
+      <!-- font Awesome -->
+      <link href="{{asset('css/font-awesome.min.css')}}" rel="stylesheet" type="text/css" />
+      <!-- Ionicons -->
+      <link href="{{asset('css/ionicons.min.css')}}" rel="stylesheet" type="text/css" />
+      <!-- Theme style -->
     <link rel="stylesheet" href="{{asset('css/main.css')}}">
     <link href="https://fonts.googleapis.com/css2?family=Baloo+Chettan+2:wght@600;800&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/332a215f17.js" crossorigin="anonymous"></script>
@@ -118,6 +125,29 @@ img.hover-shadow {
     </style>
 </head>
 <body>
+
+  <a href="#">
+    <img style="margin: 15px;" class="img-profile rounded-circle" src="{{asset('img/profile.svg')}}" width="50px"> {{ Helper::getName() }}
+  </a>
+  <ul class="navbar-nav ml-auto">
+  
+       <!-- Nav Item - User Information -->
+       <li class="nav-item dropdown no-arrow">
+         
+      </li>
+  
+  
+      
+  
+      <div class="topbar-divider d-none d-sm-block"></div>
+  
+  
+  </ul>
+  
+  </nav>
+  <!-- End of Topbar -->
+
+
 <!--Nav bar-->
    
 <div id="menu" class="menu">

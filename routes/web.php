@@ -78,12 +78,6 @@ Route::post('utilities/backup-and-restore/restore', 'Utilities\BackupAndRestoreC
 Route::get('utilities/audit-trail', 'Utilities\AuditTrailCtr@index');
 
 
-/*
-|--------------------------------------------------------------------------
-| Cart
-|--------------------------------------------------------------------------
-*/
-Route::get('utilities/audit-trail', 'Utilities\AuditTrailCtr@index');
 
 /*
 |--------------------------------------------------------------------------
@@ -115,6 +109,15 @@ Route::get('menu/allday_breakfast', 'Customer\homeCtr@allday_breakfast_view');
 Route::get('menu/value_meals', 'Customer\homeCtr@value_meals_view');
 Route::get('menu/sizzling_plates', 'Customer\homeCtr@sizzling_plates_view');
 Route::get('menu/combo_meals', 'Customer\homeCtr@combo_meals_view');
+
+/*
+|--------------------------------------------------------------------------
+| Cart
+|--------------------------------------------------------------------------
+*/
+Route::get('cart', 'Customer\CartCtr@index');
+Route::post('cart/add', 'Customer\CartCtr@addToCart');
+
 
 //GCASH PAYMENT-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Route::get('/payment', 'Customer\PaymentCtr@index');

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Customer;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Auth, Redirect;
+use Auth, Redirect, Helper;
 
 class HomeCtr extends Controller
 {

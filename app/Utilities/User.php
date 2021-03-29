@@ -49,7 +49,7 @@ class User extends Model
     
 
     public function getPosition(){
-        return DB::table($this->table)
+        return DB::table('tbluser')
         ->where([
             ['username', session()->get('emp-username')],
         ])

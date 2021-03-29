@@ -16,6 +16,10 @@ class SignupCtr extends Controller
     {
         $data = Input::all();
 
+        if($this->isUsernameExists($data['username']))
+        {
+            return Redirect::to('/signup')->with('invalid', 'Username is already exists!'); 
+        }
         DB::table('tblcustomer')
         ->insert([
             'username' => $data['username'],
@@ -26,5 +30,14 @@ class SignupCtr extends Controller
         ]);
 
     return Redirect::to('/signup')->with('success', 'You are now registered successfully!'); 
+    }
+
+    public function isUsernameExists($username)
+    {
+        $data = Input::all();
+
+        $row=DB::table('tblcustomer')->where('username', $username);
+
+        return $row->count() > 0 ? TRUE : FALSE;
     }
 }

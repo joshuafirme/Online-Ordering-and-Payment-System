@@ -52,6 +52,12 @@
 	background-size: 40px 40px;
 	background-color: #fff;
 }
+    input{
+            border-radius: 50px !important;
+        }
+    button{
+        border-radius: 50px !important;
+    }
 </style>
 </head>
 <body style="background-image: url('../img/davids_grill_logo.jpg'); background-repeat: no-repeat;">

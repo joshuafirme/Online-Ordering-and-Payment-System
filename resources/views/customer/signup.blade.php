@@ -38,6 +38,13 @@
     .btn:hover {        
         color: #fff;
     }
+
+    input{
+        border-radius: 50px !important;
+    }
+    button{
+        border-radius: 50px !important;
+    }
 </style>
 </head>
 <body style="background-image: url('img/davids_grill_logo.jpg'); background-repeat: no-repeat;">
@@ -61,7 +68,7 @@
         </div>      
         @endif
 
-        <h2 class="text-center">Signup</h2>       
+        <h2 class="text-center">Sign up</h2>       
         <div class="form-group">
             <input type="text" class="form-control" placeholder="Username" required="required" name="username">
         </div>
@@ -78,7 +85,7 @@
             <input type="password" class="form-control" placeholder="Confirm Password" required="required" name="password" id="confirm_password">
         </div>
         <div class="form-group">
-            <button type="submit" class="btn btn-block">Signup</button>
+            <button type="submit" class="btn btn-block" id="btn-signup">Sign up</button>
         </div>  
         
         <div class="form-group">
@@ -86,5 +93,27 @@
         </div>  
     </form>
 </div>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+<script>
+    $('#confirm_password').blur(function(){
+        let password = $('#password').val();
+        let confirm_pass = $(this).val();
+
+        if(password.replace(/ /g,'').length >= 6)
+        {
+            $('#btn-signup').attr('disabled', false);
+            if(password !== confirm_pass)
+            {
+            $('#btn-signup').attr('disabled', true);
+               alert('Password do not match!');
+            }
+            
+        }
+        else{
+            $('#btn-signup').attr('disabled', true);
+            alert('Enter atleast 6 characters!');
+        }
+    });
+</script>
 </body>
 </html>                                		
