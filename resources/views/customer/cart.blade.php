@@ -38,7 +38,6 @@
                     <thead>
                     <tr>
                     <th>Menu</th>
-                    <th>Status</th>
                     <th>Quantity</th>
                     <th class="text-center">Price</th>
                     <th class="text-center">Total</th>
@@ -46,6 +45,7 @@
                     </tr>
                     </thead>
                     <tbody>
+                    @if(count($cart) > 0)
                     @foreach ($cart as $data)
                     <tr>
                         <td class="col-md-6">
@@ -57,7 +57,6 @@
                         <span>Preparation time: </span><span class="text-success"><strong>{{ $data->preparation_time }}</strong></span>
                         </div>
                         </div></td>
-                        <td class="col-md-1 text-left"><strong class="label label-success">{{ $data->status }}</strong></td>
                         <td class="col-md-2">
                             <button class="btn btn-sm" id="btn-dec" menu-id="{{ $data->menu_id }}" qty="{{ $data->qty - 1 }}"
                                 onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"><i class="fas fa-minus"></i></button>
@@ -77,7 +76,12 @@
                         </form>
                         </td>
                         </tr> 
-                    @endforeach					
+                    @endforeach	
+                    @else
+                    <div class="alert alert-danger" style="margin-top: 20px;" role="alert">
+                        Your cart is empty!
+                      </div>
+                    @endif
                     <tr>
                     <td>   </td>
                     <td>   </td>

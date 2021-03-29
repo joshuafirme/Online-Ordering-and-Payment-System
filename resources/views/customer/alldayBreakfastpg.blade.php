@@ -15,14 +15,12 @@
         <div class="heading">
             <h1>David's Grill Restaurant</h1>
             <h2>&mdash; All-Day Breakfast &mdash;</h2>
-            <i class="fas fa-shopping-cart"></i>
-            <h5>Go to Cart</h5>
+            <a href="/cart" style="color: #fff;"><i class="fas fa-shopping-cart"></i></a>
         </div>
 
         <!---====Items===-->
         <!---====Beef===-->
         @foreach($alldayBreakfast as $data)        
-            {{--<form action="{{ action('Customer\CartCtr@addToCart') }}" method="POST">--}}
                 @csrf
                 <input type="hidden" name="menu_id" value="{{ $data->id }}">
                 <input type="hidden" name="amount" value="{{ $data->price }}">
@@ -35,7 +33,6 @@
                 @if($data->status == 'Available')
                     <button type="submit" class="add_to_cart" menu-id="{{ $data->id }}" amount="{{ $data->price }}">Add to Cart</button>
                 @else
-           {{-- </form>--}}
                     <p style="color: red;">Not Available</p>
                 @endif
                 </div>
@@ -43,39 +40,6 @@
             </div>
         @endforeach
 
-        
-
-
-
     </div>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-    <script>
-        $.ajaxSetup({
-            headers: {
-              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-          }
-         });
-    
-    
-        $(document).on('click', '.add_to_cart', function(){
-            let menu_id = $(this).attr('menu-id');
-            let amount = $(this).attr('amount');
-            addToCart(menu_id, amount);
-        });
-    
-        function addToCart(menu_id, amount){
-            $.ajax({
-                url:"/cart/add",
-                type:"POST",
-                data:{
-                    menu_id:menu_id,
-                    amount:amount
-                },
-                success:function(response){
-            
-                }
-            });
-        }    
-    
-    </script>
+    @include('customer.js.cart')
 </body>

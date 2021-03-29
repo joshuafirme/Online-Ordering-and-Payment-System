@@ -14,8 +14,7 @@
         <div class="heading">
             <h1>David's Grill Restaurant</h1>
             <h2>&mdash; Value Meals &mdash;</h2>
-            <i class="fas fa-shopping-cart"></i>
-            <h5>Go to Cart</h5>
+            <a href="/cart" style="color: #fff;"><i class="fas fa-shopping-cart"></i></a>
         </div>
 
         <!---====Items===-->
@@ -28,18 +27,15 @@
             <h3>{{ $data->description }}</h3>
             <h3 class="price"> P{{ $data->price }}</h3>
             @if($data->status == 'Available')
-                <button>Add to Cart</button>
+            <button type="submit" class="add_to_cart" menu-id="{{ $data->id }}" amount="{{ $data->price }}">Add to Cart</button>
             @else
                 <p style="color: red;">Not Available</p>
             @endif
             </div>
             </div>
         </div>
-        @endforeach
+    @endforeach
 
-        
-
-
-
-    </div>
+</div>
+@include('customer.js.cart')
 </body>

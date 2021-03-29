@@ -36,7 +36,6 @@ class CartCtr extends Controller
                 'menu_id' => $data['menu_id'],
                 'qty' => 1,
                 'amount' => $data['amount'],
-                'status' => 'Processing',
                 'created_at' => date('Y-m-d h:m:s')
             ]);
         }
@@ -46,7 +45,7 @@ class CartCtr extends Controller
     public function getCart()
     {
         return DB::table('tblcart as C')
-                ->select('C.*', 'M.*', 'category', 'C.status')
+                ->select('C.*', 'M.*', 'category')
                 ->leftJoin('tblmenu AS M', 'M.id', '=', 'C.menu_id') 
                 ->leftJoin('tblcategory AS CAT', 'CAT.id', '=', 'M.category_id')   
                 ->where('user_id', Auth::id())

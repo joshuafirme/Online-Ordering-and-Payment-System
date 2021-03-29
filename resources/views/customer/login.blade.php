@@ -55,7 +55,7 @@
     input{
             border-radius: 50px !important;
         }
-    button{
+    button,a{
         border-radius: 50px !important;
     }
 </style>
