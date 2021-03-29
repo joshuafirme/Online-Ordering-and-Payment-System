@@ -32,7 +32,7 @@
         
 
 
-            <div class="row">
+            <div class="row" id="cart-cont">
                 <div class="col-sm-12 col-md-10 col-md-offset-1">
                     <table class="table table-hover">
                     <thead>
@@ -50,23 +50,32 @@
                     <tr>
                         <td class="col-md-6">
                         <div class="media">
-                        <a class="thumbnail pull-left " href="#"> <img class="media-object " src="https://adc3ef35f321fe6e725a-fb8aac3b3bf42afe824f73b606f0aa4c.ssl.cf1.rackcdn.com/tenantlogos/28859.png" style="width: 100px; height: 100px;"> </a>
+                        <a class="thumbnail pull-left " href="#"> <img class="media-object " src="{{ asset('storage/'.$data->image) }}" style="width: 100px; height: 100px; object-fit: cover;"> </a>
                         <div class="media-body">
                         <h4 class="media-heading"><a href="#">{{ $data->description }}</a></h4>
-                        <h5 class="media-heading"> by <a href="#">Hertz</a></h5>
+                        <h5 class="media-heading"> Category: {{ $data->category }}</h5>
                         <span>Preparation time: </span><span class="text-success"><strong>{{ $data->preparation_time }}</strong></span>
                         </div>
                         </div></td>
-                        <td class="col-md-1 text-left"><strong class="label label-success">Preparing</strong></td>
-                        <td class="col-md-1" style="text-align: center">
-                        <input type="email" class="form-control" id="exampleInputEmail1" value="{{ $data->qty }}">
+                        <td class="col-md-1 text-left"><strong class="label label-success">{{ $data->status }}</strong></td>
+                        <td class="col-md-2">
+                            <button class="btn btn-sm" id="btn-dec" menu-id="{{ $data->menu_id }}" qty="{{ $data->qty - 1 }}"
+                                onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"><i class="fas fa-minus"></i></button>
+  
+                              <input class="quantity" min="0" id="item-qty" name="quantity" type="number" style="width: 40px;" value="{{ $data->qty }}">
+  
+                              <button class="btn btn-sm" id="btn-inc" menu-id="{{ $data->menu_id }}" qty="{{ $data->qty + 1 }}"
+                                onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"><i class="fas fa-plus"></i></button>
                         </td>
                         <td class="col-md-1 text-center"><strong>{{ $data->price }}</strong></td>
                         <td class="col-md-1 text-center"><strong>{{ $data->amount }}</strong></td>
                         <td class="col-md-1">
-                        <button type="button" class="btn btn-danger">
-                        <span class="fa fa-remove"></span> Remove
-                        </button></td>
+                        <form action="">
+                            <button type="button" class="btn btn-danger" type="submit">
+                                <span class="fa fa-remove"></span> Remove
+                                </button>
+                        </form>
+                        </td>
                         </tr> 
                     @endforeach					
                     <tr>
@@ -74,21 +83,21 @@
                     <td>   </td>
                     <td>   </td>
                     <td><h5>Subtotal</h5></td>
-                    <td class="text-right"><h5><strong>$999.99</strong></h5></td>
+                    <td class="text-right"><h5><strong>₱{{ $total }}</strong></h5></td>
                     </tr>
                     <tr>
                     <td>   </td>
                     <td>   </td>
                     <td>   </td>
-                    <td><h5>Estimated shipping</h5></td>
-                    <td class="text-right"><h5><strong>$9.999.99</strong></h5></td>
+                    <td><h5>Shipping fee</h5></td>
+                    <td class="text-right"><h5><strong>₱-</strong></h5></td>
                     </tr>
                     <tr>
                     <td>   </td>
                     <td>   </td>
                     <td>   </td>
                     <td><h3>Total</h3></td>
-                    <td class="text-right"><h3><strong>$9.999.99</strong></h3></td>
+                    <td class="text-right"><h3><strong>₱{{ $total }}</strong></h3></td>
                     </tr>
                     <tr>
                     <td>   </td>
@@ -109,35 +118,65 @@
             </div>
 
     </div>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-<script>
-    $.ajaxSetup({
-        headers: {
-          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-      }
-     });
-
-
-    $('.add_to_cart').click(function(){
-        let menu_id = $(this).attr('menu-id');
-        let amount = $(this).attr('amount');
-        addToCart(menu_id, amount);
-    });
-
-    function addToCart(menu_id, amount){
-        $.ajax({
-            url:"/cart/add",
-            type:"POST",
-            data:{
-                menu_id:menu_id,
-                amount:amount
-            },
-            success:function(response){
-            alert('Menu was successfully added to cart!');
-        
-            }
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+    <script>
+        $.ajaxSetup({
+            headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+         });
+    
+    
+        $(document).on('click', '#btn-inc', function(){
+            let menu_id = $(this).attr('menu-id');
+            let qty = $(this).attr('qty');
+            increaseQty(menu_id, qty);
         });
-    }    
+    
+        function increaseQty(menu_id, qty){
+            $.ajax({
+                url:"/cart/increase-qty/"+menu_id+"/"+qty,
+                type:"POST",
+                success:function(response)
+                {
+                    $('#cart-cont').load('cart #cart-cont'); 
+                    if(qty==0){
+                        removeMenu(menu_id);
+                    }         
+                }
+            });
+        }   
+        
+        $(document).on('click', '#btn-dec', function(){
+            let menu_id = $(this).attr('menu-id');
+            let qty = $(this).attr('qty');
+            decreaseQty(menu_id, qty);
+        });
+    
+        function decreaseQty(menu_id, qty){
+            $.ajax({
+                url:"/cart/decrease-qty/"+menu_id+"/"+qty,
+                type:"POST",
+                success:function(response)
+                {
+                    $('#cart-cont').load('cart #cart-cont');  
+                    if(qty==0){
+                        removeMenu(menu_id);
+                    }      
+                }
+            });
+        }   
 
-</script>
+        function removeMenu(menu_id){
+            $.ajax({
+                url:"/cart/remove-menu/"+menu_id,
+                type:"POST",
+                success:function(response)
+                {
+                    $('#cart-cont').load('cart #cart-cont');        
+                }
+            });
+        }   
+    
+    </script>
 </body>

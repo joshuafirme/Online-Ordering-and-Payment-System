@@ -117,7 +117,9 @@ Route::get('menu/combo_meals', 'Customer\homeCtr@combo_meals_view');
 */
 Route::get('cart', 'Customer\CartCtr@index');
 Route::post('cart/add', 'Customer\CartCtr@addToCart');
-
+Route::post('cart/increase-qty/{menu_id}/{qty}', 'Customer\CartCtr@increaseQty');
+Route::post('cart/decrease-qty/{menu_id}/{qty}', 'Customer\CartCtr@decreaseQty');
+Route::post('cart/remove-menu/{menu_id}', 'Customer\CartCtr@removeMenu');
 
 //GCASH PAYMENT-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Route::get('/payment', 'Customer\PaymentCtr@index');

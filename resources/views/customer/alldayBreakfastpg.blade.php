@@ -33,7 +33,7 @@
                 <h3>{{ $data->description }}</h3>
                 <h3 class="price"> P{{ $data->price }}</h3>
                 @if($data->status == 'Available')
-                    <button type="submit" id="add_to_cart" menu-id="{{ $data->id }}" amount="{{ $data->price }}">Add to Cart</button>
+                    <button type="submit" class="add_to_cart" menu-id="{{ $data->id }}" amount="{{ $data->price }}">Add to Cart</button>
                 @else
            {{-- </form>--}}
                     <p style="color: red;">Not Available</p>
@@ -48,35 +48,34 @@
 
 
     </div>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-<script>
-    $.ajaxSetup({
-        headers: {
-          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-      }
-     });
-
-
-    $('#add_to_cart').click(function(){
-        let menu_id = $(this).attr('menu-id');
-        let amount = $(this).attr('amount');
-        addToCart(menu_id, amount);
-    });
-
-    function addToCart(menu_id, amount){
-        $.ajax({
-            url:"/cart/add",
-            type:"POST",
-            data:{
-                menu_id:menu_id,
-                amount:amount
-            },
-            success:function(response){
-            alert('You have successfully added to cart!');
-        
-            }
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+    <script>
+        $.ajaxSetup({
+            headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+         });
+    
+    
+        $(document).on('click', '.add_to_cart', function(){
+            let menu_id = $(this).attr('menu-id');
+            let amount = $(this).attr('amount');
+            addToCart(menu_id, amount);
         });
-    }    
-
-</script>
+    
+        function addToCart(menu_id, amount){
+            $.ajax({
+                url:"/cart/add",
+                type:"POST",
+                data:{
+                    menu_id:menu_id,
+                    amount:amount
+                },
+                success:function(response){
+            
+                }
+            });
+        }    
+    
+    </script>
 </body>
