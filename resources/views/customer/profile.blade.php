@@ -154,17 +154,16 @@ h6 {
     <div class ="beefandpork">
     <div class="heading">
         <h1>David's Grill Restaurant</h1>
-        <h2>&mdash; Noodles and Bilao &mdash;</h2>
         <a href="/cart" style="color: #fff;"><i class="fas fa-shopping-cart"></i></a>
     </div>
-
+  
     <div class="page-content page-container" id="page-content">
         <div class="padding">
             <div class="row container d-flex justify-content-center">
                 <div class="col-xl-6 col-md-12">
                     <div class="card user-card-full">
                         <div class="row m-l-0 m-r-0">
-                            <div class="col-sm-4 bg-c-lite-green user-profile">
+                            <div class="col-sm-4 user-profile">
                                 <div class="card-block text-center text-white">
                                     <div class="m-b-25"> <img src="{{asset('img/profile.svg')}}" width="75px" class="img-radius" alt="User-Profile-Image"> </div>
                                     <h6 class="f-w-600">{{ Helper::getName() }}</h6>
@@ -172,6 +171,14 @@ h6 {
                                 </div>
                             </div>
                             <div class="col-sm-8">
+                                
+                            @if(\Session::has('success'))
+                            <div class="alert alert-success alert-dismissible">
+                              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                              <h5><i class="icon fa fa-check-circle"></i> </h5>
+                              {{ \Session::get('success') }}
+                            </div>      
+                            @endif
                                 <div class="card-block">
                                     <h6 class="m-b-20 p-b-5 b-b-default f-w-600">Profile Information</h6>
                                     <div class="row">
@@ -230,17 +237,17 @@ h6 {
 
                 <div class="col-md-6">    
                     <label class="col-form-label">Name</label>
-                    <input type="text" class="form-control" name="description" value="{{ Helper::getName()!=null ? Helper::getName() : "" }}" required>
+                    <input type="text" class="form-control" name="fullname" value="{{ Helper::getName()!=null ? Helper::getName() : "" }}" required>
                   </div>
 
                   <div class="col-md-6">    
                     <label class="col-form-label">Email</label>
-                    <input type="text" class="form-control" name="description" value="{{ Helper::getEmail()!=null ? Helper::getEmail() : "" }}" required>
+                    <input type="text" class="form-control" name="email" value="{{ Helper::getEmail()!=null ? Helper::getEmail() : "" }}" required>
                   </div>
 
                   <div class="col-md-6">    
                     <label class="col-form-label" style="margin-top: 10px;">Phone</label>
-                    <input type="text" class="form-control" name="description" value="{{ Helper::getPhoneNo()!=null ? Helper::getPhoneNo() : "" }}" required>
+                    <input type="text" class="form-control" name="phone_no" value="{{ Helper::getPhoneNo()!=null ? Helper::getPhoneNo() : "" }}" required>
                   </div>
 
                   <div class="col-md-12">    
@@ -255,13 +262,18 @@ h6 {
                  <label class="col-form-label" style="margin-top: 10px;">Municipality</label>
                  @php
                     $municipality = Helper::getShippingInfo()!=null ? Helper::getShippingInfo()->municipality : "";
+                    $mun_arr = array("Balayan", "Tuy");
                  @endphp
-                 <select class="form-control" name="municipality" required>
-                     @if($municipality)
-                     <option selected value="{{ $municipality }}">{{ $municipality }}</option>
-                     @endif
-                     <option value="Balayan">Balayan</option>  
-                     <option value="Tuy">Tuy</option>   
+                 <select class="form-control" name="municipality" required> 
+                    @if(in_array($municipality, $mun_arr))
+                        <option selected value="{{ $municipality }}">{{ $municipality }}</option>
+                        @php
+                          $mun_arr = array_diff($mun_arr, array($municipality));
+                        @endphp
+                    @endif
+                    @foreach ($mun_arr as $item)    
+                        <option value="{{ $item }}">{{ $item }}</option>
+                    @endforeach          
                  </select>
                </div>
  
@@ -273,7 +285,7 @@ h6 {
 
                <div class="col-md-12">    
                 <label class="col-form-label" style="margin-top: 10px;">Nearest landmark</label>
-                <input type="text" class="form-control" name="brgy" 
+                <input type="text" class="form-control" name="nearest_landmark" 
                 value="{{ Helper::getShippingInfo()!=null ? Helper::getShippingInfo()->nearest_landmark : "" }}" required>
               </div>
  

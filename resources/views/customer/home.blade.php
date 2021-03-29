@@ -126,7 +126,7 @@ img.hover-shadow {
 </head>
 <body>
 
-  <a href="#">
+  <a href="{{ url('/profile') }}">
     <img style="margin: 15px;" class="img-profile rounded-circle" src="{{asset('img/profile.svg')}}" width="50px"> {{ Helper::getName() }}
   </a>
   <ul class="navbar-nav ml-auto">

@@ -27,6 +27,6 @@ class Base
 
     public static function getShippingInfo()
     {
-       return DB::table('tblshipping_address')->where('id', Auth::id())->first();
+       return DB::table('tblshipping_address')->where('user_id', Auth::id())->first();
     }
 }
