@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="{{asset('css/beef_porkpg.css')}}">
     <link href="https://fonts.googleapis.com/css2?family=Baloo+Chettan+2:wght@600;800&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/332a215f17.js" crossorigin="anonymous"></script>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <body>
 
@@ -16,7 +17,7 @@
             <h2>&mdash; Combo Meals &mdash;</h2>
             <a href="/cart" style="color: #fff;"><i class="fas fa-shopping-cart"></i></a>
         </div>
-
+        <a href="{{url('/home')}}" class="btn btn-sm" style="margin-left:15px; color: #fff;"><i class="fas fa-arrow-left fa-2x"></i></a>
         <!---====Items===-->
         <!---====Beef===-->
         @foreach($comboMeals as $data)

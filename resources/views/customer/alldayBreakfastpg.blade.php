@@ -17,7 +17,7 @@
             <h2>&mdash; All-Day Breakfast &mdash;</h2>
             <a href="/cart" style="color: #fff;"><i class="fas fa-shopping-cart"></i></a>
         </div>
-
+        <a href="{{url('/home')}}" class="btn btn-sm" style="margin-left:15px; color: #fff;"><i class="fas fa-arrow-left fa-2x"></i></a>
         <!---====Items===-->
         <!---====Beef===-->
         @foreach($alldayBreakfast as $data)        

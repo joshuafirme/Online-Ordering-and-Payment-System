@@ -30,7 +30,7 @@
             </div>
 
         
-
+            <a href="{{url('/home')}}" class="btn btn-sm"><i class="fas fa-arrow-left fa-2x"></i></a>
 
             <div class="row" id="cart-cont">
                 <div class="col-sm-12 col-md-10 col-md-offset-1">
