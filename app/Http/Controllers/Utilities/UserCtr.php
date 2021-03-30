@@ -33,34 +33,31 @@ class UserCtr extends Controller
     }
 
     public function store(Request $request){
-        $user = new User;
-        $user->_prefix = 'E'.date('Yd');
-        $user->fullname = $request->input('fullname');
-        $user->username = $request->input('username');
-        $user->password = $request->input('password');
-        $user->role = $request->input('role');
-        $user->contact_no = $request->input('contact_no');
-        $user->save();
+
+        DB::table('tbluser')
+                ->insert([
+                    '_prefix' => 'E'.date('Yd'),
+                    'fullname' => $request->input('fullname'),
+                    'username' => $request->input('username'),
+                    'password' => $request->input('password'),
+                    'role' => $request->input('role'),
+                    'contact_no' => $request->input('contact_no'),
+                    'created_at' => date('Y-m-d h:m:s'),
+                ]);
 
         return redirect('/utilities/user')->with('success', 'Data Saved');
     }
 
     public function update(Request $request){
-        $user = new User;
-        $user->_prefix = 'E'.date('Yd');
-        $user->fullname = $request->input('fullname');
-        $user->username = $request->input('username');
-        $user->password = $request->input('password');
-        $user->role = $request->input('role');
-        $user->contact_no = $request->input('contact_no');
-
-        User::where('id', $request->input('id'))
-        ->update([
-            'fullname' => $user->fullname,
-            'username' => $user->username,
-            'password' => $user->password,
-            'role' => $user->role,
-            'contact_no' => $user->contact_no
+        DB::table('tbluser')
+            ->where('id', $request->input('id'))
+            ->update([
+                'fullname' => $request->input('fullname'),
+                'username' => $request->input('username'),
+                'password' => $request->input('password'),
+                'role' => $request->input('role'),
+                'contact_no' => $request->input('contact_no'),
+                'updated_at' => date('Y-m-d h:m:s'),
             ]);
 
         return redirect('/utilities/user')->with('success', 'Data updated successfully');

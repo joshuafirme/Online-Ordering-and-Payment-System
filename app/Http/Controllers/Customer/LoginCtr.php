@@ -30,6 +30,12 @@ class LoginCtr extends Controller
         }
     }
 
+    public function logout()
+    {
+        Auth::logout();
+        Redirect::to('/')->send(); 
+    }
+
     public function redirectToGoogle()
     {
         return Socialite::driver('google')->redirect();
@@ -52,6 +58,8 @@ class LoginCtr extends Controller
 
         $account =  DB::table('tblcustomer')->where('email', $email)->get();  
 
+        $id = DB::table('tblcustomer')->where('email', $email)->value('id');  
+        session()->put('customer-id', $id);
         if($account->count() > 0)
         {
             $this->putToSession($email, $avatar);

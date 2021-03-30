@@ -29,4 +29,12 @@ class Base
     {
        return DB::table('tblshipping_address')->where('user_id', Auth::id())->first();
     }
+
+    public static function getPosition(){
+      return DB::table('tbluser')
+      ->where([
+          ['username', session()->get('emp-username')],
+      ])
+      ->value('role');
+  }
 }

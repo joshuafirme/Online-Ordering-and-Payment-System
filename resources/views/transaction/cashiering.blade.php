@@ -85,37 +85,45 @@
                             </tbody>
                         </table>
 
-                        <table id="" class="table table-borderless table-hover" style="width: 40%;">
-                            <thead>
-                                <tr>
-                                    <th>Total Amount</th>
-                                    <th>₱<span id="txt_total_amount">{{ $totalAmount }}</span></th>
-                                </tr>
-                                <tr>
-                                    <th>Tendered</th>
-                                    <th><input type="text" class="form-control" id="txt_tendered"></th>
-                                </tr>
-                                <tr>
-                                    <th>Change</th>
-                                    <th>₱<span id="txt_change"></span></th>
-                                </tr>
-                            </thead>
-                        </table>
+                       <div class="row">
+                        <div class="col-lg-6">
+                            <table id="" class="table table-borderless table-hover" style="width: 100%;">
+                                <thead>
+                                    <tr>
+                                        <th>Total Amount</th>
+                                        <th>₱<span id="txt_total_amount">{{ $totalAmount }}</span></th>
+                                    </tr>
+                                    <tr>
+                                        <th>Tendered</th>
+                                        <th><input type="text" class="form-control" id="txt_tendered"></th>
+                                    </tr>
+                                    <tr>
+                                        <th>Change</th>
+                                        <th>₱<span id="txt_change"></span></th>
+                                    </tr>
+                                </thead>
+                            </table>
+    
+                                <div class="form-check" style="margin-top:10px;">
+                                  <input class="form-check-input" type="radio" name="radio-payment-option" id="radio-cash" value="cash" checked required>
+                                  <label class="form-check-label">
+                                    Cash
+                                  </label>
+                                </div>
+                                <div class="form-check mt-1 ml-2">
+                                  <input class="form-check-input" type="radio" name="radio-payment-option" id="radio-gcash" value="gcash" required>
+                                  <label class="form-check-label">
+                                    Gcash
+                                  </label>
+                                </div>
+      
+                            <button class="btn btn-sm btn-success" style="margin-top: 10px" id="btn-process">Process</button>
+                        </div>
+                        <div class="col-lg-6 mt-xs-2">
+                            <img src="{{ asset('img/qr.png') }}" width="300px;" alt="">
+                        </div>
+                       </div>
 
-                            <div class="form-check" style="margin-top:10px;">
-                              <input class="form-check-input" type="radio" name="radio-payment-option" id="radio-cash" value="cash" checked required>
-                              <label class="form-check-label">
-                                Cash
-                              </label>
-                            </div>
-                            <div class="form-check mt-1 ml-2">
-                              <input class="form-check-input" type="radio" name="radio-payment-option" id="radio-gcash" value="gcash" required>
-                              <label class="form-check-label">
-                                Gcash
-                              </label>
-                            </div>
-  
-                        <button class="btn btn-sm btn-success" style="margin-top: 10px" id="btn-process">Process</button>
                         
                  
                     </div>

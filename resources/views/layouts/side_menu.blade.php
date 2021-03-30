@@ -1,10 +1,14 @@
 <ul class="sidebar-menu">
+    
     <li>
-        <a href="{{ url('/') }}">
+        <a href="{{ url('/dashboard') }}">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
         </a>
     </li>
-
+    @php
+        $position=Helper::getPosition();
+    @endphp
+    @if($position=='Admin')
     <li class="treeview">
         <a href="#">
             <i class="fa fa-dollar"></i>
@@ -55,7 +59,20 @@
             <li><a href="{{ url('utilities/user') }}"><i class="fa fa-angle-double-right"></i> User</a></li>
             <li><a href="{{ url('utilities/comment-and-suggestion') }}"><i class="fa fa-angle-double-right"></i> Comments and Suggestion</a></li>
             <li><a href="{{ url('utilities/audit-trail') }}"><i class="fa fa-angle-double-right"></i> Audit Trail</a></li>
-            <li><a href="{{ url('utilities/backup-and-restore') }}"><i class="fa fa-angle-double-right"></i> Backup and Restore</a></li>
+           {{-- <li><a href="{{ url('utilities/backup-and-restore') }}"><i class="fa fa-angle-double-right"></i> Backup and Restore</a></li>--}}
         </ul>
     </li>
+    @elseif($position=='Cashier' || $position=='Receptionist')
+    <li class="treeview">
+        <a href="#">
+            <i class="fa fa-dollar"></i>
+            <span>Transaction</span>
+            <i class="fa fa-angle-left pull-right"></i>
+        </a>
+        <ul class="treeview-menu">
+            <li><a href="{{ url('transaction/cashiering') }}"><i class="fa fa-angle-double-right"></i> Cashiering</a></li>
+            <li><a href="{{ url('transaction/delivery') }}"><i class="fa fa-angle-double-right"></i> Delivery</a></li>
+        </ul>
+    </li>
+    @endif
 </ul>

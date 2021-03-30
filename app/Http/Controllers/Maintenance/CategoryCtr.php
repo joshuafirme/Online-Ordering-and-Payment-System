@@ -28,7 +28,7 @@ class CategoryCtr extends Controller
                 ->addColumn('action', function($cm){
                     $button = ' <a class="btn btn-sm btn-primary" id="btn-edit" edit-id="'. $cm->id .'" 
                     data-toggle="modal" data-target="#editModal"><i class="fa fa-edit"></i></a>';
-                    $button .= '<a class="btn btn-sm" id="btn-delete" delete-id="'. $cm->id .'"><i style="color:#DC3545;" class="fa fa-trash-o"></i></a>';
+                  //  $button .= '<a class="btn btn-sm" id="btn-delete" delete-id="'. $cm->id .'"><i style="color:#DC3545;" class="fa fa-trash-o"></i></a>';
                     return $button;
                 })
                 ->rawColumns(['action'])

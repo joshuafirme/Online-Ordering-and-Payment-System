@@ -8,6 +8,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Baloo+Chettan+2:wght@600;800&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/332a215f17.js" crossorigin="anonymous"></script>
     <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <style>
+        .beefandpork{
+            background:linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)),
+            url(/img/rice_and_soup.jpg) center/cover fixed no-repeat;
+            color:#fff;
+            grid-gap: 20px 40px;
+        }
+    </style>
 </head>
 <body>
 

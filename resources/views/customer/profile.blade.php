@@ -15,6 +15,15 @@
     <script src="https://kit.fontawesome.com/332a215f17.js" crossorigin="anonymous"></script>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <style>
+        .beefandpork{
+           background:linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)),
+           url(/img/profile_bg.jpg) center/cover fixed no-repeat;
+           color:#fff;
+           grid-gap: 20px 40px;
+           box-shadow: 0 8px 7px -2px gray;
+       }
+   </style>
+    <style>
         body {
     background-color: #f9f9fa
 }
@@ -154,9 +163,8 @@ h6 {
     <div class ="beefandpork">
     <div class="heading">
         <h1>David's Grill Restaurant</h1>
-        <a href="/cart" style="color: #fff;"><i class="fas fa-shopping-cart"></i></a>
     </div>
-  
+    <a href="{{url('/home')}}" class="btn btn-sm"><i class="fas fa-arrow-left fa-2x" style="color: #fff;"></i></a>
     <div class="page-content page-container" id="page-content">
         <div class="padding">
             <div class="row container d-flex justify-content-center">

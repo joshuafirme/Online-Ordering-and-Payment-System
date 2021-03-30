@@ -63,7 +63,7 @@
 <body style="background-image: url('../img/davids_grill_logo.jpg'); background-repeat: no-repeat;">
 <div class="login-form">
     
-    <form action="{{ action('Customer\loginCtr@login') }}" method="POST">
+    <form action="{{ action('Customer\LoginCtr@login') }}" method="POST">
         @csrf
         
         @if(\Session::has('invalid'))

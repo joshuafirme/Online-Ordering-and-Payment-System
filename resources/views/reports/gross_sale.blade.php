@@ -47,10 +47,10 @@
                             <div class="col-sm-2">
                                 Total Sales: <span id="total-sales" style="font-size: 20px;"></span>
                             </div>
-                            <div class="col-sm-1">
+                            <div class="col-sm-2">
                                 <button id="btn-compute-sales" class="btn btn-sm btn-success">Compute Sales</button>
+                                <button class="btn btn-sm btn-secondary" id="btn-print-sales">Print</button>
                             </div> 
-                            <button class="btn btn-sm btn-secondary" id="btn-print-sales">Print</button>
                         </div>
 
                     </div><!-- /.box-header -->

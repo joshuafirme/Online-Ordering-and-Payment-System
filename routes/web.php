@@ -85,7 +85,8 @@ Route::get('utilities/audit-trail', 'Utilities\AuditTrailCtr@index');
 |--------------------------------------------------------------------------
 */
 Route::get('customer/customer-login', 'Customer\loginCtr@index');
-Route::post('do-login', 'Customer\loginCtr@login');
+Route::post('do-login', 'Customer\LoginCtr@login');
+Route::get('do-logout', 'Customer\LoginCtr@logout');
 
 /*
 |--------------------------------------------------------------------------

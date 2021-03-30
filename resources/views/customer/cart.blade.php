@@ -20,9 +20,6 @@
     <div class ="beefandpork">
         <div class="heading">
             <h1>David's Grill Restaurant</h1>
-            <h2>&mdash; All-Day Breakfast &mdash;</h2>
-            <i class="fas fa-shopping-cart"></i>
-            <h5>Go to Cart</h5>
         </div>
 
                 </div>
@@ -34,6 +31,7 @@
 
             <div class="row" id="cart-cont">
                 <div class="col-sm-12 col-md-10 col-md-offset-1">
+                    <h4 class="mb-4">Cart (<span>{{ $cartCount }}</span> items)</h4>
                     <table class="table table-hover">
                     <thead>
                     <tr>
@@ -69,11 +67,9 @@
                         <td class="col-md-1 text-center"><strong>{{ $data->price }}</strong></td>
                         <td class="col-md-1 text-center"><strong>{{ $data->amount }}</strong></td>
                         <td class="col-md-1">
-                        <form action="">
-                            <button type="button" class="btn btn-danger" type="submit">
+                            <button class="btn btn-danger btn-remove" menu-id="{{ $data->menu_id }}">
                                 <span class="fa fa-remove"></span> Remove
-                                </button>
-                        </form>
+                            </button>
                         </td>
                         </tr> 
                     @endforeach	
@@ -87,30 +83,30 @@
                     <td>   </td>
                     <td>   </td>
                     <td><h5>Subtotal</h5></td>
-                    <td class="text-right"><h5><strong>₱{{ $total }}</strong></h5></td>
+                    <td class="text-right"><h5><strong>₱{{ number_format($subTotal,2,'.',',') }}</strong></h5></td>
                     </tr>
                     <tr>
                     <td>   </td>
                     <td>   </td>
                     <td>   </td>
                     <td><h5>Shipping fee</h5></td>
-                    <td class="text-right"><h5><strong>₱-</strong></h5></td>
+                    <td class="text-right"><h5><strong>₱{{ $shippingFee }}</strong></h5></td>
                     </tr>
                     <tr>
                     <td>   </td>
                     <td>   </td>
                     <td>   </td>
                     <td><h3>Total</h3></td>
-                    <td class="text-right"><h3><strong>₱{{ $total }}</strong></h3></td>
+                    <td class="text-right"><h3><strong>₱{{ number_format($total,2,'.',',') }}</strong></h3></td>
                     </tr>
                     <tr>
                     <td>   </td>
                     <td>   </td>
                     <td>   </td>
                     <td>
-                    <button type="button" class="btn btn-default">
+                    <a href="{{ url('/home') }}" class="btn btn-default">
                     <span class="fa fa-shopping-cart"></span> Continue Shopping
-                    </button></td>
+                    </a></td>
                     <td>
                     <button type="button" class="btn btn-success">
                     Checkout <span class="fa fa-play"></span>
@@ -169,7 +165,12 @@
                     }      
                 }
             });
-        }   
+        }  
+        
+        $(document).on('click', '.btn-remove', function(){
+            let menu_id = $(this).attr('menu-id');
+            removeMenu(menu_id);
+        });
 
         function removeMenu(menu_id){
             $.ajax({

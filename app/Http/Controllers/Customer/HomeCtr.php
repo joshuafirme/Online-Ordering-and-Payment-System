@@ -4,11 +4,12 @@ namespace App\Http\Controllers\Customer;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Auth, Redirect, Helper;
+use Auth, Redirect, Helper, Session;
 
 class HomeCtr extends Controller
 {
     public function index(){
+        Auth::loginUsingId(Session::get('customer-id'));
         if(Auth::check()){
             return view('customer/home',[
                 'gallery' => $this->displayGallery()

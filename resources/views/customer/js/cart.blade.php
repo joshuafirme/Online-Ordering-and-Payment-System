@@ -1,4 +1,42 @@
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+   <!--go to cart Modal-->
+<div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title"></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+  
+          <div class="container">
+            <div class="row justify-content-center">
+             
+                <div class="col-8">
+                  <i class="fas fa-check-circle fa-3x" style="color:#005B96;"></i>          
+                  <p>Your menu has been added to cart. <br> Go to cart to proceed with your order!</p>
+                </div> 
+    
+            </div>
+          </div>
+          
+        </div>
+        <div class="modal-footer">
+          <a class="btn btn-sm btn-primary" href="{{ url('/cart') }}">Go to Cart<a>
+          <button class="btn btn-sm btn-outline-success" data-dismiss="modal">Continue Shopping</button>
+        </div>
+      </div>
+    </div>
+  </div>
+   
+   <!-- jQuery 2.0.2 -->
+   <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+   <!-- jQuery UI 1.10.3 -->
+   <script src="{{asset('js/jquery-ui-1.10.3.min.js')}}" type="text/javascript"></script>
+   <!-- Bootstrap -->
+   <script src="{{asset('js/bootstrap.min.js')}}" type="text/javascript"></script>
+
 <script>
     $.ajaxSetup({
         headers: {
@@ -22,7 +60,7 @@
                 amount:amount
             },
             success:function(response){
-        
+                $('#confirmationModal').modal('toggle');
             }
         });
     }    

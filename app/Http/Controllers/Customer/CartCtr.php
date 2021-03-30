@@ -4,14 +4,17 @@ namespace App\Http\Controllers\Customer;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use DB, Input, Auth;
+use DB, Input, Auth, Helper;
 
 class CartCtr extends Controller
 {
     public function index(){
-      //  dd(Auth::id());
+      //==  dd(Auth::id());
         return view('customer.cart',[
             'cart' => $this->getCart(),
+            'cartCount' => $this->getCartCount(),
+            'subTotal' => $this->computeSubTotal(),
+            'shippingFee' => $this->getShippingFee(),
             'total' => $this->computeTotal()
         ]);
     }
@@ -52,13 +55,33 @@ class CartCtr extends Controller
                 ->get();
     }
 
-    public function computeTotal()
+    public function getCartCount()
+    {
+        return DB::table('tblcart') 
+                ->where('user_id', Auth::id())
+                ->count('id');
+    }
+
+    public function computeSubTotal()
     {
         return DB::table('tblcart as C')
                 ->select('C.*', 'M.*')
                 ->leftJoin('tblmenu AS M', 'M.id', '=', 'C.menu_id')  
                 ->where('user_id', Auth::id())
                 ->sum('amount');
+    }
+
+    public function computeTotal()
+    {
+        $sub_total = $this->computeSubTotal();
+
+        return $sub_total+$this->getShippingFee();
+    }
+
+    public function getShippingFee()
+    {     
+        $shipping_info = Helper::getShippingInfo()!=null ? Helper::getShippingInfo()->municipality : "";
+        return $shipping_info=="Balayan" ? 50 : 100;
     }
 
     public function increaseQty($menu_id, $qty)
