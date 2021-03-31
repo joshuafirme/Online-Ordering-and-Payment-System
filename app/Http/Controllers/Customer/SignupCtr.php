@@ -12,6 +12,10 @@ class SignupCtr extends Controller
         return view('customer/signup');
     }
 
+    public function terms_and_condition(){
+        return view('customer/terms-and-condition');
+    }
+
     public function signup()
     {
         $data = Input::all();

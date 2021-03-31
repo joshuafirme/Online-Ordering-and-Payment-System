@@ -66,6 +66,7 @@
                                     <th>Category</th>
                                     <th>Qty</th>
                                     <th>Amount</th>
+                                    <th>Payment method</th>
                                     <th>Order Type</th>
                                     <th>Date time</th>
                                 </tr>

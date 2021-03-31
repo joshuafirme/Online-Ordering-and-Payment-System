@@ -86,6 +86,9 @@
         </div>
         <div class="form-group">
             <button type="submit" class="btn btn-block" id="btn-signup">Sign up</button>
+            <span class="label-small m-0">By clicking "SIGN UP"; I agree to David's Grill Restaurant 
+                <a href="/terms-and-condition" target="_blank">Terms of Use</a>
+            </span>	
         </div>  
         
         <div class="form-group">

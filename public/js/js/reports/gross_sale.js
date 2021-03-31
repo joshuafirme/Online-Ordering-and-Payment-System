@@ -30,7 +30,8 @@ $(document).ready(function(){
            {data: 'description', name: 'description'},   
            {data: 'category', name: 'category'},   
            {data: 'qty', name: 'qty'},   
-           {data: 'amount', name: 'amount'},   
+           {data: 'amount', name: 'amount'},  
+           {data: 'payment_method', name: 'payment_method'},   
            {data: 'order_type', name: 'order_type'},
            {data: 'created_at', name: 'created_at'},
           ]
