@@ -164,7 +164,7 @@ h6 {
     <div class="heading">
         <h1>David's Grill Restaurant</h1>
     </div>
-    <a href="{{url('/home')}}" class="btn btn-sm"><i class="fas fa-arrow-left fa-2x" style="color: #fff;"></i></a>
+    <a href="{{url('/')}}" class="btn btn-sm"><i class="fas fa-arrow-left fa-2x" style="color: #fff;"></i></a>
     <div class="page-content page-container" id="page-content">
         <div class="padding">
             <div class="row container d-flex justify-content-center">

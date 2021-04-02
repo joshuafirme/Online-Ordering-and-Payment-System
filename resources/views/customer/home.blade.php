@@ -8,6 +8,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Baloo+Chettan+2:wght@600;800&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/332a215f17.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -21,129 +23,43 @@
 </div>
     
 <div class="topnav">
-  <a href="#news" href="{{ url('/') }}">Home</a>
+  <a href="{{ url('/') }}">Home</a>
   <a href="{{ url('/profile') }}">My account</a>
   <a href="{{ url('/orders') }}">My orders</a>
 </div>
+
 <!---====Category Section=====-->
-<h2 class="title-text" style="margin-left: 40px;">Menu Categories</h2>
+<h2 class="title-text" style="margin-left: 40px;color: #3B3B3B;">Menu Categories</h2>
+
 <div id="secondary-slider" class="splide" style="padding-left: 40px; padding-right: 40px;">
   <div class="splide__arrows">
     <button class="splide__arrow splide__arrow--prev" style="margin-top:-50px; margin-left: 10px;" type="button" aria-controls="secondary-slider-track" aria-label="Go to last slide"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="40" height="40"><path d="m15.5 0.932-4.3 4.38 14.5 14.6-14.5 14.5 4.3 4.4 14.6-14.6 4.4-4.3-4.4-4.4-14.6-14.6z"></path></svg></button>
   <button class="splide__arrow splide__arrow--next" style="margin-top:-50px; margin-right: 10px;" type="button" aria-controls="secondary-slider-track" aria-label="Next slide"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="40" height="40"><path d="m15.5 0.932-4.3 4.38 14.5 14.6-14.5 14.5 4.3 4.4 14.6-14.6 4.4-4.3-4.4-4.4-14.6-14.6z"></path></svg></button>
 </div>
+@php
+  $categories = app\Helpers\Base::getCategories();
+@endphp
+  <div class="splide__track">
+    <div class="splide__list row">
+    
+      @foreach ($categories as $item)
+        <div class="splide__slide row min-ht ml-2">
+          <div class="dif-cate-box">
+            <a href="{{url('/')}}/website-it-software/" style="text-decoration: none;">
+              <div class="img-box">
+                <img src="{{asset('img/sizzlingplate.jpg')}}" class="img" alt="">
+              </div>
+              <div  style="padding:20px;">    
+                <p style="font-family: 'Roboto', sans-serif; font-size:20px; color: #3B3B3B;">{{$item->category}}</p>
+              </div>
+            </a>        
 
-<div class="splide__track">
-  <div class="splide__list row">
-    <div class="splide__slide row min-ht ml-2">
-        <div class="dif-cate-box">
-          <a href="{{url('/')}}/website-it-software/">
-            <div class="img-box">
-              <img src="{{asset('img/sizzlingplate.jpg')}}" class="img" alt="">
-            </div>
-          </a>        
-          <div  style="padding:20px;">    
-            <p style="font-size: 17px; color: #000;">Lorem spum</p>
-            <button class="btn-order">Order now</button>
           </div>
         </div>
-    </div>
-    <div class="splide__slide row min-ht ml-2">
-      <div class="dif-cate-box">
-        <a href="{{url('/')}}/website-it-software/">
-          <div class="img-box">
-            <img src="{{asset('img/sizzlingplate.jpg')}}" class="img" alt="">
-          </div>
-        </a>        
-        <div  style="padding:20px;">    
-          <p style="font-size: 17px; color: #000;">Lorem spum</p>
-          <button class="btn-order">Order now</button>
-        </div>
-      </div>
-  </div>
-  <div class="splide__slide row min-ht ml-2">
-    <div class="dif-cate-box">
-      <a href="{{url('/')}}/website-it-software/">
-        <div class="img-box">
-          <img src="{{asset('img/sizzlingplate.jpg')}}" class="img" alt="">
-        </div>
-      </a>        
-      <div  style="padding:20px;">    
-        <p style="font-size: 17px; color: #000;">Lorem spum</p>
-        <button class="btn-order">Order now</button>
-      </div>
-    </div>
-</div>
-<div class="splide__slide row min-ht ml-2">
-  <div class="dif-cate-box">
-    <a href="{{url('/')}}/website-it-software/">
-      <div class="img-box">
-        <img src="{{asset('img/sizzlingplate.jpg')}}" class="img" alt="">
-      </div>
-    </a>        
-    <div  style="padding:20px;">    
-      <p style="font-size: 17px; color: #000;">Lorem spum</p>
-      <button class="btn-order">Order now</button>
-    </div>
-  </div>
-</div>
-<div class="splide__slide row min-ht ml-2">
-  <div class="dif-cate-box">
-    <a href="{{url('/')}}/website-it-software/">
-      <div class="img-box">
-        <img src="{{asset('img/sizzlingplate.jpg')}}" class="img" alt="">
-      </div>
-    </a>        
-    <div  style="padding:20px;">    
-      <p style="font-size: 17px; color: #000;">Lorem spum</p>
-      <button class="btn-order">Order now</button>
-    </div>
-  </div>
-</div>
+      @endforeach
 
-<div class="splide__slide row min-ht ml-2">
-  <div class="dif-cate-box">
-    <a href="{{url('/')}}/website-it-software/">
-      <div class="img-box">
-        <img src="{{asset('img/sizzlingplate.jpg')}}" class="img" alt="">
-      </div>
-    </a>        
-    <div  style="padding:20px;">    
-      <p style="font-size: 17px; color: #000;">Lorem spum</p>
-      <button class="btn-order">Order now</button>
     </div>
   </div>
-</div>
-
-<div class="splide__slide row min-ht ml-2">
-  <div class="dif-cate-box">
-    <a href="{{url('/')}}/website-it-software/">
-      <div class="img-box">
-        <img src="{{asset('img/sizzlingplate.jpg')}}" class="img" alt="">
-      </div>
-    </a>        
-    <div  style="padding:20px;">    
-      <p style="font-size: 17px; color: #000;">Lorem spum</p>
-      <button class="btn-order">Order now</button>
-    </div>
-  </div>
-</div>
-<div class="splide__slide row min-ht ml-2">
-  <div class="dif-cate-box">
-    <a href="{{url('/')}}/website-it-software/">
-      <div class="img-box">
-        <img src="{{asset('img/sizzlingplate.jpg')}}" class="img" alt="">
-      </div>
-    </a>        
-    <div  style="padding:20px;">    
-      <p style="font-size: 17px; color: #000;">Lorem spum</p>
-      <button class="btn-order">Order now</button>
-    </div>
-  </div>
-</div>
-
-  </div>
-</div>
 </div>
 
 <!----====End of Category Section======-->

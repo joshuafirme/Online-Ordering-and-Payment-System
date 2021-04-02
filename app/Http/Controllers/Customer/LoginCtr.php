@@ -23,7 +23,7 @@ class LoginCtr extends Controller
 
         if(Auth::attempt(['username' => $data['username'], 'password' => $data['password']]))
         {
-            return Redirect::to('/home'); 
+            return Redirect::to('/'); 
         }
         else{
             return Redirect::to('/customer/customer-login')->with('invalid', 'Invalid username or password'); 
@@ -63,7 +63,7 @@ class LoginCtr extends Controller
         if($account->count() > 0)
         {
             $this->putToSession($email, $avatar);
-            return redirect('/home')->send();
+            return redirect('/')->send();
         }
         else
         {
@@ -77,7 +77,7 @@ class LoginCtr extends Controller
                     'created_at' => date('Y-m-d')
                 ]);
             
-            return redirect('/home')->send();
+            return redirect('/')->send();
         }
     }
 
@@ -92,7 +92,7 @@ class LoginCtr extends Controller
     public function isLoggedIn(){
         if(session()->get('is-customer-logged') == 'yes'){
    
-            return Redirect::to('/home'); 
+            return Redirect::to('/'); 
         }
         else{
             return Redirect::to('/user-login'); 

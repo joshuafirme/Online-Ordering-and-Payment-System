@@ -45,4 +45,9 @@ class Base
                  ->where('user_id', Auth::id())
                  ->count('id');
      }
+
+     public static function getCategories()
+     {
+         return DB::table('tblcategory')->get();
+     }
 }
