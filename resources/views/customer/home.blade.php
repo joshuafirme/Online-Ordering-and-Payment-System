@@ -7,360 +7,216 @@
     <link rel="stylesheet" href="{{asset('css/main.css')}}">
     <link href="https://fonts.googleapis.com/css2?family=Baloo+Chettan+2:wght@600;800&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/332a215f17.js" crossorigin="anonymous"></script>
-    <style>
-        /* The Modal (background) */
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 1;
-  padding-top: 100px;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0,0,0,0.7);
-
-}
-
-/* Modal Content */
-.modal-content {
-  position: relative;
-  margin: auto;
-  padding: 0;
-  width: 90%;
-}
-
-/* The Close Button */
-.close {
-  color: white;
-  position: absolute;
-  top: 10px;
-  right: 25px;
-  font-size: 35px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: #999;
-  text-decoration: none;
-  cursor: pointer;
-  background-color: black
-  border-radius: 3px 0 0 3px;
-}
-
-/* Hide the slides by default */
-.mySlides {
-  display: none;
-  margin-left: 10%;
-  margin-top: -90px;
-}
-
-/* Next & previous buttons */
-.prev,
-.next {
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  width: auto;
-  padding: 16px;
-  margin-top: -50px;
-  color: white;
-  font-weight: bold;
-  font-size: 20px;
-  transition: 0.6s ease;
-  border-radius: 0 3px 3px 0;
-  user-select: none;
-  -webkit-user-select: none;
-}
-
-/* Position the "next button" to the right */
-.next {
-  right: 0;
-  border-radius: 3px 0 0 3px;
-}
-
-/* On hover, add a black background color with a little bit see-through */
-.prev:hover,
-.next:hover {
-  background-color: rgba(0, 0, 0, 0.8);
-}
-
-/* Number text (1/3 etc) */
-.numbertext {
-  color: #f2f2f2;
-  font-size: 12px;
-  padding: 8px 12px;
-  position: absolute;
-  top: 0;
-}
-
-/* Caption text */
-
-
-img.demo {
-  opacity: 0.6;
-}
-
-.active,
-.demo:hover {
-  opacity: 1;
-}
-
-img.hover-shadow {
-  transition: 0.3s;
-}
-
-.hover-shadow:hover {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
 </head>
 <body>
-<!--Nav bar-->
-   
-<div id="menu" class="menu">
-    <div id="menu-bar" onclick="onClickMenu()">
-    <div id="bar1" class="bar"></div>
-    <div id="bar2" class="bar"></div>
-    <div id="bar3" class="bar"></div>
 
-<ul id="nav" class="nav">
-    <li><a href="#">Home</a></li>
-    <li><a href="{{ url('/profile') }}">Profile</a></li>
-    <li><a href="{{ url('/cart') }}">Cart</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#CategoryIcons">Menu</a></li>
-    <li><a href="#">Contact</a></li>
-    <li><a href="{{ url('/do-logout') }}">Logout</a></li>
-</ul>
+
+<div class ="Menu"> 
+  <div class="heading">
+      <h1>David's Grill Restaurant</h1>
+      <h2>&mdash; Our Menu &mdash;</h2>
+      <i class="fas fa-shopping-cart"></i><span class="cart-badge">{{ app\Helpers\Base::getCartCount() }}</span>
+  </div>
 </div>
+    
+<div class="topnav">
+  <a href="#news" href="{{ url('/') }}">Home</a>
+  <a href="{{ url('/profile') }}">My account</a>
+  <a href="{{ url('/orders') }}">My orders</a>
 </div>
-<!--End of Nav bar-->
+<!---====Category Section=====-->
+<h2 class="title-text" style="margin-left: 40px;">Menu Categories</h2>
+<div id="secondary-slider" class="splide" style="padding-left: 40px; padding-right: 40px;">
+  <div class="splide__arrows">
+    <button class="splide__arrow splide__arrow--prev" style="margin-top:-50px; margin-left: 10px;" type="button" aria-controls="secondary-slider-track" aria-label="Go to last slide"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="40" height="40"><path d="m15.5 0.932-4.3 4.38 14.5 14.6-14.5 14.5 4.3 4.4 14.6-14.6 4.4-4.3-4.4-4.4-14.6-14.6z"></path></svg></button>
+  <button class="splide__arrow splide__arrow--next" style="margin-top:-50px; margin-right: 10px;" type="button" aria-controls="secondary-slider-track" aria-label="Next slide"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="40" height="40"><path d="m15.5 0.932-4.3 4.38 14.5 14.6-14.5 14.5 4.3 4.4 14.6-14.6 4.4-4.3-4.4-4.4-14.6-14.6z"></path></svg></button>
+</div>
 
-    <header class="header">
-        <div class="homebg">
-            <h1 class="title">·David's Grill Restaurant·</h1>
-            <a href="#CategoryIcons" class="ordernow-button pulsate">Order Now</a>
-  
-    </header>
-
-<!--=====About Section=====-->
-<section id="about">
-    <div>
-    <h2 class="title-text">About Us</h2>
- </div>
- <div class="about-center">
-     <!---Single item-->
-     <article class="about">
-         <div class="about-icon"><i class="fas fa-dove"></i></div>
-         <div class="about-text">
-             <h2 class="about-subtitle">Ambiance</h2>
-             <p class="about-info">Hearty food and a convivial place to gather and make celebrations.</p>
-         </div>
-     </article>
-     <!--End of single item-->
-     <!---Single item-->
-     <article class="about">
-         <div class="about-icon"><i class="fas fa-utensils"></i></div>
-         <div class="about-text">
-             <h2 class="about-subtitle">Healthy Food</h2>
-             <p class="about-info">Different variety of cuisines, feel satisfied, feel the energy!</p>
-         </div>
-     </article>
-     <!--End of single item-->
-     <!---Single item-->
-     <article class="about">
-         <div class="about-icon"><i class="fas fa-birthday-cake"></i></div>
-         <div class="about-text">
-             <h2 class="about-subtitle">Events and Gatherings</h2>
-             <p class="about-info">Birthdays? Anniversaries? Garden Weddings? Easy on David's
-                 Grill Balayan!</p>
-         </div>
-     </article>
-     <!--End of single item-->
-     <!---Single item-->
-     <article class="about">
-         <div class="about-icon"><i class="fas fa-glasses"></i></div>
-         <div class="about-text">
-             <h2 class="about-subtitle">Mission</h2>
-             <p class="about-info">At David's Grill, our mission is simple: to gather Christian Churches and
-                 see all the verses.</p>
-         </div>
-     </article>
-     <!--End of single item-->
-     <!---Single item-->
-     <article class="about">
-         <div class="about-icon"><i class="fas fa-church"></i></div>
-         <div class="about-text">
-             <h2 class="about-subtitle">Wisdom of God</h2>
-             <p class="about-info">Encouraging, enlightening and sharing words of God.</p>
-         </div>
-     </article>
-     <!--End of single item-->
-     <!---Single item-->
-     <article class="about">
-         <div class="about-icon"><i class="fas fa-map-marker-alt"></i></div>
-         <div class="about-text">
-             <h2 class="about-subtitle">Good food, Good Place, Good Price</h2>
-             <p class="about-info">Food as it should be. Food should taste good. It should feel good.
-                 It should do good things for you and the world around you.</p>
-         </div>
-     </article>
-     <!--End of single item-->
- </div>   
-</section>
-<!--=====End of About Section=====-->
-
-<!---=======Gallery Section======-->
-<section id="gallery">
-    <div>
-    <h2 class="title-text">Gallery</h2>
- </div>
- <div id="gallery-center">
-    @foreach ($gallery as $data)
-     <article class="gallery-item">
-         <a  onclick="openModal();currentSlide(1)">
-            <img src="{{ asset('storage/'. $data->image) }}" alt={{$data->image}}>
-        </a>
-     </article>
-    @endforeach
-    
- </div>
-
- <!-- The Modal/Lightbox -->
-<div id="myModal" class="modal">
-    <span class="close cursor" onclick="closeModal()">&times;</span>
-    <div class="modal-content">  
-    @foreach ($gallery as $data)
-      <div class="mySlides">
-            <img src="{{ asset('storage/'. $data->image) }}" alt={{$data->image}} style="width:90%;">
+<div class="splide__track">
+  <div class="splide__list row">
+    <div class="splide__slide row min-ht ml-2">
+        <div class="dif-cate-box">
+          <a href="{{url('/')}}/website-it-software/">
+            <div class="img-box">
+              <img src="{{asset('img/sizzlingplate.jpg')}}" class="img" alt="">
+            </div>
+          </a>        
+          <div  style="padding:20px;">    
+            <p style="font-size: 17px; color: #000;">Lorem spum</p>
+            <button class="btn-order">Order now</button>
+          </div>
+        </div>
+    </div>
+    <div class="splide__slide row min-ht ml-2">
+      <div class="dif-cate-box">
+        <a href="{{url('/')}}/website-it-software/">
+          <div class="img-box">
+            <img src="{{asset('img/sizzlingplate.jpg')}}" class="img" alt="">
+          </div>
+        </a>        
+        <div  style="padding:20px;">    
+          <p style="font-size: 17px; color: #000;">Lorem spum</p>
+          <button class="btn-order">Order now</button>
+        </div>
       </div>
-      @endforeach
-  
-      <!-- Next/previous controls -->
-      <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-      <a class="next" onclick="plusSlides(1)">&#10095;</a>
-  
-      <!-- Caption text -->
-      <div class="caption-container">
-        <p id="caption"></p>
+  </div>
+  <div class="splide__slide row min-ht ml-2">
+    <div class="dif-cate-box">
+      <a href="{{url('/')}}/website-it-software/">
+        <div class="img-box">
+          <img src="{{asset('img/sizzlingplate.jpg')}}" class="img" alt="">
+        </div>
+      </a>        
+      <div  style="padding:20px;">    
+        <p style="font-size: 17px; color: #000;">Lorem spum</p>
+        <button class="btn-order">Order now</button>
       </div>
-  
-      <!-- Thumbnail image controls -->
-      
-    
+    </div>
+</div>
+<div class="splide__slide row min-ht ml-2">
+  <div class="dif-cate-box">
+    <a href="{{url('/')}}/website-it-software/">
+      <div class="img-box">
+        <img src="{{asset('img/sizzlingplate.jpg')}}" class="img" alt="">
+      </div>
+    </a>        
+    <div  style="padding:20px;">    
+      <p style="font-size: 17px; color: #000;">Lorem spum</p>
+      <button class="btn-order">Order now</button>
     </div>
   </div>
- </section>
- 
+</div>
+<div class="splide__slide row min-ht ml-2">
+  <div class="dif-cate-box">
+    <a href="{{url('/')}}/website-it-software/">
+      <div class="img-box">
+        <img src="{{asset('img/sizzlingplate.jpg')}}" class="img" alt="">
+      </div>
+    </a>        
+    <div  style="padding:20px;">    
+      <p style="font-size: 17px; color: #000;">Lorem spum</p>
+      <button class="btn-order">Order now</button>
+    </div>
+  </div>
+</div>
 
-<!---=======End of Gallery Section======-->
+<div class="splide__slide row min-ht ml-2">
+  <div class="dif-cate-box">
+    <a href="{{url('/')}}/website-it-software/">
+      <div class="img-box">
+        <img src="{{asset('img/sizzlingplate.jpg')}}" class="img" alt="">
+      </div>
+    </a>        
+    <div  style="padding:20px;">    
+      <p style="font-size: 17px; color: #000;">Lorem spum</p>
+      <button class="btn-order">Order now</button>
+    </div>
+  </div>
+</div>
 
-<!---====Category Section=====-->
-<section id="CategoryIcons">
+<div class="splide__slide row min-ht ml-2">
+  <div class="dif-cate-box">
+    <a href="{{url('/')}}/website-it-software/">
+      <div class="img-box">
+        <img src="{{asset('img/sizzlingplate.jpg')}}" class="img" alt="">
+      </div>
+    </a>        
+    <div  style="padding:20px;">    
+      <p style="font-size: 17px; color: #000;">Lorem spum</p>
+      <button class="btn-order">Order now</button>
+    </div>
+  </div>
+</div>
+<div class="splide__slide row min-ht ml-2">
+  <div class="dif-cate-box">
+    <a href="{{url('/')}}/website-it-software/">
+      <div class="img-box">
+        <img src="{{asset('img/sizzlingplate.jpg')}}" class="img" alt="">
+      </div>
+    </a>        
+    <div  style="padding:20px;">    
+      <p style="font-size: 17px; color: #000;">Lorem spum</p>
+      <button class="btn-order">Order now</button>
+    </div>
+  </div>
+</div>
 
-	<a href="/menu/beef_and_pork">
-    <article class="icon">
-    <i class="fas fa-cloud-meatball"></i>
-    <h3> Beef & Pork</h3>
-    </article></a>
-    
-	<a href="/menu/chicken_and_goat">
-    <article class="icon">
-    <i class="fas fa-drumstick-bite"></i> 
-    <h3> Chicken & Goat</h3>
-    </article></a>
-    
-	<a href="/menu/vegetables_and_seafoods">
-    <article class="icon">
-    <i class="fas fa-pastafarianism"></i>
-    <h3> Vegetables & Seafoods</h3>
-    </article></a>
-
-	<a href="/menu/rice_and_soup">
-    <article class="icon">
-    <i class="fas fa-utensil-spoon"></i>
-    <h3> Rice & Soup</h3>
-    </article></a>
-
-	<a href="/menu/noodles_and_bilao">
-    <article class="icon">
-    <i class="fas fa-stroopwafel"></i>
-    <h3> Noodles & Bilao</h3>
-    </article></a>
-
-</section>
+  </div>
+</div>
+</div>
 
 <!----====End of Category Section======-->
 
-<!----======Card Section=====----->
-
-<section id="food">
-    <div>
-    <h2 class="title-text"> Food Fusion</h2>
-     </div>
-   <div class="food-container">
-
-           <!--======Card Start=====-->
-
-            <article class="food-card">
-            
-           <img src="{{asset('img/breakfast.jpg')}}" class="food-img"alt="">
-           <div class="img-text">
-               <h1>All-Day Breakfast</h1>
-           </div>
-           <div class="img-footer">
-               <div class="footer-icon">
-               </div>
-               <div class="footer-btn">
-                 <a href="/menu/allday_breakfast" class="food-btn">Order Now</a>  
-               </div>
-           </div>
-           </article>
-           <article class="food-card">
-             <img src="{{asset('img/valuemeal.jpg')}}" class="food-img"alt="">
-             <div class="img-text">
-                 <h1>Value Meals</h1>
-             </div>
-             <div class="img-footer">
-                 <div class="footer-icon">
-                 </div>
-                 <div class="footer-btn">
-                   <a href="/menu/value_meals"class="food-btn">Order Now</a>  
-                 </div>
-             </div>
-             </article>
-             <article class="food-card">
-                 <img src="{{asset('img/sizzlingplate.jpg')}}" class="food-img"alt="">
-                 <div class="img-text">
-                     <h1>Sizzling Plates</h1>
-                 </div>
-                 <div class="img-footer">
-                     <div class="footer-icon">
-                     </div>
-                     <div class="footer-btn">
-                        <a href="/menu/sizzling_plates"class="food-btn">Order Now</a>  
-                     </div>
-                 </div>
-                 </article>
-                 <article class="food-card">
-                    <img src="{{asset('img/combomeals.jpg')}}" class="food-img"alt="">
-                    <div class="img-text">
-                        <h1>Combo Meals</h1>
-                    </div>
-                    <div class="img-footer">
-                        <div class="footer-icon">
-                        </div>
-                        <div class="footer-btn">
-                            <a href="/menu/combo_meals"class="food-btn">Order Now</a>  
-                        </div>
-                    </div>
-                    </article>
-    </div>
+<!--=====About Section=====-->
+<section id="about">
+  <div>
+  <h2 class="title-text">About Us</h2>
+</div>
+<div class="about-center">
+   <!---Single item-->
+   <article class="about">
+       <div class="about-icon"><i class="fas fa-dove"></i></div>
+       <div class="about-text">
+           <h2 class="about-subtitle">Ambiance</h2>
+           <p class="about-info">Hearty food and a convivial place to gather and make celebrations.</p>
+       </div>
+   </article>
+   <!--End of single item-->
+   <!---Single item-->
+   <article class="about">
+       <div class="about-icon"><i class="fas fa-utensils"></i></div>
+       <div class="about-text">
+           <h2 class="about-subtitle">Healthy Food</h2>
+           <p class="about-info">Different variety of cuisines, feel satisfied, feel the energy!</p>
+       </div>
+   </article>
+   <!--End of single item-->
+   <!---Single item-->
+   <article class="about">
+       <div class="about-icon"><i class="fas fa-birthday-cake"></i></div>
+       <div class="about-text">
+           <h2 class="about-subtitle">Events and Gatherings</h2>
+           <p class="about-info">Birthdays? Anniversaries? Garden Weddings? Easy on David's
+               Grill Balayan!</p>
+       </div>
+   </article>
+   <!--End of single item-->
+   <!---Single item-->
+   <article class="about">
+       <div class="about-icon"><i class="fas fa-glasses"></i></div>
+       <div class="about-text">
+           <h2 class="about-subtitle">Mission</h2>
+           <p class="about-info">At David's Grill, our mission is simple: to gather Christian Churches and
+               see all the verses.</p>
+       </div>
+   </article>
+   <!--End of single item-->
+   <!---Single item-->
+   <article class="about">
+       <div class="about-icon"><i class="fas fa-church"></i></div>
+       <div class="about-text">
+           <h2 class="about-subtitle">Wisdom of God</h2>
+           <p class="about-info">Encouraging, enlightening and sharing words of God.</p>
+       </div>
+   </article>
+   <!--End of single item-->
+   <!---Single item-->
+   <article class="about">
+       <div class="about-icon"><i class="fas fa-map-marker-alt"></i></div>
+       <div class="about-text">
+           <h2 class="about-subtitle">Good food, Good Place, Good Price</h2>
+           <p class="about-info">Food as it should be. Food should taste good. It should feel good.
+               It should do good things for you and the world around you.</p>
+       </div>
+   </article>
+   <!--End of single item-->
+</div>   
 </section>
-<!----======End of Card Section=====-->
+<!--=====End of About Section=====-->
+
+
+
 
    <!---=====Social Icons=====-->
    <section id="social-icons">
@@ -432,6 +288,19 @@ img.hover-shadow {
       captionText.innerHTML = dots[slideIndex-1].alt;
     }
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+          new Splide('#secondary-slider', { 
+              fixedWidth:450,
+              fixedHieght: 250,
+              gap: 25,
+              rewind: true,
+              cover: true,
+              pagination: true,
+          }).mount();
+      });
+  </script>
 </body>
 </html>
 

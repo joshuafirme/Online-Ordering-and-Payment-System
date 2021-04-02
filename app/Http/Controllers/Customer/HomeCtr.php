@@ -9,15 +9,10 @@ use Auth, Redirect, Helper, Session;
 class HomeCtr extends Controller
 {
     public function index(){
-        Auth::loginUsingId(Session::get('customer-id'));
-        if(Auth::check()){
+      //  Auth::loginUsingId(Session::get('customer-id'));
             return view('customer/home',[
                 'gallery' => $this->displayGallery()
             ]);
-        }
-        else{
-            return Redirect::to('/customer/customer-login'); 
-        }
     }
 
     public function beef_and_pork_view(){

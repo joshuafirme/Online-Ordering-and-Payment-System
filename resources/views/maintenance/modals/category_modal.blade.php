@@ -20,6 +20,11 @@
                 <label class="col-form-label">Category</label>
                 <input type="text" class="form-control" name="category" id="category" required>
               </div>
+
+              <div class="col-md-12" style="margin-bottom: 10px;">
+                <label class="col-form-label">Image</label>
+                <input type="file" accept="image/x-png,image/gif,image/jpeg" name="image" required>
+              </div>
   
             </div>
           </div>
@@ -53,6 +58,11 @@
             <div class="col-md-12" style="margin-bottom: 10px;">
               <label class="col-form-label">Category</label>
               <input type="text" class="form-control" name="category" id="edit_category" required>
+            </div>
+
+            <div class="col-md-12" style="margin-bottom: 10px;">
+              <label class="col-form-label">Image</label>
+              <input type="file" accept="image/x-png,image/gif,image/jpeg" name="image" required>
             </div>
 
           </div>

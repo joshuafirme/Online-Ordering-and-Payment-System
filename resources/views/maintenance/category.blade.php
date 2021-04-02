@@ -42,6 +42,7 @@
                             <thead>
                                 <tr>
                                     <th>Category</th>
+                                    <th>Image</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>

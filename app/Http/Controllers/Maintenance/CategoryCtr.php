@@ -50,11 +50,29 @@ class CategoryCtr extends Controller
         $cm->category = $request->input('category');
         $cm->save();
 
+        if(request()->hasFile('image')){
+            request()->validate([
+                'image' => 'file|image|max:5000',
+            ]);
+            
+        $this->storeImage($g->id);
+
         $audit = new AuditTrail;
         $audit->recordAction($this->module, 'Add Category');
 
         return redirect('/maintenance/category')->with('success', 'Data Saved');
+       }
     }
+
+public function storeImage($id){
+      
+    if(request()->has('image')){
+        Menu::where('id', $id)
+        ->update([
+            'image' => request()->image->store('uploads', 'public'),
+        ]);
+    }
+}
 
     public function show($id){
         $res = DB::table($this->tbl_cat)

@@ -12,6 +12,9 @@
 */
 //use App\Utilities\User;
 
+
+Route::get('/', 'Customer\HomeCtr@index');
+
 Route::get('dashboard', 'DashboardCtr@index');
 
 //Employee Login------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -20,8 +23,6 @@ Route::post('user-login/login', 'LoginCtr@login');
 Route::get('logout-employee', 'LoginCtr@logout');
 
 
-//GALLERY MAINTENANCE------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Route::get('home', 'Customer\HomeCtr@index');
 
 //GALLERY MAINTENANCE------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Route::get('maintenance/gallery', 'Maintenance\GalleryCtr@index');
