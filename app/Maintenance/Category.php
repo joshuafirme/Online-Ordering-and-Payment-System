@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 class Category extends Model
 {
     protected $table = 'tblcategory';
-    protected $fillable = ['id', 'category'];
+    protected $fillable = ['id', 'category', 'image', 'is_active'];
 
 
 }

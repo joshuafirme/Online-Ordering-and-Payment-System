@@ -48,6 +48,6 @@ class Base
 
      public static function getCategories()
      {
-         return DB::table('tblcategory')->get();
+         return DB::table('tblcategory')->where('is_active', 1)->get();
      }
 }

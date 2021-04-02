@@ -43,6 +43,7 @@
                                 <tr>
                                     <th>Category</th>
                                     <th>Image</th>
+                                    <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>

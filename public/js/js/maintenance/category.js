@@ -22,6 +22,8 @@ $(document).ready(function(){
 
         columns:[       
          {data: 'category', name: 'category'},
+         {data: 'image', name: 'image'},
+         {data: 'is_active', name: 'is_active'},
          {data: 'action', name: 'action'},
         ]
         
@@ -42,6 +44,7 @@ $(document).on('click', '#btn-edit', function(){
       console.log(response);
       $('#id').val(response[0].id);
       $('#edit_category').val(response[0].category);
+      $('select[name="status"]').val(response[0].is_active);
   
     }
    });

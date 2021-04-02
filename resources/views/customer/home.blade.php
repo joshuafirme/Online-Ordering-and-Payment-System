@@ -18,18 +18,20 @@
   <div class="heading">
       <h1>David's Grill Restaurant</h1>
       <h2>&mdash; Our Menu &mdash;</h2>
-      <i class="fas fa-shopping-cart"></i><span class="cart-badge">{{ app\Helpers\Base::getCartCount() }}</span>
+      <a href="{{ url('/cart') }}">
+        <i class="fas fa-shopping-cart" style="color: #fff;"></i><span class="cart-badge">{{ app\Helpers\Base::getCartCount() }}</span>
+      </a>
   </div>
 </div>
     
 <div class="topnav">
   <a href="{{ url('/') }}">Home</a>
-  <a href="{{ url('/profile') }}">My account</a>
-  <a href="{{ url('/orders') }}">My orders</a>
+  <a href="{{ url('/profile') }}">Profile</a>
+  <a href="{{ url('/orders') }}">Orders</a>
 </div>
 
 <!---====Category Section=====-->
-<h2 class="title-text" style="margin-left: 40px;color: #3B3B3B;">Menu Categories</h2>
+<h2 class="title-text" style="margin-left: 40px;color: #3B3B3B;">Select Category</h2>
 
 <div id="secondary-slider" class="splide" style="padding-left: 40px; padding-right: 40px;">
   <div class="splide__arrows">
@@ -43,11 +45,14 @@
     <div class="splide__list row">
     
       @foreach ($categories as $item)
+      @php
+          $img = $item->image!=null ? $item->image : "img-placeholder.png"
+      @endphp
         <div class="splide__slide row min-ht ml-2">
           <div class="dif-cate-box">
             <a href="{{url('/')}}/website-it-software/" style="text-decoration: none;">
               <div class="img-box">
-                <img src="{{asset('img/sizzlingplate.jpg')}}" class="img" alt="">
+                <img src="{{ asset('storage/'.$img)}}" class="img" alt="">
               </div>
               <div  style="padding:20px;">    
                 <p style="font-family: 'Roboto', sans-serif; font-size:20px; color: #3B3B3B;">{{$item->category}}</p>

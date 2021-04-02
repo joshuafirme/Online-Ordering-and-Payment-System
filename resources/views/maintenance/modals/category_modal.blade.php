@@ -4,7 +4,7 @@
 
  <!-- Add -->
 <div id="addModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-md">
   
       <div class="modal-content">
         <div class="modal-header">
@@ -12,7 +12,7 @@
           <h4 class="modal-title">Add Category</h4>
         </div>
         <div class="modal-body">
-          <form action="{{action('Maintenance\CategoryCtr@store')}}" method="POST">
+          <form action="{{action('Maintenance\CategoryCtr@store')}}" method="POST" enctype="multipart/form-data">
             {{ csrf_field() }}
             <div class="row">
 
@@ -26,6 +26,14 @@
                 <input type="file" accept="image/x-png,image/gif,image/jpeg" name="image" required>
               </div>
   
+              <div class="col-md-12" style="margin-bottom: 15px;">    
+                <label class="col-form-label">Status</label>
+                <select class="form-control" name="status" required>        
+                    <option value="1">Active</option>       
+                    <option value="2">Inactive</option>       
+                </select>
+              </div>
+
             </div>
           </div>
           <div class="modal-footer">
@@ -49,7 +57,7 @@
         <h4 class="modal-title">Edit Category</h4>
       </div>
       <div class="modal-body">
-        <form action="{{action('Maintenance\CategoryCtr@update')}}" method="POST">
+        <form action="{{action('Maintenance\CategoryCtr@update')}}" method="POST" enctype="multipart/form-data">
           {{ csrf_field() }}
           <div class="row">
 
@@ -63,6 +71,14 @@
             <div class="col-md-12" style="margin-bottom: 10px;">
               <label class="col-form-label">Image</label>
               <input type="file" accept="image/x-png,image/gif,image/jpeg" name="image" required>
+            </div>
+
+            <div class="col-md-12" style="margin-bottom: 15px;">    
+              <label class="col-form-label">Status</label>
+              <select class="form-control" name="status" required>        
+                  <option value="1">Active</option>       
+                  <option value="0">Inactive</option>       
+              </select>
             </div>
 
           </div>
