@@ -10,6 +10,7 @@ class HomeCtr extends Controller
 {
     public function index()
     {
+        Auth::loginUsingId(Session::get('customer-id'));
         return view('customer/home');
     }
 

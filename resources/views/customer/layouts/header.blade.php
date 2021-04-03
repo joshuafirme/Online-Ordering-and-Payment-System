@@ -4,7 +4,7 @@
         <h2>&mdash; Our Menu &mdash;</h2>
         @if(Auth::check())
             <a href="{{ url('/cart') }}">
-                <i class="fas fa-shopping-cart" style="color: #fff;"></i><span class="cart-badge" id="cart_count"></span>
+                <i class="fas fa-shopping-cart" style="color: #fff;"></i><span style="margin-left: -10px;" class="cart-badge" id="cart_count"></span>
             </a>
         @endif
 

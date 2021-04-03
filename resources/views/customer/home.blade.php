@@ -14,7 +14,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 <style>
-       
+    html {
+  scroll-behavior: smooth;
+}   
 
           /* Card image loading */
           .img-cont {
@@ -109,15 +111,15 @@
 <!---====Category Section=====-->
 <h2 class="title-text" style="margin-left: 40px;color: #3B3B3B;">Select Category</h2>
 
-<div id="secondary-slider" class="splide mb-5" style="padding-left: 40px; padding-right: 40px;">
+<div id="secondary-slider" class="splide mb-2" style="padding-left: 40px; padding-right: 40px;">
   <div class="splide__arrows">
     <button class="splide__arrow splide__arrow--prev" style="margin-top:-50px; margin-left: 10px;" type="button" aria-controls="secondary-slider-track" aria-label="Go to last slide"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="40" height="40"><path d="m15.5 0.932-4.3 4.38 14.5 14.6-14.5 14.5 4.3 4.4 14.6-14.6 4.4-4.3-4.4-4.4-14.6-14.6z"></path></svg></button>
   <button class="splide__arrow splide__arrow--next" style="margin-top:-50px; margin-right: 10px;" type="button" aria-controls="secondary-slider-track" aria-label="Next slide"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="40" height="40"><path d="m15.5 0.932-4.3 4.38 14.5 14.6-14.5 14.5 4.3 4.4 14.6-14.6 4.4-4.3-4.4-4.4-14.6-14.6z"></path></svg></button>
 </div>
 @php
-  $categories = app\Helpers\Base  ::getCategories();
+  $categories = app\Helpers\Base::getCategories();
 @endphp
-  <div class="splide__track">
+  <div class="splide__track"  id="menu-section">
     <div class="splide__list row">
     
       @foreach ($categories as $item)
@@ -125,16 +127,16 @@
             $img = $item->image!=null ? $item->image : "img-placeholder.png"
         @endphp
         <div class="splide__slide row min-ht ml-2">
-          <div class="dif-cate-box">
-            <a href="#{{ $item->category }}" class="menu-category" style="text-decoration: none;">
-              <div class="img-box">
-                <img src="{{ asset('storage/'.$img)}}" class="img" alt="">
-              </div>
-              <div  style="padding:20px;">    
-                <p style="font-family: 'lavenda'; font-size:20px; color: #3B3B3B; font-style:italic;">{{$item->category}}</p>
-              </div>
-            </a>        
-          </div>
+            <div class="dif-cate-box">
+              <a href="#menu-section" category="{{$item->category}}" class="menu-category" style="text-decoration: none;">
+                <div class="img-box">
+                  <img src="{{ asset('storage/'.$img)}}" class="img" alt="">
+                </div>
+                <div  style="padding:20px;">    
+                  <p style="font-family: 'lavenda'; font-size:20px; color: #3B3B3B; font-style:italic;">{{$item->category}}</p>
+                </div>
+              </a>    
+            </div>
         </div>
       @endforeach
 
@@ -155,10 +157,10 @@
       </div>
   </div>
 
-
-  <div class="row" id="menu-container">
+    <div class="row" id="menu-container">
       <!-- populate menu with ajax  -->
   </div>
+
 </div>
 
 <!--=====About Section=====-->
@@ -374,10 +376,10 @@
     }
 
     $(document).on('click', '.menu-category', function(){
-        let category = $(this).attr('href');
+        let category = $(this).attr('category');
         
-        $('#category-title').html(category.slice(1));
-        displayMenuByCategory(category.slice(1));
+        $('#category-title').html(category);
+        displayMenuByCategory(category);
     });
 
     function cardHTML(data){
@@ -425,7 +427,7 @@
       
       } 
       else{
-        var cards ='<div class="row justify-content-center m-auto" style="padding-bottom:50px;">'
+        var cards ='<div class="row justify-content-center m-auto" style="padding-bottom:400px;">'
            cards += ' <div class="col-12 text-center">';
             cards +=  '<a class="">No menu found</a>';
             cards +='</div></div>';

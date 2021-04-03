@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Socialite;
 use Redirect;
-use Auth, Input;
+use Auth, Input, Session;
 
 class LoginCtr extends Controller
 {
@@ -33,6 +33,7 @@ class LoginCtr extends Controller
     public function logout()
     {
         Auth::logout();
+        Session::forget('customer-id');
         Redirect::to('/')->send(); 
     }
 
