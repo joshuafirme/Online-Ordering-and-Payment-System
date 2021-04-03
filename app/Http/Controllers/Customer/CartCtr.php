@@ -81,7 +81,14 @@ class CartCtr extends Controller
     public function getShippingFee()
     {     
         $shipping_info = Helper::getShippingInfo()!=null ? Helper::getShippingInfo()->municipality : "";
-        return $shipping_info=="Balayan" ? 50 : 100;
+        if($shipping_info=="Balayan")
+        {
+            return 50;
+        }elseif($shipping_info=="Tuy"){
+            return 100;
+        }else{
+            return 0;
+        }
     }
 
     public function increaseQty($menu_id, $qty)
