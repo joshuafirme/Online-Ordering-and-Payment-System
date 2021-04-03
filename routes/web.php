@@ -114,6 +114,14 @@ Route::get('menu/combo_meals', 'Customer\homeCtr@combo_meals_view');
 
 /*
 |--------------------------------------------------------------------------
+| Home
+|--------------------------------------------------------------------------
+*/
+Route::get('menu', 'Customer\HomeCtr@displayMenu');
+Route::get('menu/category/{category}', 'Customer\HomeCtr@displayMenuByCategory');
+
+/*
+|--------------------------------------------------------------------------
 | Profile
 |--------------------------------------------------------------------------
 */
@@ -126,6 +134,7 @@ Route::post('profile', 'Customer\ProfileCtr@updateInsert');
 |--------------------------------------------------------------------------
 */
 Route::get('cart', 'Customer\CartCtr@index');
+Route::get('cart/cart-count', 'Customer\CartCtr@getCartCount');
 Route::post('cart/add', 'Customer\CartCtr@addToCart');
 Route::post('cart/increase-qty/{menu_id}/{qty}', 'Customer\CartCtr@increaseQty');
 Route::post('cart/decrease-qty/{menu_id}/{qty}', 'Customer\CartCtr@decreaseQty');

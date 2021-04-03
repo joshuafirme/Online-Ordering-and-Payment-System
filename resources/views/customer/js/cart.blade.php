@@ -29,13 +29,6 @@
       </div>
     </div>
   </div>
-   
-   <!-- jQuery 2.0.2 -->
-   <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-   <!-- jQuery UI 1.10.3 -->
-   <script src="{{asset('js/jquery-ui-1.10.3.min.js')}}" type="text/javascript"></script>
-   <!-- Bootstrap -->
-   <script src="{{asset('js/bootstrap.min.js')}}" type="text/javascript"></script>
 
 <script>
     $.ajaxSetup({
@@ -49,6 +42,7 @@
         let menu_id = $(this).attr('menu-id');
         let amount = $(this).attr('amount');
         addToCart(menu_id, amount);
+        cartCount();
     });
 
     function addToCart(menu_id, amount){

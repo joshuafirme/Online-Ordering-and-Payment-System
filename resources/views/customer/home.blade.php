@@ -6,59 +6,134 @@
     <title>David's Grill</title>
     <link rel="stylesheet" href="{{asset('css/main.css')}}">
     <link href="https://fonts.googleapis.com/css2?family=Baloo+Chettan+2:wght@600;800&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/332a215f17.js" crossorigin="anonymous"></script>
+    {{--<script src="https://kit.fontawesome.com/332a215f17.js" crossorigin="anonymous"></script>--}}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+<style>
+       
+
+          /* Card image loading */
+          .img-cont {
+            width: 100%;
+            height: 100%;
+        }
+          
+        .img-cont.loading {
+            width: 100%;
+            height: 228px;
+        }
+       
+        /* Card title */
+
+          
+        .desc-loading1 {
+            height: 1rem;
+            width: 90%;
+            margin: 1rem;
+            border-radius: 3px;
+        }
+        .desc-loading2 {
+            height: 1rem;
+            width: 40%;
+            margin: 1rem;
+            border-radius: 3px;
+        }
+        .desc-loading3 {
+            height: 1rem;
+            width: 70%;
+            margin: 1rem;
+            border-radius: 3px;
+        }
+        .desc-loading4 {
+            height: 30px;
+            width: 30%;
+            margin: 1rem;
+            border-radius: 50px;
+        }
+       
+        /* Card description */
+        .card__description {
+            padding: 8px;
+            font-size: 16px;
+        }
+          
+        .card__description.loading {
+            height: 3rem;
+            margin: 1rem;
+            border-radius: 3px;
+        }
+       
+        /* The loading Class */
+        .loading {
+            position: relative;
+            background-color: #e2e2e2;
+        }
+       
+        /* The moving element */
+        .loading::after {
+            display: block;
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transform: translateX(-100%);
+            background: -webkit-gradient(linear, left top,
+                        right top, from(transparent), 
+                        color-stop(rgba(255, 255, 255, 0.2)),
+                        to(transparent));
+                          
+            background: linear-gradient(90deg, transparent,
+                    rgba(255, 255, 255, 0.2), transparent);
+       
+            /* Adding animation */
+            animation: loading 0.8s infinite;
+        }
+       
+        /* Loading Animation */
+        @keyframes loading {
+            100% {
+                transform: translateX(100%);
+            }
+        }
+</style>
 </head>
 <body>
 
 
-<div class ="Menu"> 
-  <div class="heading">
-      <h1>David's Grill Restaurant</h1>
-      <h2>&mdash; Our Menu &mdash;</h2>
-      <a href="{{ url('/cart') }}">
-        <i class="fas fa-shopping-cart" style="color: #fff;"></i><span class="cart-badge">{{ app\Helpers\Base::getCartCount() }}</span>
-      </a>
-  </div>
-</div>
-    
-<div class="topnav">
-  <a href="{{ url('/') }}">Home</a>
-  <a href="{{ url('/profile') }}">Profile</a>
-  <a href="{{ url('/orders') }}">Orders</a>
-</div>
+@include('customer.layouts.header')
 
 <!---====Category Section=====-->
 <h2 class="title-text" style="margin-left: 40px;color: #3B3B3B;">Select Category</h2>
 
-<div id="secondary-slider" class="splide" style="padding-left: 40px; padding-right: 40px;">
+<div id="secondary-slider" class="splide mb-5" style="padding-left: 40px; padding-right: 40px;">
   <div class="splide__arrows">
     <button class="splide__arrow splide__arrow--prev" style="margin-top:-50px; margin-left: 10px;" type="button" aria-controls="secondary-slider-track" aria-label="Go to last slide"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="40" height="40"><path d="m15.5 0.932-4.3 4.38 14.5 14.6-14.5 14.5 4.3 4.4 14.6-14.6 4.4-4.3-4.4-4.4-14.6-14.6z"></path></svg></button>
   <button class="splide__arrow splide__arrow--next" style="margin-top:-50px; margin-right: 10px;" type="button" aria-controls="secondary-slider-track" aria-label="Next slide"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="40" height="40"><path d="m15.5 0.932-4.3 4.38 14.5 14.6-14.5 14.5 4.3 4.4 14.6-14.6 4.4-4.3-4.4-4.4-14.6-14.6z"></path></svg></button>
 </div>
 @php
-  $categories = app\Helpers\Base::getCategories();
+  $categories = app\Helpers\Base  ::getCategories();
 @endphp
   <div class="splide__track">
     <div class="splide__list row">
     
       @foreach ($categories as $item)
-      @php
-          $img = $item->image!=null ? $item->image : "img-placeholder.png"
-      @endphp
+        @php
+            $img = $item->image!=null ? $item->image : "img-placeholder.png"
+        @endphp
         <div class="splide__slide row min-ht ml-2">
           <div class="dif-cate-box">
-            <a href="{{url('/')}}/website-it-software/" style="text-decoration: none;">
+            <a href="#{{ $item->category }}" class="menu-category" style="text-decoration: none;">
               <div class="img-box">
                 <img src="{{ asset('storage/'.$img)}}" class="img" alt="">
               </div>
               <div  style="padding:20px;">    
-                <p style="font-family: 'Roboto', sans-serif; font-size:20px; color: #3B3B3B;">{{$item->category}}</p>
+                <p style="font-family: 'lavenda'; font-size:20px; color: #3B3B3B; font-style:italic;">{{$item->category}}</p>
               </div>
             </a>        
-
           </div>
         </div>
       @endforeach
@@ -68,6 +143,23 @@
 </div>
 
 <!----====End of Category Section======-->
+
+<!----====Menu list======-->
+
+<div class="container">
+  <h2 class="title-text" id="category-title">Best Seller</h2>
+  <hr style="margin-bottom: 25px;">
+  <div class="row justify-content-center" id="loader-cont">
+      <div class="col-3 text-center">
+        <div class="lds-dual-ring" id="loader"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+      </div>
+  </div>
+
+
+  <div class="row" id="menu-container">
+      <!-- populate menu with ajax  -->
+  </div>
+</div>
 
 <!--=====About Section=====-->
 <section id="about">
@@ -222,6 +314,147 @@
           }).mount();
       });
   </script>
+  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+  <script>
+    $.ajaxSetup({
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+     });
+
+    cartCount();
+
+    function cartCount() 
+    {
+        $.ajax({
+          url:"/cart/cart-count",
+          type:"GET",
+            success:function(data){
+              console.log(data);
+              $('#cart_count').text(data);
+            }  
+        });
+    }
+
+    displayMenu();
+
+    function displayMenu() 
+    {
+        $.ajax({
+          url:"/menu",
+          type:"GET",
+            beforeSend:function(){       
+              $('#loader-cont').css('display', 'flex');
+            },
+            success:function(data){
+              console.log(data);
+              cardHTML(data);
+              $('#loader-cont').css('display', 'none');
+            }  
+        });
+    }
+
+    function displayMenuByCategory(category) 
+    {
+        $.ajax({
+          url:"/menu/category/"+category,
+          type:"GET",
+            beforeSend:function(){
+              $('#loader-cont').css('display', 'flex');
+            },
+            success:function(data){
+              console.log(data);
+              cardHTML(data);
+              $('#loader-cont').css('display', 'none');
+            }  
+        });
+    }
+
+    $(document).on('click', '.menu-category', function(){
+        let category = $(this).attr('href');
+        
+        $('#category-title').html(category.slice(1));
+        displayMenuByCategory(category.slice(1));
+    });
+
+    function cardHTML(data){
+      $('#menu-container').html('');
+      if(data.length > 0){
+
+        for (var i = 0; i < data.length; i++) {
+
+        
+          var cards = '<div class="col-xs-12 col-md-6 col-lg-4">';
+              cards +=  '<div class="dif-cate-box">';
+
+              cards +=      '<div class="img-box">';
+              if(data[i].image!=null)
+              {
+                cards += '<div class="img-cont loading"><img src="../../storage/'+data[i].image+'" class="img loading" alt="" style="height:300px;display:none;" ></div>';
+              }else{
+                cards += '<img src="../../storage/img-placeholder.png" class="img loading" alt="" style="height:300px;">';
+              }
+              cards +=       '</div>'
+              cards +=       '<div style="padding:10px;" class="menu-description">';
+              cards +=         '<div class="desc-loading1 loading"><p class="desc m-0" style="display:none;font-family: lavenda, sans-serif; font-size:20px; color: #3B3B3B;">'+data[i].description+'</p></div>';
+              cards +=         '<div class="desc-loading2 loading"><p class="desc" style="display:none;font-family: lavenda, sans-serif; font-size:20px; color: #FFC000;">₱'+data[i].price+'</p></div>';
+              cards +=         '<div class="desc-loading3 loading"><p class="desc" style="display:none;font-family: lavenda, sans-serif; font-size:16px; color: #28A745;">Preparation time: '+data[i].preparation_time+'</p></div>';
+              
+              if(data[i].status=='Available')
+              {
+                @if(Auth::check())
+                cards += '<div class="desc-loading4 loading"><button class="btn btn-sm pl-3 pr-3 add_to_cart" style="display:none;background-color:#005B96; color:#fff; border-radius:50px;"';
+                cards += 'menu-id="'+data[i].id+'" amount="'+data[i].price+'">Add to tray</button></div>';
+                @else
+                cards += '<div class="desc-loading4 loading"><a href="/customer/customer-login" class="btn btn-sm pl-3 pr-3 add_to_cart" style="display:none;background-color:#005B96; color:#fff; border-radius:50px;"';
+                cards += 'menu-id="'+data[i].id+'" amount="'+data[i].price+'">Add to tray</a></div>';
+                @endif
+              }else{
+                cards += '<span style="color:#AA0000;">Not available</span>';
+              }
+              cards +=       '</div>';
+          
+              cards +=    '</div>';
+              cards +='</div>';
+          
+        $('#menu-container').append(cards);
+        }
+      
+      } 
+      else{
+        var cards ='<div class="row justify-content-center m-auto" style="padding-bottom:50px;">'
+           cards += ' <div class="col-12 text-center">';
+            cards +=  '<a class="">No menu found</a>';
+            cards +='</div></div>';
+        $('#menu-container').html(cards);
+      }
+
+      
+      setTimeout(function(){
+        $('.desc-loading1').removeClass('loading');
+        $('.desc-loading1 p').css('display','block');
+
+        $('.desc-loading2').removeClass('loading');
+        $('.desc-loading2 p').css('display','block');
+
+        $('.desc-loading3').removeClass('loading');
+        $('.desc-loading3 p').css('display','block');
+
+        $('.desc-loading4').removeClass('loading');
+        $('.desc-loading4 button').css('display','block');
+        $('.desc-loading4 a').css('display','block');
+      },2000);
+
+      setTimeout(function(){
+        $('.img-cont').removeClass('loading');
+        $('.img').css('display','block');
+      },2500);
+    }   
+  </script>
+@include('customer.js.cart')
 </body>
 </html>
 
