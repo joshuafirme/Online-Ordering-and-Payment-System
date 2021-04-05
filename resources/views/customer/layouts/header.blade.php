@@ -17,7 +17,11 @@
         <a href="{{ url('/profile') }}" title="Profile"><i class="fas fa-user"></i></a>
         <a href="{{ url('/orders') }}" title="My Orders"><i class="fas fa-cube"></i></a>
         <a href="{{ url('/do-logout') }}" title="Sign out" style="color: #DC3545;"><i class="fas fa-sign-out"></i></a>
+        <a href="{{ url('/customer/customer-login') }}">Gallery</a>
+        <a href="{{ url('/customer/customer-login') }}">Contact us</a>
     @else
         <a href="{{ url('/customer/customer-login') }}">Login</a>
+        <a href="{{ url('/customer/customer-login') }}">Gallery</a>
+        <a href="{{ url('/customer/customer-login') }}">Contact us</a>
     @endif
   </div>

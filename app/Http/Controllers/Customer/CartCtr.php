@@ -9,14 +9,19 @@ use DB, Input, Auth, Helper;
 class CartCtr extends Controller
 {
     public function index(){
-      //==  dd(Auth::id());
-        return view('customer.cart',[
-            'cart' => $this->getCart(),
-            'cartCount' => $this->getCartCount(),
-            'subTotal' => $this->computeSubTotal(),
-            'shippingFee' => $this->getShippingFee(),
-            'total' => $this->computeTotal()
-        ]);
+        if(Auth::check())
+        {
+            return view('customer.cart',[
+                'cart' => $this->getCart(),
+                'cartCount' => $this->getCartCount(),
+                'subTotal' => $this->computeSubTotal(),
+                'shippingFee' => $this->getShippingFee(),
+                'total' => $this->computeTotal()
+            ]);
+        }else{
+            return \Redirect::to('/customer/customer-login'); 
+        }
+       
     }
 
     public function addToCart()

@@ -140,6 +140,16 @@ Route::post('cart/increase-qty/{menu_id}/{qty}', 'Customer\CartCtr@increaseQty')
 Route::post('cart/decrease-qty/{menu_id}/{qty}', 'Customer\CartCtr@decreaseQty');
 Route::post('cart/remove-menu/{menu_id}', 'Customer\CartCtr@removeMenu');
 
+/*
+|--------------------------------------------------------------------------
+| Checkout
+|--------------------------------------------------------------------------
+*/
+Route::get('checkout', 'Customer\CheckoutCtr@index');
+Route::get('/checkout/computeTotal_ajax/{municipality}', 'Customer\CheckoutCtr@computeTotal_ajax');
+Route::get('/checkout/getShippingFee_ajax/{municipality}', 'Customer\CheckoutCtr@getShippingFee_ajax');
+Route::post('/checkout/placeOrder', 'Customer\CheckoutCtr@placeOrder');
+
 //GCASH PAYMENT-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Route::get('/payment', 'Customer\PaymentCtr@index');
 Route::get('/gcash-payment', 'Customer\PaymentCtr@gcashPayment')->name('gcashpayment');
