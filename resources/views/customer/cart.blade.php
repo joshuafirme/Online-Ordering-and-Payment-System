@@ -82,22 +82,8 @@
                     <td>   </td>
                     <td>   </td>
                     <td>   </td>
-                    <td><h5>Subtotal</h5></td>
-                    <td class="text-right"><h5><strong>₱{{ number_format($subTotal,2,'.',',') }}</strong></h5></td>
-                    </tr>
-                    <tr>
-                    <td>   </td>
-                    <td>   </td>
-                    <td>   </td>
-                    <td><h5>Shipping fee</h5></td>
-                    <td class="text-right"><h5><strong>₱{{ $shippingFee }}</strong></h5></td>
-                    </tr>
-                    <tr>
-                    <td>   </td>
-                    <td>   </td>
-                    <td>   </td>
                     <td><h3>Total</h3></td>
-                    <td class="text-right"><h3><strong>₱{{ number_format($total,2,'.',',') }}</strong></h3></td>
+                    <td class="text-right"><h3><strong>₱{{ number_format($subTotal,2,'.',',') }}</strong></h3></td>
                     </tr>
                     <tr>
                     <td>   </td>

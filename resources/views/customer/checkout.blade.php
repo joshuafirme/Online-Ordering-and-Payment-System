@@ -133,11 +133,12 @@
                                 value="{{ Helper::getShippingInfo()!=null ? Helper::getShippingInfo()->brgy : "" }}" required>
                 
                                 <Label class="label-small">Subd/Blk/Bldg</Label>
-                                <input style="margin-bottom: 10px;" type="text" class="form-control mb-3" placeholder="flr/blk/bldg" name="flr-bldg-blk" required>
+                                <input style="margin-bottom: 10px;" type="text" class="form-control mb-3" placeholder="flr/blk/bldg" name="flr_bldg_blk"
+                                value="{{ Helper::getShippingInfo()!=null ? Helper::getShippingInfo()->flr_bldg_blk : "" }}" required>
                 
                                 <Label class="label-small">Nearest landmark</Label>
                                 <textarea style="margin-bottom: 10px;" class="form-control mb-3" name="nearest_landmark"
-                                value="{{ Helper::getShippingInfo()!=null ? Helper::getShippingInfo()->nearest_landmark : "" }}" required></textarea>
+                                 required>{{ Helper::getShippingInfo()!=null ? Helper::getShippingInfo()->nearest_landmark : "" }}</textarea>
                 
                                 <Label class="label-small">Phone number</Label>
                                 <input style="margin-bottom: 10px;" type="text" class="form-control mb-3" name="phone_no" maxlength="11"

@@ -107,6 +107,7 @@ class CheckoutCtr extends Controller
                 'status' => 0,
             ]);
         }
+       // DB::table('tblcart')->where('user_id', Auth::id())->delete();
 
         $data = Input::all();
 

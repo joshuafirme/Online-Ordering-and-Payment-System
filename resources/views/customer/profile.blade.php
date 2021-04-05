@@ -210,6 +210,10 @@ h6 {
                                             <h6 class="text-muted f-w-400">{{ Helper::getShippingInfo()!=null ? Helper::getShippingInfo()->brgy : "-" }}</h6>
                                         </div>
                                         <div class="col-sm-6">
+                                            <p class="m-b-10 f-w-600">Floor/bldg/blk</p>
+                                            <h6 class="text-muted f-w-400">{{ Helper::getShippingInfo()!=null ? Helper::getShippingInfo()->flr_bldg_blk : "-" }}</h6>
+                                        </div>
+                                        <div class="col-sm-6">
                                             <p class="m-b-10 f-w-600">Nearest landmark</p>
                                             <h6 class="text-muted f-w-400">{{ Helper::getShippingInfo()!=null ? Helper::getShippingInfo()->nearest_landmark : "-" }}</h6>
                                         </div>
@@ -292,10 +296,17 @@ h6 {
                </div>
 
                <div class="col-md-12">    
+                <label class="col-form-label" style="margin-top: 10px;">Subd/Blk/Bldg</label>
+                <input type="text" class="form-control" name="flr_bldg_blk" 
+                value="{{ Helper::getShippingInfo()!=null ? Helper::getShippingInfo()->flr_bldg_blk : "" }}" required>
+              </div>
+
+               <div class="col-md-12">    
                 <label class="col-form-label" style="margin-top: 10px;">Nearest landmark</label>
                 <input type="text" class="form-control" name="nearest_landmark" 
                 value="{{ Helper::getShippingInfo()!=null ? Helper::getShippingInfo()->nearest_landmark : "" }}" required>
               </div>
+              
  
   
             </div>

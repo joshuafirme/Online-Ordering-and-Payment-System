@@ -38,7 +38,8 @@ class ProfileCtr extends Controller
                 ->update([
                     'municipality' => $data['municipality'],
                     'brgy' => $data['brgy'],
-                    'nearest_landmark' => $data['nearest_landmark']
+                    'nearest_landmark' => $data['nearest_landmark'],
+                    'flr_bldg_blk' => $data['flr_bldg_blk']
                 ]);
         }else{
             DB::table('tblshipping_address')
@@ -46,7 +47,8 @@ class ProfileCtr extends Controller
                     'user_id' => Auth::id(),
                     'municipality' => $data['municipality'],
                     'brgy' => $data['brgy'],
-                    'nearest_landmark' => $data['nearest_landmark']
+                    'nearest_landmark' => $data['nearest_landmark'],
+                    'flr_bldg_blk' => $data['flr_bldg_blk']
                 ]);
         }
 
