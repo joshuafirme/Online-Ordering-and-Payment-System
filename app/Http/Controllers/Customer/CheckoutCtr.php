@@ -75,8 +75,9 @@ class CheckoutCtr extends Controller
     public function computeTotal_ajax($municipality)
     {
         $sub_total = $this->computeSubTotal();
-
-        return $sub_total+(double)$this->getShippingFee_ajax($municipality);
+        $total = $sub_total+(double)$this->getShippingFee_ajax($municipality);
+        \Session::put('TOTAL_CHECKOUT', $total);
+        return $total;
     }
 
     public function getShippingFee_ajax($municipality)
@@ -92,14 +93,25 @@ class CheckoutCtr extends Controller
         }
     }
 
+    public function getOrderNumber()
+    {
+        $order_no = DB::table('tblorders')->max('order_no');
 
+        return ++ $order_no;
+    }
 
     public function placeOrder()
     {
+        $data = Input::all();
+
+        $order_no = $this->getOrderNumber();
+        \Session::put('ORDER_NO', $order_no);
+
         foreach($this->getCart() as $item)
         {
             DB::table('tblorders')
             ->insert([
+                'order_no' => $order_no,
                 'user_id' => Auth::id(),
                 'menu_id' => $item->menu_id,
                 'qty' => $item->qty,
@@ -107,13 +119,17 @@ class CheckoutCtr extends Controller
                 'status' => 0,
             ]);
         }
-       // DB::table('tblcart')->where('user_id', Auth::id())->delete();
+        DB::table('tblorder_token')
+            ->insert([
+                'order_no' => $order_no,
+                'token' => $data['token'],
+            ]);
+        DB::table('tblcart')->where('user_id', Auth::id())->delete();
 
-        $data = Input::all();
 
         $this->updateShippingInfo($data);
 
-        \Redirect::to('/payment')->send();
+        \Redirect::to('/payment/token='.$data['token'])->send();
     }
 
     public function updateShippingInfo($data)

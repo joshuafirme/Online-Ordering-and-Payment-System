@@ -105,6 +105,7 @@
                 
                         <form action="{{ action('Customer\CheckoutCtr@placeOrder') }}" method="POST">
                             @csrf
+                            <input type="hidden" name="token" value="{{ csrf_token() }}">
                             <ul class="list-group list-group-flush" id="ship-info-contr">
                 
                                 <div class="d-flex justify-content-between align-items-center px-0">

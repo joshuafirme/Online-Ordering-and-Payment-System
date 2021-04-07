@@ -78,6 +78,7 @@
       </div>
           
       <div class="topnav">
+        <a href="{{ url('/') }}">Home</a>
         <a href="{{ url('/customer/customer-login') }}">Gallery</a>
         <a href="{{ url('/customer/customer-login') }}">About us</a>
       </div>

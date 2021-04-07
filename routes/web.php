@@ -151,8 +151,11 @@ Route::get('/checkout/getShippingFee_ajax/{municipality}', 'Customer\CheckoutCtr
 Route::post('/checkout/placeOrder', 'Customer\CheckoutCtr@placeOrder');
 
 //GCASH PAYMENT-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Route::get('/payment', 'Customer\PaymentCtr@index');
+Route::get('/payment/token={token}', 'Customer\PaymentCtr@index');
 Route::get('/gcash-payment', 'Customer\PaymentCtr@gcashPayment')->name('gcashpayment');
+Route::get('/cod', 'Customer\PaymentCtr@cashOnDelivery');
+Route::get('/cod-confirmation', 'Customer\PaymentCtr@codConfirmation');
+Route::get('/after-payment', 'Customer\PaymentCtr@afterPayment');
 
 //gallery
 Route::get('customer/gallery', 'Customer\GalleryCtr@index');
