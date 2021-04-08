@@ -29,7 +29,7 @@ class MenuCtr extends Controller
                 ->addColumn('action', function($menu){
                     $button = ' <a class="btn btn-sm btn-primary" id="btn-edit-menu" edit-id="'. $menu->id .'" 
                     data-toggle="modal" data-target="#editModal"><i class="fa fa-edit"></i></a>';
-                    $button .= '<a class="btn btn-sm" id="btn-delete" delete-id="'. $menu->id .'"><i style="color:#DC3545;" class="fa fa-trash-o"></i></a>';
+       
                     return $button;
                 })
                 ->addColumn('image', function($menu){
