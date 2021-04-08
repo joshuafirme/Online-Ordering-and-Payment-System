@@ -231,7 +231,8 @@ textarea::placeholder{
  </div>
 
   <!-- contact section -->
- <section id="contact-section">
+ <section id="contact-section">    
+     <a href="{{url('/')}}" class="btn btn-sm" style="color: #fff; margin:15px;"><i class="fas fa-arrow-left fa-2x"></i></a>
    <div class="container">
      <h2>Contact Us</h2>
        <p>How can we help you? Message us now.</p>
@@ -254,13 +255,13 @@ textarea::placeholder{
               
    <!-- second grid -->
    <div>        
-     <form>
-       <input type="text" placeholder="First Name" required>
-       <input type="text" placeholder="Last Name" required><br>
-       <input type="Email" placeholder="Email" required><br>
-       <input type="text" placeholder="Subject" required><br>
-       <textarea name="Message" placeholder="Type Here" rows="5" required></textarea><br>
-       <button class="submit" >Send Message</button> 
+     <form accept="{{ action('Customer\ContactUs@sendMail') }}" method="GET">
+       <input type="text" name="firstname" placeholder="First Name" required>
+       <input type="text" name="lastname" placeholder="Last Name" required><br>
+       <input type="Email" name="email" placeholder="Email" required><br>
+       <input type="text" name="subject" placeholder="Subject" required><br>
+       <textarea name="Message" name="message" placeholder="Type Here" rows="5" required></textarea><br>
+       <button class="submit">Send Message</button> 
      </form>   
    </div>
    </div>

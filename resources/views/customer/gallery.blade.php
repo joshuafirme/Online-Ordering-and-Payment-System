@@ -9,8 +9,9 @@
      <!-- Ionicons -->
      <link href="{{asset('css/ionicons.min.css')}}" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="{{asset('css/main.css')}}">
-    <link href="https://fonts.googleapis.com/css2?family=Baloo+Chettan+2:wght@600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/332a215f17.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap" rel="stylesheet">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     
 </head>
@@ -24,10 +25,7 @@
 
     </div>
 
-
-
-
-    <a href="{{url('/')}}" class="btn btn-sm"><i class="fas fa-arrow-left fa-2x"></i></a>
+    <a href="{{url('/')}}" class="btn btn-sm" style="color: #005B96; margin:25px;"><i class="fas fa-arrow-left fa-2x"></i></a>
 
         <div class="container">
           <!---=======Gallery Section======-->

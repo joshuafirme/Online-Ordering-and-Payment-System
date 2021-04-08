@@ -11,8 +11,9 @@
  <!-- Ionicons -->
  <link href="{{asset('css/ionicons.min.css')}}" rel="stylesheet" type="text/css" />
  <link rel="stylesheet" href="{{asset('css/beef_porkpg.css')}}">
-    <link href="https://fonts.googleapis.com/css2?family=Baloo+Chettan+2:wght@600;800&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/332a215f17.js" crossorigin="anonymous"></script>
+ <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+ <script src="https://kit.fontawesome.com/332a215f17.js" crossorigin="anonymous"></script>
+ <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap" rel="stylesheet">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <style>
         .beefandpork{
@@ -22,6 +23,9 @@
            grid-gap: 20px 40px;
            box-shadow: 0 8px 7px -2px gray;
        }
+.heading>h1{
+    font-family: 'Kaushan Script', cursive;
+}
    </style>
     <style>
         body {

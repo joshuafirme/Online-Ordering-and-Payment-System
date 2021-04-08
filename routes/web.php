@@ -165,6 +165,7 @@ Route::post('customer/comment-and-suggestion/store', 'Customer\CommentAndSuggest
 
 //contact us
 Route::get('/contact-us', 'Customer\ContactUsCtr@index');
+Route::get('/contact-us/send-mail', 'Customer\ContactUsCtr@sendMail');
 
 //TERMS
 Route::get('terms-and-condition', 'Customer\SignupCtr@terms_and_condition');
