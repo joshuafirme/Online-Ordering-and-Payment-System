@@ -12,7 +12,7 @@
                     <th>Menu</th>
                     <th>Quantity</th>
                     <th class="text-center">Price</th>
-                    <th class="text-center">Total</th>
+                    <th class="text-center">Amount</th>
                     <th> </th>
                     </tr>
                     </thead>
@@ -56,25 +56,38 @@
                     <td>   </td>
                     <td>   </td>
                     <td>   </td>
-                    <td><h3>Total</h3></td>
+                    <td><h3>Total:</h3></td>
                     <td class="text-right"><h3><strong>₱{{ number_format($subTotal,2,'.',',') }}</strong></h3></td>
                     </tr>
-                    <tr>
-                    <td>   </td>
-                    <td>   </td>
-                    <td>   </td>
-                    <td>
-                    <a href="{{ url('/home') }}" class="btn btn-default">
-                    <span class="fa fa-shopping-cart"></span> Continue Shopping
-                    </a></td>
-                    <td>
-                    <a href="{{ url('/checkout') }}" class="btn btn-primary">
-                    Checkout <span class="fa fa-play"></span>
-                    </a></td>
-                    </tr>
+                    
                     </tbody>
                     </table>
+             
                     </div>
+                    
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-md-10 col-md-offset-1">
+                    <table>
+                        
+                        <tr>
+                            <td>   </td>
+                            <td>   </td>
+                            <td>   </td>
+                            <td>
+                            <a href="{{ url('/home') }}" class="btn btn-default" style="margin:5px;">
+                            <span class="fa fa-shopping-cart"></span> Continue Shopping
+                            </a></td>
+                            <td>
+                            <a id="btn-checkout" href="{{ url('/checkout') }}" class="btn btn-primary">
+                            Checkout <span class="fa fa-play"></span>
+                            </a></td>
+                            </tr>
+                    </table>
+                    <p id="note" style="color: #DC3545; display:none;">
+                        <i class="fas fa-exclamation-triangle"></i> The restaurant requires minimum of total purchase amounting ₱300
+                    </p>
+                </div>
             </div>
 
     </div>
@@ -85,12 +98,34 @@
               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
           }
          });
+
+         getSubTotal();
+
+         function getSubTotal(){
+            $.ajax({
+                url:"/cart/subtotal",
+                type:"GET",
+                success:function(subtotal)
+                {
+                    if(subtotal > 300){
+                        $('#btn-checkout').attr('disabled', false); 
+                        $('#note').css('display', 'none'); 
+                    }    
+                    else
+                    {
+                        $('#btn-checkout').attr('disabled', true); 
+                        $('#note').css('display', 'block'); 
+                    }     
+                }
+            });
+        }   
     
     
         $(document).on('click', '#btn-inc', function(){
             let menu_id = $(this).attr('menu-id');
             let qty = $(this).attr('qty');
             increaseQty(menu_id, qty);
+            getSubTotal();
         });
     
         function increaseQty(menu_id, qty){
@@ -111,6 +146,7 @@
             let menu_id = $(this).attr('menu-id');
             let qty = $(this).attr('qty');
             decreaseQty(menu_id, qty);
+            getSubTotal();
         });
     
         function decreaseQty(menu_id, qty){
@@ -130,6 +166,7 @@
         $(document).on('click', '.btn-remove', function(){
             let menu_id = $(this).attr('menu-id');
             removeMenu(menu_id);
+            getSubTotal();
         });
 
         function removeMenu(menu_id){

@@ -255,7 +255,7 @@ textarea::placeholder{
               
    <!-- second grid -->
    <div>        
-     <form accept="{{ action('Customer\ContactUs@sendMail') }}" method="GET">
+     <form accept="{{ action('Customer\ContactUsCtr@sendMail') }}" method="GET">
        <input type="text" name="firstname" placeholder="First Name" required>
        <input type="text" name="lastname" placeholder="Last Name" required><br>
        <input type="Email" name="email" placeholder="Email" required><br>

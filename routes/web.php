@@ -139,6 +139,7 @@ Route::post('cart/add', 'Customer\CartCtr@addToCart');
 Route::post('cart/increase-qty/{menu_id}/{qty}', 'Customer\CartCtr@increaseQty');
 Route::post('cart/decrease-qty/{menu_id}/{qty}', 'Customer\CartCtr@decreaseQty');
 Route::post('cart/remove-menu/{menu_id}', 'Customer\CartCtr@removeMenu');
+Route::get('cart/subtotal', 'Customer\CartCtr@computeSubTotal');
 
 /*
 |--------------------------------------------------------------------------
