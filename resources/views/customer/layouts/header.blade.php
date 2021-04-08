@@ -1,3 +1,6 @@
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+<script src="https://kit.fontawesome.com/332a215f17.js" crossorigin="anonymous"></script>
+<link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap" rel="stylesheet">
 <style>
     .dropdown {
       position: relative;

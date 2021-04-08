@@ -163,5 +163,8 @@ Route::get('customer/gallery', 'Customer\GalleryCtr@index');
 Route::get('customer/comment-and-suggestion', 'Customer\CommentAndSuggestionCtr@index');
 Route::post('customer/comment-and-suggestion/store', 'Customer\CommentAndSuggestionCtr@store');
 
+//contact us
+Route::get('/contact-us', 'Customer\ContactUsCtr@index');
+
 //TERMS
 Route::get('terms-and-condition', 'Customer\SignupCtr@terms_and_condition');
