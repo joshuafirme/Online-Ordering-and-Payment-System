@@ -50,7 +50,7 @@ class GrossSaleCtr extends Controller
         $gs = $this->getGrossSale($date_from, $date_to);
         $total_sales = $this->computeTotalSales($date_from, $date_to);
 
-        $output = $this->convertProductDataToHTML($gs, $total_sales);
+        $output = $this->convertProductDataToHTML($gs, $total_sales,$date_from, $date_to);
     
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML($output);
@@ -59,11 +59,12 @@ class GrossSaleCtr extends Controller
         return $pdf->stream();
     }
     
-    public function convertProductDataToHTML($gs, $total_sales)
+    public function convertProductDataToHTML($gs, $total_sales, $date_from, $date_to)
     {
         $output = '
         <div style="width:100%">
-        <p style="text-align:right;">Date: '. date('Y-m-d') .'</p>
+        <p style="text-align:right;">Date: '. date('M-d-Y', strtotime($date_from)).' to '.date('M-d-Y', strtotime($date_to)).'</p>
+        <h1 style="text-align:center;">Davids Grill Restaurant</h1>
         <h3 style="text-align:center;">Gross Sales Report</h3>
     
         <table width="100%" style="border-collapse:collapse; border: 1px solid;">
@@ -72,10 +73,10 @@ class GrossSaleCtr extends Controller
                 <tr>
                     <th style="border: 1px solid;">Description</th>     
                     <th style="border: 1px solid;">Category</th>
-                    <th style="border: 1px solid;">Qty</th>  
-                    <th style="border: 1px solid;">Amount</th>   
+                    <th style="border: 1px solid;">Qty</th>    
                     <th style="border: 1px solid;">Payment Method</th> 
                     <th style="border: 1px solid;">Order type</th> 
+                    <th style="border: 1px solid;">Amount</th> 
             </thead>
             <tbody>
                 ';
@@ -88,9 +89,9 @@ class GrossSaleCtr extends Controller
                     <td style="border: 1px solid; padding:10px;">'. $data->description .'</td>
                     <td style="border: 1px solid; padding:10px;">'. $data->category.'</td>  
                     <td style="border: 1px solid; padding:10px;">'. $data->qty .'</td>  
-                    <td style="border: 1px solid; padding:10px;">'. number_format($data->amount,2,'.',',') .' PhP</td> 
                     <td style="border: 1px solid; padding:10px;">'. $data->payment_method .'</td>       
-                    <td style="border: 1px solid; padding:10px;">'. $data->order_type .'</td>              
+                    <td style="border: 1px solid; padding:10px;">'. $data->order_type .'</td>     
+                    <td style="border: 1px solid; padding:10px; text-align: right">P '. number_format($data->amount,2,'.',',') .'</td>          
                 </tr>
                 ';
                 
@@ -105,7 +106,7 @@ class GrossSaleCtr extends Controller
             </tbody>
         </table>
     
-            <p style="text-align:right;">Total: <b>'. $total_sales .' PhP</b></p>
+            <h3 style="text-align:right;">Total: <b>P '. $total_sales .'</b></h3>
             </div>';
     
         return $output;
