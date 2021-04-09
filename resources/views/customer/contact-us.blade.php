@@ -6,10 +6,12 @@
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
  <meta http-equiv="X-UA-Compatible" content="ie=edge">
  <link rel="shortcut icon" type="img/png" href="img/davids_grill_logo.png">
+ 
  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
  <script src="https://kit.fontawesome.com/332a215f17.js" crossorigin="anonymous"></script>
  <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap" rel="stylesheet">
  <title>David's Grill Restaurant</title>
+ <meta name="csrf-token" content="{{ csrf_token() }}">
  <style>
      
 body{
@@ -255,16 +257,57 @@ textarea::placeholder{
               
    <!-- second grid -->
    <div>        
-     <form accept="{{ action('Customer\ContactUsCtr@sendMail') }}" method="GET">
-       <input type="text" name="firstname" placeholder="First Name" required>
-       <input type="text" name="lastname" placeholder="Last Name" required><br>
-       <input type="Email" name="email" placeholder="Email" required><br>
-       <input type="text" name="subject" placeholder="Subject" required><br>
-       <textarea name="Message" name="message" placeholder="Type Here" rows="5" required></textarea><br>
-       <button class="submit">Send Message</button> 
-     </form>   
+
+      @if(\Session::has('success'))
+      <div class="alert alert-success alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <h5><i class="icon fa fa-check-circle"></i> </h5>
+        {{ \Session::get('success') }}
+      </div>      
+      @endif
+       <input type="text" name="firstname" id="firstname" placeholder="First Name" required>
+       <input type="text" name="lastname" id="lastname" placeholder="Last Name" required><br>
+       <input type="email" name="email" id="email" placeholder="Email" required><br>
+       <input type="text" name="subject" id="subject" placeholder="Subject" required><br>
+       <textarea name="Message" name="message" id="message" placeholder="Type Here" rows="5" required></textarea><br>
+       <button type="submit" class="submit" id="btn-send">Send Message</button> 
+     
    </div>
    </div>
    </div>
  </section> 
+
+ <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+ <script>
+   $(document).on('click', '#btn-send', function(){
+    var fullname, email, subject, message;
+    fullname = $('#firstname').val()+' '+$('#lastname').val();
+    email = $('#email').val();
+    subject = $('#subject').val();
+    message = $('#message').val();
+
+    $.ajax({
+      url:"/contact-us/send-mail",
+      type:"GET",
+      data:{
+        fullname:fullname,
+        email:email,
+        subject:subject,
+        message:message
+      },
+      beforeSend:function(){
+        $('#btn-send').text('Sending...');
+      },
+      success:function(){     
+            $('#btn-send').text('Send Message');
+            alert('Message sent successfully!');
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+        $('#btn-send').text('Send Message');
+        alert('Something went wrong...\n'+jqXHR.status+' status code');
+    }         
+     });
+});
+
+ </script>
 </body>

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Customer;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Input;
+use Input, Redirect;
 use Mail;
 use App\Mail\ContactUs;
 class ContactUsCtr extends Controller
@@ -19,10 +19,10 @@ class ContactUsCtr extends Controller
         $data = Input::all();
 
         $message =  "<p>From: " . $data['email']  . "</p>" .
-                    "<p>Name: " . $data['firstname'] . $data['lastname']  . "</p>" . 
+                    "<p>Name: " . $data['fullname']  . "</p>" . 
                     "<p>Subject: " . $data['subject'] . "</p>" . 
                     "<p>Message: " . $data['message'] . "</p>";
 
-        Mail::to('davidsgrillrestaurant@gmail.com')->send(new ContactUs($message));
+        Mail::to('joshuafirme1@gmail.com')->send(new ContactUs($message));
     }
 }
