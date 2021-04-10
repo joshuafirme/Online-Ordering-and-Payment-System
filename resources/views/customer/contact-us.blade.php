@@ -258,13 +258,6 @@ textarea::placeholder{
    <!-- second grid -->
    <div>        
 
-      @if(\Session::has('success'))
-      <div class="alert alert-success alert-dismissible">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-        <h5><i class="icon fa fa-check-circle"></i> </h5>
-        {{ \Session::get('success') }}
-      </div>      
-      @endif
        <input type="text" name="firstname" id="firstname" placeholder="First Name" required>
        <input type="text" name="lastname" id="lastname" placeholder="Last Name" required><br>
        <input type="email" name="email" id="email" placeholder="Email" required><br>
@@ -293,6 +286,7 @@ textarea::placeholder{
         fullname:fullname,
         email:email,
         subject:subject,
+        
         message:message
       },
       beforeSend:function(){

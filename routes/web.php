@@ -22,6 +22,12 @@ Route::get('user-login', 'LoginCtr@index');
 Route::post('user-login/login', 'LoginCtr@login');
 Route::get('logout-employee', 'LoginCtr@logout');
 
+/*
+|--------------------------------------------------------------------------
+| Delivery
+|--------------------------------------------------------------------------
+*/
+Route::get('/delivery/pending', 'Transaction\DeliveryCtr@displayPendingOrders');
 
 
 //GALLERY MAINTENANCE------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -36,12 +42,14 @@ Route::get('maintenance/category/show/{id}', 'Maintenance\CategoryCtr@show');
 Route::post('maintenance/update', 'Maintenance\CategoryCtr@update');
 Route::delete('maintenance/category/delete/{id}', 'Maintenance\CategoryCtr@delete');
 
-//CASHIERING MAINTENANCE------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//CASHIERING------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Route::get('transaction/cashiering', 'Transaction\CashieringCtr@index'); 
 Route::get('transaction/cashiering/search/{search_key}', 'Transaction\CashieringCtr@search');
 Route::post('transaction/cashiering/add', 'Transaction\CashieringCtr@addToTray');
 Route::post('transaction/cashiering/process', 'Transaction\CashieringCtr@process');
 Route::get('transaction/cashiering/remove/{id}', 'Transaction\CashieringCtr@removeFromTray');
+
+Route::get('transaction/delivery', 'Transaction\DeliveryCtr@index'); 
 
 //REPORTS MAINTENANCE------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Route::get('reports/gross_sale', 'Reports\GrossSaleCtr@index');

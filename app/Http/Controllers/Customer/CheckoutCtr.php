@@ -117,6 +117,7 @@ class CheckoutCtr extends Controller
                 'qty' => $item->qty,
                 'amount' => $item->amount,
                 'status' => 0,
+                'created_at' => date('Y-m-d h:m:s'),
             ]);
         }
         DB::table('tblorder_token')

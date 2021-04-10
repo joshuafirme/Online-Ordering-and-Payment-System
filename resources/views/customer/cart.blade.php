@@ -75,7 +75,7 @@
                             <td>   </td>
                             <td>   </td>
                             <td>
-                            <a href="{{ url('/home') }}" class="btn btn-default" style="margin:5px;">
+                            <a href="{{ url('/') }}" class="btn btn-default" style="margin:5px;">
                             <span class="fa fa-shopping-cart"></span> Continue Shopping
                             </a></td>
                             <td>

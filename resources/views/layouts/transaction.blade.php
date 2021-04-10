@@ -60,6 +60,7 @@
              
         <!-- Cashiering SCRIPT -->
         <script src="{{asset('js/js/transaction/cashiering.js')}}"></script>
+        <script src="{{asset('js/js/transaction/delivery.js')}}"></script>
 
     </body>
 </html>
