@@ -17,7 +17,20 @@
         </a>
         <ul class="treeview-menu">
             <li><a href="{{ url('transaction/cashiering') }}"><i class="fa fa-angle-double-right"></i> Cashiering</a></li>
-            <li><a href="{{ url('transaction/delivery') }}"><i class="fa fa-angle-double-right"></i> Delivery</a></li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-truck"></i>
+                    <span>Delivery</span>
+                    <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{ url('transaction/delivery') }}"><i class="fa fa-angle-double-right"></i> Pending <span class="badge badge-success">2</span></a></li>
+                    <li><a href="{{ url('reports/gross_sale') }}"><i class="fa fa-angle-double-right"></i> Preparing</a></li>
+                    <li><a href="{{ url('reports/best-seller') }}"><i class="fa fa-angle-double-right"></i> Dispatch</a></li>
+                    <li><a href="{{ url('reports/best-seller') }}"><i class="fa  fa-angle-double-right"></i> Delivered</a></li>
+                    <li><a href="{{ url('reports/best-seller') }}"><i class="fa fa-angle-double-right"></i> Cancelled</a></li>
+                </ul>
+            </li>
         </ul>
     </li>
 

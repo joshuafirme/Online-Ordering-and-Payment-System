@@ -55,11 +55,50 @@ class DeliveryCtr extends Controller
     public function showOrders($order_no)
     {
         return DB::table('tblorders as O')
-                ->select('O.*', 'C.fullname', 'C.phone_no', 'C.email', 'O.created_at', 'O.status')
+                ->select('O.*', 'C.*', 'M.*', 'category', 'O.created_at', 'O.amount')
                 ->leftJoin('tblcustomer AS C', 'C.id', '=', 'O.user_id') 
-                ->leftJoin('tblmenu AS M', 'M.id', '=', 'O.menu_id') 
-                ->leftJoin('tblcategory AS CT', 'CT.id', '=', 'M.category_id') 
+                ->leftJoin('tblmenu AS M', 'M.id', '=', 'O.menu_id')  
+                ->leftJoin('tblcategory AS CT', 'CT.id', '=', 'M.category_id')  
                 ->where('O.order_no', $order_no)
                 ->get();
     }
+
+    public static function getCustomerInfo_ajax($user_id)
+    {
+       return DB::table('tblcustomer')->where('id', $user_id)->get();
+    }
+
+    public static function getShippingInfo_ajax($user_id)
+    {
+       return DB::table('tblshipping_address')->where('user_id', $user_id)->get();
+    }
+
+    public function getShippingFee_ajax($user_id)
+    {     
+        $shipping_info = DB::table('tblshipping_address')
+                        ->where('user_id', $user_id)
+                        ->value('municipality');
+
+        if($shipping_info=="Balayan")
+        {
+            return 50;
+        }elseif($shipping_info=="Tuy"){
+            return 100;
+        }else{
+            return 0;
+        }
+    }
+
+    public function getOrderSubTotalAmount_ajax($order_no)
+    {
+        return DB::table('tblorders')->where('order_no', $order_no)->sum('amount');
+    }
+
+    public function getOrderTotalAmount_ajax($order_no, $user_id)
+    {
+        $sub_total = DB::table('tblorders')->where('order_no', $order_no)->sum('amount');
+        $shipping_fee = $this->getShippingFee_ajax($user_id);
+        return $sub_total + $shipping_fee;
+    }
+    
 }

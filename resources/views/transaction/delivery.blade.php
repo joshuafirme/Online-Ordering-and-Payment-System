@@ -33,184 +33,22 @@
                 <div class="box">
                     <div class="box-body table-responsive">
 
-                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                      <h4 style="margin-bottom: 20px;">Pending</h4>
+                      <table class="table responsive table-hover" id="pending-table" width="100%">                               
+                        <thead>
+                          <tr>
 
-                            <li class="nav-item">
-                              <a class="nav-link  active show" id="pending-tab" data-toggle="tab" href="#pending_tab" role="tab" aria-controls="contact" aria-selected="true">Pending</a>
-                            </li>
-            
-                            <li class="nav-item">
-                              <a class="nav-link" id="processing-tab" data-toggle="tab" href="#processing_tab" role="tab" aria-controls="contact" aria-selected="true">Preparing
-                              </a>
-                            </li>
-            
-                            <li class="nav-item">
-                              <a class="nav-link" id="dispatch-tab" data-toggle="tab" href="#dispatch_tab" role="tab" aria-controls="contact" aria-selected="true">Dispatch
-                              </a>
-                            </li>
-            
-                            <li class="nav-item">
-                              <a class="nav-link" id="delivered-tab" data-toggle="tab" href="#delivered_tab" role="tab" aria-controls="contact" aria-selected="true">Delivered
-                              </a>
-                            </li>
-            
-                            <li class="nav-item">
-                              <a class="nav-link" id="cancelled-tab" data-toggle="tab" href="#cancelled_tab" role="tab" aria-controls="contact" aria-selected="true">Cancelled order
-                              </a>
-                            </li>
-             
-                          </ul>   
-            
-                          <div class="tab-content" id="myTabContent">
-                            <div class="tab-pane fade active show" id="pending_tab" role="tabpanel" aria-labelledby="pending-tab">
-            
-                                    <table class="table responsive table-hover" id="pending-table" width="100%">                               
-                                      <thead>
-                                        <tr>
-            
-                                          <th>Order #</th>
-                                          <th>Customer Name</th>                                                           
-                                          <th>Phone No</th>        
-                                          <th>Email</th>
-                                          <th>Date time placed</th>
-                                          <th>Action</th>
-                                        
-                                        </tr>
-                                      </thead>
-                                    </table>
-            
-                            </div>
-            
-                              <div class="tab-pane fade" id="processing_tab" role="tabpanel" aria-labelledby="processing-tab">
-            
-                                <table class="table responsive table-hover" id="processing-table" width="100%">                               
-                                  <thead>
-                                    <tr>
-            
-                                      <th>Order #</th>
-                                      <th>Customer Name</th>                                                           
-                                      <th>Phone No</th>        
-                                      <th>Email</th>
-                                      <th>Payment method</th>
-                                      <th>Date placed</th>
-                                      <th>Status</th>
-                                      <th>Action</th>
-                                    
-                                    </tr>
-                                  </thead>
-                                </table>
-            
-                              </div>
-            
-            
-                              <div class="tab-pane fade" id="dispatch_tab" role="tabpanel" aria-labelledby="dispatch-tab">
-            
-                                <table class="table responsive table-hover" id="dispatch-table" width="100%">                               
-                                  <thead>
-                                    <tr>
-            
-                                      <th><input type="checkbox" name="select_all" value="1" id="select-all-delivered"></th>
-                                      <th>Order #</th>
-                                      <th>Customer Name</th>                                                           
-                                      <th>Phone No</th>        
-                                      <th>Email</th>
-                                      <th>Payment method</th>
-                                      <th>Date placed</th>
-                                      <th>Status</th>
-                                      <th>Action</th>
-                                    
-                                    </tr>
-                                  </thead>
-                                </table>
-            
-                                <img class="ml-2" src="{{asset('assets/arrow_ltr.png')}}" alt="">
-                                <button class="btn btn-sm btn-success mt-2" id="btn-bulk-delivered">Delivered</button>
-                                <img src="../../assets/loader.gif" class="loader" alt="loader" style="display: none">
-            
-                              </div>
-            
-                              <div class="tab-pane fade" id="delivered_tab" role="tabpanel" aria-labelledby="delivered-tab">
-            
-                                <div class="row">
-            
-                                  <div class="mt-2 ml-3">
-                                     Date Delivered
-                                    </div>              
-                                  
-                                  <div class="col-sm-2 mb-3">
-                                    <input data-column="9" type="date" class="form-control" name="date_from" id="del_date_from" value="{{ date('Y-m-d') }}">
-                                    </div>
-                  
-                                    <div class="mt-2">
-                                      -
-                                      </div>
-                        
-                                    <div class="col-sm-2 mb-3">
-                                      <input data-column="9" type="date" class="form-control" name="date_to" id="del_date_to" value="{{ date('Y-m-d') }}">
-                                      </div>                 
-            
-                                 </div>
-            
-                                <table class="table responsive table-hover" id="delivered-table" width="100%">                               
-                                  <thead>
-                                    <tr>
-            
-                                      <th>Order #</th>
-                                      <th>Customer Name</th>                                                           
-                                      <th>Phone No</th>        
-                                      <th>Email</th>
-                                      <th>Payment method</th>
-                                      <th>Date placed</th>
-                                      <th>Date delivered</th>
-                                      <th>Status</th>
-                                    
-                                    </tr>
-                                  </thead>
-                                </table>
-            
-                              </div>
-            
-                              <div class="tab-pane fade" id="cancelled_tab" role="tabpanel" aria-labelledby="cancelled-tab">
-            
-                                <div class="row">
-            
-                                  <div class="mt-2 ml-3">
-                                     Date Cancelled
-                                    </div>              
-                                  
-                                  <div class="col-sm-2 mb-3">
-                                    <input data-column="9" type="date" class="form-control" name="date_from" id="cancelled_date_from" value="{{ date('Y-m-d') }}">
-                                    </div>
-                  
-                                    <div class="mt-2">
-                                      -
-                                      </div>
-                        
-                                    <div class="col-sm-2 mb-3">
-                                      <input data-column="9" type="date" class="form-control" name="date_to" id="cancelled_date_to" value="{{ date('Y-m-d') }}">
-                                      </div>                 
-            
-                                 </div>
-                                 
-                                <table class="table responsive table-hover" id="cancelled-table" width="100%">                               
-                                  <thead>
-                                    <tr>
-            
-                                      <th>Order #</th>
-                                      <th>Customer Name</th>                                                           
-                                      <th>Phone No</th>        
-                                      <th>Email</th>
-                                      <th>Status</th>
-                                      <th>Date placed</th>
-                                        <th>Date placed</th>
-                                    
-                                    </tr>
-                                  </thead>
-                                </table>
-            
-                              </div>
-            
-                            </div>
+                            <th>Order #</th>
+                            <th>Customer Name</th>                                                           
+                            <th>Phone No</th>        
+                            <th>Email</th>
+                            <th>Date time placed</th>
+                            <th>Action</th>
+                          
+                          </tr>
+                        </thead>
+                      </table>
+                     
                         
                  
                     </div>
@@ -261,63 +99,8 @@
                   <div class="col-md-12">
 
                         <table class="table responsive table-striped table-hover mt-2" id="order-table">                               
-                            <thead>
-                              <tr>
-                                  <th>Description</th>
-                                  <th>Category</th>
-                                  <th>Image</th>
-                                  <th>Preparation Time</th> 
-                                  <th>Price</th>
-                                  <th>Amount</th>  
-                               
-                              </tr>
-                            </thead>
-              
-                              <tbody>
-                                  <tr>
+                         
                               
-                                      <td></td>
-                                      <td></td>
-                                      <td></td>
-                                      <td></td>
-                                      <td>₱</td>
-                                      <td>₱</td>
-                                      
-                                  </tr>  
-                                  <tr>
-                                      <td></td>
-                                      <td></td>
-                                      <td></td>
-                                      <td></td>
-                                      <td>Subtotal:</td>
-                                      <td>
-                                        ₱ 
-                                      </td>   
-                                   </tr> 
-
-                                   <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>Shipping Fee:</td>
-                                    <td>
-                                      ₱ <span id="txt_shipping_fee"></span>
-                                    </td>   
-                                 </tr> 
-                                 <tr>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td></td>
-                                  <td>Total Amount:</td>
-                                  <td>
-                                    <b>₱ <span id="txt_total_amount"></span></b>
-                                  </td>   
-                               </tr> 
-                              </tbody>
-                              
-                          </thead>
                           
                           </table>
 
@@ -387,7 +170,7 @@
             <label class="label text-success">Items packed successfully</label>    
           </div> 
           <button class="btn btn-outline-dark btn-sm" id="btn-gen-sales-inv"><span class='fa fa-print'></span> Generate Sales Invoice</button> 
-          <button style="color: #fff" class="btn btn-sm btn-success" id="btn-process">Pack items</button>
+          <button style="color: #fff" class="btn btn-sm btn-success" id="btn-process">Prepare</button>
        
         </div>
   
