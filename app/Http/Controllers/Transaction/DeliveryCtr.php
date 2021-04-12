@@ -120,6 +120,40 @@ class DeliveryCtr extends Controller
         return $data->unique('order_no');
     }
 
+    public function displayDeliveredOrders()
+    {
+        if(request()->ajax())
+        {
+            return datatables()->of($this->getDeliveredOrders())
+                ->addColumn('action', function($o){
+                    $button = ' <a class="btn btn-sm btn-primary btn-show-order" order-no="'. $o->order_no .'" user-id="'. $o->user_id .'" 
+                    data-toggle="modal" data-target="#orderModal">Show order</a>';
+
+                 //   $button .= ' <a class="btn btn-sm btn-success btn-prepare-order" order-no="'. $o->order_no .'" user-id="'. $o->user_id .'">Prepare</a>';
+
+                 //   $button .= ' <a class="btn btn-sm btn-danger btn-cancel-order" order-no="'. $o->order_no .'" user-id="'. $o->user_id .'" 
+                 //   data-toggle="modal" data-target="#cancelModal">Cancel</a>';
+       
+                    return $button;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+        
+        return view('transaction.delivery-delivered');
+    }
+
+    public function getDeliveredOrders()
+    {
+        $data = DB::table('tblorders as O')
+                ->select('O.*', 'C.fullname', 'C.phone_no', 'C.email', 'O.created_at', 'O.status')
+                ->leftJoin('tblcustomer AS C', 'C.id', '=', 'O.user_id') 
+                ->where('O.status', 4)
+                ->get();
+
+        return $data->unique('order_no');
+    }
+
     public function displayCancelledOrders()
     {
         if(request()->ajax())

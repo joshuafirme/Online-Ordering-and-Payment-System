@@ -107,6 +107,32 @@ $(document).ready(function()
         });
         }
 
+        fetchDeliveredOrders();
+
+        function fetchDeliveredOrders(){
+        $('#delivered-table').DataTable({
+        
+            processing: true,
+            serverSide: true,
+
+            ajax:{
+            url: "/delivery/delivered",
+            type: "GET",
+            }, 
+
+            columns:[       
+            {data: 'order_no', name: 'order_no'},
+            {data: 'fullname', name: 'fullname'},
+            {data: 'phone_no', name: 'phone_no'},
+            {data: 'email', name: 'email'},    
+            {data: 'created_at', name: 'created_at'},
+            {data: 'updated_at', name: 'updated_at'},
+            {data: 'action', name: 'action',orderable: false},
+            ]
+            
+        });
+        }
+
 
         $(document).on('click', '.btn-cancel-order', function()
         {

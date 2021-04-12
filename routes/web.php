@@ -37,6 +37,8 @@ Route::post('/delivery/do-dispatch', 'Transaction\DeliveryCtr@doDispatch');
 Route::get('/delivery/dispatch', 'Transaction\DeliveryCtr@displayDispatchOrders');
 Route::post('/delivery/do-deliver', 'Transaction\DeliveryCtr@doDeliver');
 
+Route::get('/delivery/delivered', 'Transaction\DeliveryCtr@displayDeliveredOrders');
+
 Route::get('/delivery/cancelled', 'Transaction\DeliveryCtr@displayCancelledOrders');
 
 Route::get('/delivery/show-order/{order_no}', 'Transaction\DeliveryCtr@showOrders');

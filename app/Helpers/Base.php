@@ -30,6 +30,21 @@ class Base
       return DB::table('tblshipping_address')->where('user_id', Auth::id())->first();
    }
 
+   public static function countPending()
+   {
+      return DB::table('tblorders')->distinct('order_no')->where('status', 1)->count();
+   }
+
+   public static function countPreparing()
+   {
+      return DB::table('tblorders')->distinct('order_no')->where('status', 2)->count();
+   }
+
+   public static function countDispatch()
+   {
+      return DB::table('tblorders')->distinct('order_no')->where('status', 3)->count();
+   }
+
    public static function getTransactionNumber()
    {
        $trans_no = DB::table('tblgross_sale')->max('transaction_no');
