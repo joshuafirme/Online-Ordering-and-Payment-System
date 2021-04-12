@@ -32,6 +32,31 @@ $(document).ready(function()
         });
         }
 
+        fetchPreparingOrders();
+
+        function fetchPreparingOrders(){
+        $('#preparing-table').DataTable({
+        
+            processing: true,
+            serverSide: true,
+
+            ajax:{
+            url: "/delivery/preparing",
+            type: "GET",
+            }, 
+
+            columns:[       
+            {data: 'order_no', name: 'order_no'},
+            {data: 'fullname', name: 'fullname'},
+            {data: 'phone_no', name: 'phone_no'},
+            {data: 'email', name: 'email'},    
+            {data: 'created_at', name: 'created_at'},
+            {data: 'action', name: 'action',orderable: false},
+            ]
+            
+        });
+        }
+
 
         $(document).on('click', '.btn-cancel-order', function()
         {
@@ -45,7 +70,9 @@ $(document).ready(function()
         {
             var order_no = $(this).attr('order-no');
             var user_id = $(this).attr('user-id');
-
+            $('#order-number').text(order_no);
+            $('#order-no').val(order_no);
+            $('#user-id').val(user_id);
 
             $.ajax({
               url:"/delivery/show-order/"+order_no,

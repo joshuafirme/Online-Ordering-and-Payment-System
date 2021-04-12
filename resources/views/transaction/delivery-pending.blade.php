@@ -95,70 +95,70 @@
 
                 
                 <div class="row">
+                  <div class="col-md-12 mb-2">
+                    <h4>Customer Information</h4>
+                    <span class="badge badge-success" id="verification-info"></span>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="label-small" >Full Name</label>
+                    <p id="fullname"></p>
+                </div>
+    
+                <div class="col-md-4">
+                    <label class="label-small">Email Address</label>
+                    <p  id="email"></p>
+                </div>
+    
+                <div class="col-md-4">
+                    <label class="label-small">Phone Number</label>
+                    <p  id="phone-no"></p>
+                </div> 
+    
+                <div class="col-md-12 mb-2"><hr></div>
+
+
+    
+                <div class="col-md-12 mb-2">
+                    <h4>Shipping Address</h4>
+                </div>
+
+                <div class="col-md-4">
+                  <label class="label-small">Municipality</label>
+                  <p id="municipality"></p>
+                </div> 
+    
+                <div class="col-md-4">
+                  <label class="label-small">Barangay</label>
+                  <p id="brgy"></p>
+                </div> 
+
+                <div class="col-md-4 mb-3">
+                    <label class="label-small">House/Unit/Flr #, Bldg Name, Blk or Lot #</label>
+                    <p id="flr-bldg-blk"></p>
+                </div> 
+    
+                <div class="col-md-4">
+                    <label class="label-small">Nearest landmark</label>
+                    <p id="note"></p>
+                </div> 
+
+                <div class="col-md-12 mb-2"><hr></div>
+
+                <div class="col-md-12 mb-2">
+                  <h4>Order #<span id="order-number"></span></h4>
+              </div>
 
                   <div class="col-md-12">
 
-                        <table class="table responsive table-striped table-hover mt-2" id="order-table">                               
-                         
-                              
-                          
-                          </table>
+                        <table class="table responsive table-striped table-hover mt-2" id="order-table">
+                          {{-- populate by ajax --}}
+                        </table>
 
                   </div>
 
-                    
-                    <div class="col-md-12 mb-2"><hr></div>
 
-                    <div class="col-md-12 mb-2">
-                        <h4>Customer Information</h4>
-                        <span class="badge badge-success" id="verification-info"></span>
-                    </div>
                     
-                    <input type="hidden" id="order-no">
-                    <input type="hidden" id="user-id">
-    
-                    <div class="col-md-4">
-                        <label class="label-small" >Full Name</label>
-                        <p id="fullname"></p>
-                    </div>
-        
-                    <div class="col-md-4">
-                        <label class="label-small">Email Address</label>
-                        <p  id="email"></p>
-                    </div>
-        
-                    <div class="col-md-4">
-                        <label class="label-small">Phone Number</label>
-                        <p  id="phone-no"></p>
-                    </div> 
-        
-                    <div class="col-md-12 mb-2"><hr></div>
-    
-    
-        
-                    <div class="col-md-12 mb-2">
-                        <h4>Shipping Address</h4>
-                    </div>
-
-                    <div class="col-md-4">
-                      <label class="label-small">Municipality</label>
-                      <p id="municipality"></p>
-                    </div> 
-        
-                    <div class="col-md-4">
-                      <label class="label-small">Barangay</label>
-                      <p id="brgy"></p>
-                    </div> 
-    
-                    <div class="col-md-4 mb-3">
-                        <label class="label-small">House/Unit/Flr #, Bldg Name, Blk or Lot #</label>
-                        <p id="flr-bldg-blk"></p>
-                    </div> 
-        
-                    <div class="col-md-4">
-                        <label class="label-small">Nearest landmark</label>
-                        <p id="note"></p>
-                    </div> 
           
                   </div>
 
@@ -166,11 +166,13 @@
         </div>
   
         <div class="modal-footer">
-          <div class="update-success-validation mr-auto ml-3" style="display: none">
-            <label class="label text-success">Items packed successfully</label>    
-          </div> 
-          <button class="btn btn-outline-dark btn-sm" id="btn-gen-sales-inv"><span class='fa fa-print'></span> Generate Sales Invoice</button> 
-          <button style="color: #fff" class="btn btn-sm btn-success" id="btn-process">Prepare</button>
+          <form action="{{ action('Transaction\DeliveryCtr@doPrepare') }}" method="POST">  
+            @csrf              
+            <input type="hidden" name="order-no" id="order-no">
+            <input type="hidden" name="user-id" id="user-id">
+            <button class="btn btn-outline-dark btn-sm" id="btn-gen-sales-inv"><span class='fa fa-print'></span> Generate Sales Invoice</button> 
+            <button style="color: #fff" class="btn btn-sm btn-success" type="submit">Prepare</button>
+          </form> 
        
         </div>
   

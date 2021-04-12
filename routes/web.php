@@ -28,6 +28,10 @@ Route::get('logout-employee', 'LoginCtr@logout');
 |--------------------------------------------------------------------------
 */
 Route::get('/delivery/pending', 'Transaction\DeliveryCtr@displayPendingOrders');
+Route::post('/delivery/do-prepare', 'Transaction\DeliveryCtr@doPrepare');
+
+Route::get('/delivery/preparing', 'Transaction\DeliveryCtr@displayPreparingOrders');
+
 Route::get('/delivery/show-order/{order_no}', 'Transaction\DeliveryCtr@showOrders');
 Route::get('/delivery/shipping-fee/{user_id}', 'Transaction\DeliveryCtr@getShippingFee_ajax');
 Route::get('/delivery/total-amount/{order_no}/{user_id}', 'Transaction\DeliveryCtr@getOrderTotalAmount_ajax');

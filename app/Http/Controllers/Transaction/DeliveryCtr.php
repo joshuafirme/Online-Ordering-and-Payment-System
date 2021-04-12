@@ -16,8 +16,6 @@ class DeliveryCtr extends Controller
      //   dd($this->getPendingOrders());
         $user = new User;
         $user->isUserAuthorize($this->module);
-        $this->displayPendingOrders();
-        return view('transaction.delivery');
     }
 
     public function displayPendingOrders()
@@ -27,9 +25,9 @@ class DeliveryCtr extends Controller
             return datatables()->of($this->getPendingOrders())
                 ->addColumn('action', function($o){
                     $button = ' <a class="btn btn-sm btn-primary btn-show-order" order-no="'. $o->order_no .'" user-id="'. $o->user_id .'" 
-                    data-toggle="modal" data-target="#orderModal">View order</a>';
+                    data-toggle="modal" data-target="#orderModal">Show order</a>';
 
-                    $button .= ' <a class="btn btn-sm btn-success btn-prepare-order" order-no="'. $o->order_no .'" user-id="'. $o->user_id .'">Prepare</a>';
+                //    $button .= ' <a class="btn btn-sm btn-success btn-prepare-order" order-no="'. $o->order_no .'" user-id="'. $o->user_id .'">Prepare</a>';
 
                     $button .= ' <a class="btn btn-sm btn-danger btn-cancel-order" order-no="'. $o->order_no .'" user-id="'. $o->user_id .'" 
                     data-toggle="modal" data-target="#cancelModal">Cancel</a>';
@@ -39,6 +37,8 @@ class DeliveryCtr extends Controller
                 ->rawColumns(['action'])
                 ->make(true);
         }
+        
+        return view('transaction.delivery-pending');
     }
 
     public function getPendingOrders()
@@ -51,6 +51,56 @@ class DeliveryCtr extends Controller
 
         return $data->unique('order_no');
     }
+
+    public function displayPreparingOrders()
+    {
+        if(request()->ajax())
+        {
+            return datatables()->of($this->getPreparingOrders())
+                ->addColumn('action', function($o){
+                    $button = ' <a class="btn btn-sm btn-primary btn-show-order" order-no="'. $o->order_no .'" user-id="'. $o->user_id .'" 
+                    data-toggle="modal" data-target="#orderModal">Show order</a>';
+
+                 //   $button .= ' <a class="btn btn-sm btn-success btn-prepare-order" order-no="'. $o->order_no .'" user-id="'. $o->user_id .'">Prepare</a>';
+
+                 //   $button .= ' <a class="btn btn-sm btn-danger btn-cancel-order" order-no="'. $o->order_no .'" user-id="'. $o->user_id .'" 
+                 //   data-toggle="modal" data-target="#cancelModal">Cancel</a>';
+       
+                    return $button;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+        
+        return view('transaction.delivery-preparing');
+    }
+
+    public function getPreparingOrders()
+    {
+        $data = DB::table('tblorders as O')
+                ->select('O.*', 'C.fullname', 'C.phone_no', 'C.email', 'O.created_at', 'O.status')
+                ->leftJoin('tblcustomer AS C', 'C.id', '=', 'O.user_id') 
+                ->where('O.status', 2)
+                ->get();
+
+        return $data->unique('order_no');
+    }
+
+    public function doPrepare()
+    {
+        $data = Input::all();
+
+        DB::table('tblorders')
+                ->where('order_no', $data['order-no'])
+                ->update([
+                    'status' => 2,
+                    'updated_at' => date('Y-m-d h:m:s')
+                ]);
+
+        return redirect('/delivery/pending')->with('success', 'Order was successfully prepared');
+    }
+
+
 
     public function showOrders($order_no)
     {
