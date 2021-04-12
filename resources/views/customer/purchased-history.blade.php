@@ -4,90 +4,66 @@
             <a href="{{url('/')}}" class="btn btn-sm"><i class="fas fa-arrow-left fa-2x"></i></a>
 
             <div class="row" id="cart-cont">
+         
+
+                <div class="col-sm-12 col-md-10 col-md-offset-1" style="margin-bottom: 15px;"><h3>Purchased History</h3></div>
+
+                @foreach ($orders as $data)
                 <div class="col-sm-12 col-md-10 col-md-offset-1">
-                    <h4 class="mb-4">Cart (<span>{{ $cartCount }}</span> items)</h4>
-                    <table class="table table-hover">
+                    <table class="table table-hover" style="margin-bottom: 25px;">
                     <thead>
                     <tr>
-                    <th>Menu</th>
-                    <th>Quantity</th>
-                    <th class="text-center">Price</th>
-                    <th class="text-center">Amount</th>
-                    <th> </th>
+                    <th>Order #{{$data->order_no}}</th>
+                    <th></th>
+                        @if($data->payment_method)
+                            <th class="text-center">Payment method: </th>
+                            <th class="text-center">{{$data->payment_method}}</th>
+                        @else
+                            <th class="text-center"></th>
+                            <th class="text-center"><button class="btn btn-sm btn-success">Pay now ></button></th>
+                        @endif
                     </tr>
                     </thead>
                     <tbody>
-                    @if(count($cart) > 0)
-                    @foreach ($cart as $data)
+                    @php
+                        $order_menus = Helper::getMenuByOrderNumber($data->order_no);
+                    @endphp
+
+                    @foreach ($order_menus as $data)
                     <tr>
                         <td class="col-md-6">
                         <div class="media">
-                        <a class="thumbnail pull-left " href="#"> <img class="media-object " src="{{ asset('storage/'.$data->image) }}" style="width: 100px; height: 100px; object-fit: cover;"> </a>
+                        <a class="thumbnail pull-left " href="{{ asset('storage/'.$data->image) }}"> <img class="media-object " src="{{ asset('storage/'.$data->image) }}" style="width: 100px; height: 100px; object-fit: cover;"> </a>
                         <div class="media-body">
-                        <h4 class="media-heading"><a href="#">{{ $data->description }}</a></h4>
+                        <h4 class="media-heading">{{ $data->description }}</h4>
                         <h5 class="media-heading"> Category: {{ $data->category }}</h5>
                         <span>Preparation time: </span><span class="text-success"><strong>{{ $data->preparation_time }}</strong></span>
                         </div>
                         </div></td>
                         <td class="col-md-2">
-                            <button class="btn btn-sm" id="btn-dec" menu-id="{{ $data->menu_id }}" qty="{{ $data->qty - 1 }}"
-                                onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"><i class="fas fa-minus"></i></button>
-  
-                              <input class="quantity" min="0" id="item-qty" name="quantity" type="number" style="width: 40px;" value="{{ $data->qty }}">
-  
-                              <button class="btn btn-sm" id="btn-inc" menu-id="{{ $data->menu_id }}" qty="{{ $data->qty + 1 }}"
-                                onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"><i class="fas fa-plus"></i></button>
+                            <strong>Qty: {{ $data->qty }}</strong>
                         </td>
-                        <td class="col-md-1 text-center"><strong>{{ $data->price }}</strong></td>
-                        <td class="col-md-1 text-center"><strong>{{ $data->amount }}</strong></td>
-                        <td class="col-md-1">
-                            <button class="btn btn-danger btn-remove" menu-id="{{ $data->menu_id }}">
-                                <span class="fa fa-remove"></span> Remove
-                            </button>
-                        </td>
-                        </tr> 
-                    @endforeach	
-                    @else
-                    <div class="alert alert-danger" style="margin-top: 20px;" role="alert">
-                        Your cart is empty!
-                      </div>
-                    @endif
+                        <td class="col-md-1 text-center"><strong>Price: {{ $data->price }}</strong></td>
+                        <td class="col-md-1 text-center"><strong>Amount: {{ $data->amount }}</strong></td>
+                    </tr>
+                    @endforeach
+              
+              
                     <tr>
                     <td>   </td>
                     <td>   </td>
-                    <td>   </td>
-                    <td><h3>Total:</h3></td>
-                    <td class="text-right"><h3><strong>₱{{ number_format($subTotal,2,'.',',') }}</strong></h3></td>
+                    <td><h4>Total:</h4></td>
+                    <td class="text-right"><h4><strong>₱{{ Helper::getTotalAmount($data->order_no) }}</strong></h4></td>
                     </tr>
                     
                     </tbody>
                     </table>
              
                     </div>
+                @endforeach
+          
+
                     
-            </div>
-            <div class="row">
-                <div class="col-sm-12 col-md-10 col-md-offset-1">
-                    <table>
-                        
-                        <tr>
-                            <td>   </td>
-                            <td>   </td>
-                            <td>   </td>
-                            <td>
-                            <a href="{{ url('/') }}" class="btn btn-default" style="margin:5px;">
-                            <span class="fa fa-shopping-cart"></span> Continue Shopping
-                            </a></td>
-                            <td>
-                            <a id="btn-checkout" href="{{ url('/checkout') }}" class="btn btn-primary">
-                            Checkout <span class="fa fa-play"></span>
-                            </a></td>
-                            </tr>
-                    </table>
-                    <p id="note" style="color: #DC3545; display:none;">
-                        <i class="fas fa-exclamation-triangle"></i> The restaurant requires minimum of total purchase amounting ₱300
-                    </p>
-                </div>
             </div>
 
     </div>
@@ -107,7 +83,7 @@
                 type:"GET",
                 success:function(subtotal)
                 {
-                    if(subtotal >= 300){
+                    if(subtotal > 300){
                         $('#btn-checkout').attr('disabled', false); 
                         $('#note').css('display', 'none'); 
                     }    

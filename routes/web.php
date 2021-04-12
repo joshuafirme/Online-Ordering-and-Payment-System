@@ -159,6 +159,13 @@ Route::post('profile', 'Customer\ProfileCtr@updateInsert');
 
 /*
 |--------------------------------------------------------------------------
+| Purchased History
+|--------------------------------------------------------------------------
+*/
+Route::get('/purchased-history', 'Customer\PurchasedHistoryCtr@index');
+
+/*
+|--------------------------------------------------------------------------
 | Cart
 |--------------------------------------------------------------------------
 */
@@ -169,6 +176,7 @@ Route::post('cart/increase-qty/{menu_id}/{qty}', 'Customer\CartCtr@increaseQty')
 Route::post('cart/decrease-qty/{menu_id}/{qty}', 'Customer\CartCtr@decreaseQty');
 Route::post('cart/remove-menu/{menu_id}', 'Customer\CartCtr@removeMenu');
 Route::get('cart/subtotal', 'Customer\CartCtr@computeSubTotal');
+
 
 /*
 |--------------------------------------------------------------------------

@@ -79,4 +79,23 @@ class Base
      {
          return DB::table('tblcategory')->where('is_active', 1)->get();
      }
+
+
+      public static function getMenuByOrderNumber($order_no)
+      {
+         return DB::table('tblorders as O')
+         ->select('O.*', 'C.*', 'M.*', 'category', 'O.created_at', 'O.amount')
+         ->leftJoin('tblcustomer AS C', 'C.id', '=', 'O.user_id') 
+         ->leftJoin('tblmenu AS M', 'M.id', '=', 'O.menu_id')  
+         ->leftJoin('tblcategory AS CT', 'CT.id', '=', 'M.category_id')  
+         ->where('O.order_no', $order_no)
+         ->get();
+      }
+
+      public static function getTotalAmount($order_no)
+      {
+         return DB::table('tblorders as O') 
+         ->where('O.order_no', $order_no)
+         ->sum('amount');
+      }
 }
