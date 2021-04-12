@@ -30,10 +30,27 @@
 
         <div class="row">
             <div class="col-xs-12">
+                
                 <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">Gross Sale</h3>   
+                        
+                        <div style="margin-top: 5px;">
+                            <div class="col-sm-2">
+                                <input type="date" class="form-control" id="date_from" value="{{ date('Y-m-d') }}">
+                            </div>
+                
+                            <div class="col-sm-2">
+                            <input type="date" class="form-control" id="date_to" value="{{ date('Y-m-d') }}">
+                            </div> 
+
+                        </div>
+
+                    </div><!-- /.box-header -->
                     <div class="box-body table-responsive">
 
                       <h3 style="margin-bottom: 20px;">Delivered</h3>
+                      
                       <table class="table responsive table-hover" id="delivered-table" width="100%">                               
                         <thead>
                           <tr>

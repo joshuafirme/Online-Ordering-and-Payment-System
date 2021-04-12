@@ -107,9 +107,12 @@ $(document).ready(function()
         });
         }
 
-        fetchDeliveredOrders();
+        var date_from = $('#date_from').val()
+        var date_to = $('#date_to').val();
+  
+        fetchDeliveredOrders(date_from, date_to);
 
-        function fetchDeliveredOrders(){
+        function fetchDeliveredOrders(date_from, date_to){
         $('#delivered-table').DataTable({
         
             processing: true,
@@ -118,6 +121,10 @@ $(document).ready(function()
             ajax:{
             url: "/delivery/delivered",
             type: "GET",
+            data:{
+              date_from:date_from,
+              date_to:date_to
+            },
             }, 
 
             columns:[       
@@ -132,6 +139,24 @@ $(document).ready(function()
             
         });
         }
+
+        $('#date_from').change(function()
+        {
+          var date_from = $('#date_from').val()
+          var date_to = $('#date_to').val();
+    
+          $('#delivered-table').DataTable().destroy();
+          fetchDeliveredOrders(date_from, date_to);
+        });
+   
+        $('#date_to').change(function()
+        {
+          var date_from = $('#date_from').val()
+          var date_to = $('#date_to').val();
+    
+          $('#delivered-table').DataTable().destroy();
+          fetchDeliveredOrders(date_from, date_to);
+        });
 
 
         $(document).on('click', '.btn-cancel-order', function()
