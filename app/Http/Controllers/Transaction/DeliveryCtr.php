@@ -86,6 +86,40 @@ class DeliveryCtr extends Controller
         return $data->unique('order_no');
     }
 
+    public function displayCancelledOrders()
+    {
+        if(request()->ajax())
+        {
+            return datatables()->of($this->getPreparingOrders())
+                ->addColumn('action', function($o){
+                    $button = ' <a class="btn btn-sm btn-primary btn-show-order" order-no="'. $o->order_no .'" user-id="'. $o->user_id .'" 
+                    data-toggle="modal" data-target="#orderModal">Show order</a>';
+
+                 //   $button .= ' <a class="btn btn-sm btn-success btn-prepare-order" order-no="'. $o->order_no .'" user-id="'. $o->user_id .'">Prepare</a>';
+
+                 //   $button .= ' <a class="btn btn-sm btn-danger btn-cancel-order" order-no="'. $o->order_no .'" user-id="'. $o->user_id .'" 
+                 //   data-toggle="modal" data-target="#cancelModal">Cancel</a>';
+       
+                    return $button;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+        
+        return view('transaction.delivery-cancelled');
+    }
+
+    public function getCancelledOrders()
+    {
+        $data = DB::table('tblorders as O')
+                ->select('O.*', 'C.fullname', 'C.phone_no', 'C.email', 'O.created_at', 'O.status')
+                ->leftJoin('tblcustomer AS C', 'C.id', '=', 'O.user_id') 
+                ->where('O.status', -1)
+                ->get();
+
+        return $data->unique('order_no');
+    }
+
     public function doPrepare()
     {
         $data = Input::all();
@@ -97,7 +131,35 @@ class DeliveryCtr extends Controller
                     'updated_at' => date('Y-m-d h:m:s')
                 ]);
 
-        return redirect('/delivery/pending')->with('success', 'Order was successfully prepared');
+        return redirect('/delivery/pending')->with('success', 'Order #'.$data['order-no'].' was successfully prepared');
+    }
+
+    public function doDispatch()
+    {
+        $data = Input::all();
+
+        DB::table('tblorders')
+                ->where('order_no', $data['order-no'])
+                ->update([
+                    'status' => 3,
+                    'updated_at' => date('Y-m-d h:m:s')
+                ]);
+
+        return redirect('/delivery/preparing')->with('success', 'Order #'.$data['order-no'].' was successfully dispatch');
+    }
+
+    public function cancelOrder()
+    {
+        $data = Input::all();
+
+        DB::table('tblorders')
+                ->where('order_no', $data['order-no'])
+                ->update([
+                    'status' => -1,
+                    'updated_at' => date('Y-m-d h:m:s')
+                ]);
+
+        return redirect('/delivery/pending')->with('success', 'Order #'.$data['order-no'].' was successfully cancelled');
     }
 
 

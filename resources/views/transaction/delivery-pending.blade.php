@@ -33,7 +33,7 @@
                 <div class="box">
                     <div class="box-body table-responsive">
 
-                      <h4 style="margin-bottom: 20px;">Pending</h4>
+                      <h3 style="margin-bottom: 20px;">Pending</h3>
                       <table class="table responsive table-hover" id="pending-table" width="100%">                               
                         <thead>
                           <tr>
@@ -71,10 +71,15 @@
         </div>
         <div class="modal-body">
           <p>Are you sure do you want to cancel this order?</p>
+          <form action="{{ action('Transaction\DeliveryCtr@cancelOrder') }}" method="POST">  
+            @csrf    
+          <input type="hidden" name="order-no">
+          <input type="hidden" name="user-id">
         </div>
         <div class="modal-footer">
-        <button class="btn btn-sm btn-outline-dark" id="btn-yes">Yes</button>
+        <button class="btn btn-sm btn-outline-dark" type="submit">Yes</button>
         <button class="btn btn-sm btn-danger cancel-delete" data-dismiss="modal">Cancel</button>
+        </form>
 
         </div>
       </div>
@@ -168,9 +173,9 @@
         <div class="modal-footer">
           <form action="{{ action('Transaction\DeliveryCtr@doPrepare') }}" method="POST">  
             @csrf              
-            <input type="hidden" name="order-no" id="order-no">
-            <input type="hidden" name="user-id" id="user-id">
-            <button class="btn btn-outline-dark btn-sm" id="btn-gen-sales-inv"><span class='fa fa-print'></span> Generate Sales Invoice</button> 
+            <input type="hidden" name="order-no">
+            <input type="hidden" name="user-id">
+          {{--<button class="btn btn-outline-dark btn-sm" id="btn-gen-sales-inv"><span class='fa fa-print'></span> Generate Sales Invoice</button> --}}
             <button style="color: #fff" class="btn btn-sm btn-success" type="submit">Prepare</button>
           </form> 
        

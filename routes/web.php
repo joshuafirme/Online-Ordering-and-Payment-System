@@ -29,8 +29,12 @@ Route::get('logout-employee', 'LoginCtr@logout');
 */
 Route::get('/delivery/pending', 'Transaction\DeliveryCtr@displayPendingOrders');
 Route::post('/delivery/do-prepare', 'Transaction\DeliveryCtr@doPrepare');
+Route::post('/delivery/do-cancel', 'Transaction\DeliveryCtr@cancelOrder');
 
 Route::get('/delivery/preparing', 'Transaction\DeliveryCtr@displayPreparingOrders');
+Route::post('/delivery/do-dispatch', 'Transaction\DeliveryCtr@doDispatch');
+
+Route::get('/delivery/cancelled', 'Transaction\DeliveryCtr@displayCancelledOrders');
 
 Route::get('/delivery/show-order/{order_no}', 'Transaction\DeliveryCtr@showOrders');
 Route::get('/delivery/shipping-fee/{user_id}', 'Transaction\DeliveryCtr@getShippingFee_ajax');

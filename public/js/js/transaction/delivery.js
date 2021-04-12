@@ -57,13 +57,38 @@ $(document).ready(function()
         });
         }
 
+        fetchCancelledOrders();
+
+        function fetchCancelledOrders(){
+        $('#cancelled-table').DataTable({
+        
+            processing: true,
+            serverSide: true,
+
+            ajax:{
+            url: "/delivery/cancelled",
+            type: "GET",
+            }, 
+
+            columns:[       
+            {data: 'order_no', name: 'order_no'},
+            {data: 'fullname', name: 'fullname'},
+            {data: 'phone_no', name: 'phone_no'},
+            {data: 'email', name: 'email'},    
+            {data: 'created_at', name: 'created_at'},
+            {data: 'action', name: 'action',orderable: false},
+            ]
+            
+        });
+        }
+
 
         $(document).on('click', '.btn-cancel-order', function()
         {
             let order_no = $(this).attr('order-no');
             let user_id = $(this).attr('user-id');
-            console.log(order_no);
-            console.log(user_id);
+            $('input[name="order-no"]').val(order_no);
+            $('input[name="user-id"]').val(user_id);
         }); 
 
         $(document).on('click', '.btn-show-order', function()
@@ -71,8 +96,8 @@ $(document).ready(function()
             var order_no = $(this).attr('order-no');
             var user_id = $(this).attr('user-id');
             $('#order-number').text(order_no);
-            $('#order-no').val(order_no);
-            $('#user-id').val(user_id);
+            $('input[name="order-no"]').val(order_no);
+            $('input[name="user-id"]').val(user_id);
 
             $.ajax({
               url:"/delivery/show-order/"+order_no,

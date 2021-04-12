@@ -33,8 +33,8 @@
                 <div class="box">
                     <div class="box-body table-responsive">
 
-                      <h3 style="margin-bottom: 20px;">Preparing</h3>
-                      <table class="table responsive table-hover" id="preparing-table" width="100%">                               
+                      <h3 style="margin-bottom: 20px;">Cancelled</h3>
+                      <table class="table responsive table-hover" id="cancelled-table" width="100%">                               
                         <thead>
                           <tr>
 
@@ -60,6 +60,7 @@
     </section><!-- /.content -->
 
 
+
   <div class="modal fade" id="orderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl" style="width: 1000px;" role="document">
       <div class="modal-content">
@@ -72,60 +73,7 @@
         <div class="modal-body">
 
                 
-          <div class="row">
-            <div class="col-md-12 mb-2">
-              <h4>Customer Information</h4>
-              <span class="badge badge-success" id="verification-info"></span>
-          </div>
-
-          <div class="col-md-4">
-              <label class="label-small" >Full Name</label>
-              <p id="fullname"></p>
-          </div>
-
-          <div class="col-md-4">
-              <label class="label-small">Email Address</label>
-              <p  id="email"></p>
-          </div>
-
-          <div class="col-md-4">
-              <label class="label-small">Phone Number</label>
-              <p  id="phone-no"></p>
-          </div> 
-
-          <div class="col-md-12 mb-2"><hr></div>
-
-
-
-          <div class="col-md-12 mb-2">
-              <h4>Shipping Address</h4>
-          </div>
-
-          <div class="col-md-4">
-            <label class="label-small">Municipality</label>
-            <p id="municipality"></p>
-          </div> 
-
-          <div class="col-md-4">
-            <label class="label-small">Barangay</label>
-            <p id="brgy"></p>
-          </div> 
-
-          <div class="col-md-4 mb-3">
-              <label class="label-small">House/Unit/Flr #, Bldg Name, Blk or Lot #</label>
-              <p id="flr-bldg-blk"></p>
-          </div> 
-
-          <div class="col-md-4">
-              <label class="label-small">Nearest landmark</label>
-              <p id="note"></p>
-          </div> 
-
-          <div class="col-md-12 mb-2"><hr></div>
-
-          <div class="col-md-12 mb-2">
-            <h4>Order #<span id="order-number"></span></h4>
-        </div>
+                <div class="row">
 
                   <div class="col-md-12">
 
@@ -135,6 +83,59 @@
 
                   </div>
 
+                    
+                    <div class="col-md-12 mb-2"><hr></div>
+
+                    <div class="col-md-12 mb-2">
+                        <h4>Customer Information</h4>
+                        <span class="badge badge-success" id="verification-info"></span>
+                    </div>
+                    
+                    <input type="hidden" id="order-no">
+                    <input type="hidden" id="user-id">
+    
+                    <div class="col-md-4">
+                        <label class="label-small" >Full Name</label>
+                        <p id="fullname"></p>
+                    </div>
+        
+                    <div class="col-md-4">
+                        <label class="label-small">Email Address</label>
+                        <p  id="email"></p>
+                    </div>
+        
+                    <div class="col-md-4">
+                        <label class="label-small">Phone Number</label>
+                        <p  id="phone-no"></p>
+                    </div> 
+        
+                    <div class="col-md-12 mb-2"><hr></div>
+    
+    
+        
+                    <div class="col-md-12 mb-2">
+                        <h4>Shipping Address</h4>
+                    </div>
+
+                    <div class="col-md-4">
+                      <label class="label-small">Municipality</label>
+                      <p id="municipality"></p>
+                    </div> 
+        
+                    <div class="col-md-4">
+                      <label class="label-small">Barangay</label>
+                      <p id="brgy"></p>
+                    </div> 
+    
+                    <div class="col-md-4 mb-3">
+                        <label class="label-small">House/Unit/Flr #, Bldg Name, Blk or Lot #</label>
+                        <p id="flr-bldg-blk"></p>
+                    </div> 
+        
+                    <div class="col-md-4">
+                        <label class="label-small">Nearest landmark</label>
+                        <p id="note"></p>
+                    </div> 
           
                   </div>
 
@@ -142,13 +143,11 @@
         </div>
   
         <div class="modal-footer">
-          <form action="{{ action('Transaction\DeliveryCtr@doDispatch') }}" method="POST">  
-            @csrf              
-            <input type="hidden" name="order-no">
-            <input type="hidden" name="user-id">
+          <div class="update-success-validation mr-auto ml-3" style="display: none">
+            <label class="label text-success">Items packed successfully</label>    
+          </div> 
           {{--<button class="btn btn-outline-dark btn-sm" id="btn-gen-sales-inv"><span class='fa fa-print'></span> Generate Sales Invoice</button> --}}
-            <button style="color: #fff" class="btn btn-sm btn-success" type="submit">Dispatch</button>
-          </form> 
+          <button style="color: #fff" class="btn btn-sm btn-success" id="btn-process">Prepare</button>
        
         </div>
   
