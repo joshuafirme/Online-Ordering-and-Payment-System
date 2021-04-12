@@ -31,6 +31,12 @@
               </div>
 
               <div class="col-md-6" style="margin-top: 15px;">    
+                <label class="col-form-label">Qty</label>
+                <input type="number" class="form-control" name="qty" id="qty" required>
+                </select>
+              </div>
+
+              <div class="col-md-6" style="margin-top: 15px;">    
                 <label class="col-form-label">Price</label>
                 <input type="number" class="form-control" name="price" id="price" required>
                 </select>
@@ -98,6 +104,12 @@
                  <label class="col-form-label">Description</label>
                  <input type="text" class="form-control" name="edit_description" id="edit_description" required>
                </div>
+
+               <div class="col-md-6" style="margin-top: 15px;">    
+                <label class="col-form-label">Qty</label>
+                <input type="number" class="form-control" name="edit_qty" id="edit_qty" required>
+                </select>
+              </div>
  
                <div class="col-md-6" style="margin-top: 15px;">    
                  <label class="col-form-label">Price</label>

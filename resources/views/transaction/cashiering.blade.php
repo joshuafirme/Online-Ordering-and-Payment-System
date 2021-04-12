@@ -2,6 +2,13 @@
 
 @section('content')
 
+<style>
+    #menu-cont{
+        height: 400px;
+        width: 1000px;
+        overflow-y: scroll;
+    }
+</style>
    
    <!-- Right side column. Contains the navbar and content of the page -->
    <aside class="right-side">
@@ -32,6 +39,31 @@
             <div class="col-xs-12">
                 <div class="box">
                     <div class="box-body table-responsive">
+
+                        <div class="row" id="menu-cont">
+                            <div class="col-xs-12 col-md-6 col-lg-4">
+                                <div class="dif-cate-box">
+                  
+                                <div class="img-box">
+                                <div class="img-cont loading"><img src="../../storage/'+data[i].image+'" class="img loading" alt="" style="height:300px;" ></div>
+                                <img src="../../storage/img-placeholder.png" class="img loading" alt="" style="height:300px;">
+                                
+                                </div>
+                                <div style="padding:10px;" class="menu-description">
+                                <p class="desc m-0" style="font-family: lavenda, sans-serif; font-size:20px; color: #3B3B3B;">'+data[i].description+'</p>
+                                <p class="desc" style="font-family: lavenda, sans-serif; font-size:20px; color: #FFC000;">₱'+data[i].price+'</p>
+                                <p class="desc" style="font-family: lavenda, sans-serif; font-size:16px; color: #28A745;">Preparation time: '+data[i].preparation_time+'</p>
+                                
+                                  <div class="desc-loading4 loading"><button class="btn btn-sm pl-3 pr-3 add_to_cart" style="background-color:#005B96; color:#fff; border-radius:50px;"';
+                                  menu-id="'+data[i].id+'" amount="'+data[i].price+'">Add to tray</button></div>
+           
+                                  <span style="color:#AA0000;">Not available</span>
+                                
+                                       </div>
+                            
+                                   </div>
+                                </div>
+                        </div>
 
                         <table id="" class="table table-borderless table-hover" style="width: 100%; margin-bottom:20px;">
                             <thead>

@@ -9,7 +9,7 @@ class Menu extends Model
 {
     protected $table = 'tblmenu';
     protected $tbl_cat = 'tblcategory';
-    protected $fillable = ['id', 'description', 'price', 'category_id', 'preparation_time', 'image', 'status'];
+    protected $fillable = ['id', 'description', 'qty', 'price', 'category_id', 'preparation_time', 'image', 'status'];
 
 
 

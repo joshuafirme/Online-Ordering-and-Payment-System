@@ -23,6 +23,7 @@ $(document).ready(function(){
           columns:[    
            {data: 'description', name: 'description'},   
            {data: 'category', name: 'category'},   
+           {data: 'qty', name: 'qty'},   
            {data: 'price', name: 'price'},   
            {data: 'image', name: 'image'},
            {data: 'preparation_time', name: 'preparation_time'},
@@ -47,6 +48,7 @@ $(document).ready(function(){
      
                 $('#edit_category').val(response[0].category_id);
                 $('#edit_description').val(response[0].description);
+                $('#edit_qty').val(response[0].qty);
                 $('#edit_price').val(response[0].price);
                 $('#edit_prep_time').val(response[0].preparation_time);              
                 $('#edit_status').val(response[0].status);

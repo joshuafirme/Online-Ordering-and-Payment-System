@@ -69,6 +69,7 @@ class MenuCtr extends Controller
         $g = new Menu;
         $g->category_id = $request->input('category');
         $g->description = $request->input('description');
+        $g->qty = $request->input('qty');
         $g->price = $request->input('price');
         $g->preparation_time = $request->input('prep_time');
         $g->status = $request->input('status');
@@ -94,6 +95,7 @@ class MenuCtr extends Controller
         $g->id = $request->input('id');
         $g->category_id = $request->input('edit_category');
         $g->description = $request->input('edit_description');
+        $g->qty = $request->input('edit_qty');
         $g->price = $request->input('edit_price');
         $g->preparation_time = $request->input('edit_prep_time');
         $g->status = $request->input('edit_status');
@@ -102,6 +104,7 @@ class MenuCtr extends Controller
         ->update([
             'category_id' => $g->category_id,
             'description' => $g->description,
+            'qty' => $g->qty,
             'price' => $g->price,
             'preparation_time' => $g->preparation_time,
             'status' => $g->status

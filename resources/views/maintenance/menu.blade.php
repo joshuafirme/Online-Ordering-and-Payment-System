@@ -43,6 +43,7 @@
                                 <tr>
                                     <th>Description</th>
                                     <th>Category</th>
+                                    <th>Qty</th>
                                     <th>Price</th>
                                     <th>Image</th>
                                     <th>Preparation Time</th>
