@@ -98,10 +98,12 @@ class CashieringCtr extends Controller
 
         $c = new Cashiering;
 
-        foreach($c->getTray() as $data){
- 
+        $trans_no = \Helper::getTransactionNumber();
+        foreach($c->getTray() as $data)
+        {
             DB::table('tblgross_sale')
             ->insert([
+                'transaction_no' => $trans_no,
                 'menu_id' => $data->menu_id,
                 'qty' => $data->qty,
                 'amount' => $data->amount,

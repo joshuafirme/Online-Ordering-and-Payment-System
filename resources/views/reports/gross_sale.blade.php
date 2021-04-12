@@ -61,7 +61,7 @@
                         <table id="gross-sale-table" class="table table-bordered table-hover">
                             <thead>
                                 <tr>
-                                    <th>Trans ID</th>
+                                    <th>Transaction #</th>
                                     <th>Description</th>
                                     <th>Category</th>
                                     <th>Qty</th>

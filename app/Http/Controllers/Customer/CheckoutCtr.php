@@ -93,18 +93,12 @@ class CheckoutCtr extends Controller
         }
     }
 
-    public function getOrderNumber()
-    {
-        $order_no = DB::table('tblorders')->max('order_no');
-
-        return ++ $order_no;
-    }
 
     public function placeOrder()
     {
         $data = Input::all();
 
-        $order_no = $this->getOrderNumber();
+        $order_no = \Helper::getOrderNumber();
         \Session::put('ORDER_NO', $order_no);
 
         foreach($this->getCart() as $item)

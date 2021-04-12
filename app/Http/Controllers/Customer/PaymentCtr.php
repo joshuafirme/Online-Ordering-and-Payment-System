@@ -13,6 +13,7 @@ class PaymentCtr extends Controller
     public function index()
     { 
       //  dd($this->getToken());
+     // session()->forget('source');   
         if(Auth::check())
         {
             if($this->isTokenValid())
@@ -96,6 +97,19 @@ class PaymentCtr extends Controller
                 'status' => 1,
             ]);
 
+            
+            $order = $this->getOrderDetails(\Session::get('ORDER_NO'));
+
+            for($i = 0; $i < $order->count(); $i++){
+                $this->recordSales(
+                    $order[$i]->menu_id,
+                    $order[$i]->qty,
+                    $order[$i]->amount,
+                    'Gcash'
+                );    
+            //    $this->updateInventory($order[$i]->product_code, $order[$i]->qty);
+            }
+
             session()->forget('source');
             return redirect('/after-payment')->send();
         }
@@ -111,8 +125,44 @@ class PaymentCtr extends Controller
                 'status' => 1,
             ]);
 
+            $order = $this->getOrderDetails(\Session::get('ORDER_NO'));
+
+            for($i = 0; $i < $order->count(); $i++){
+                $this->recordSales(
+                    $order[$i]->menu_id,
+                    $order[$i]->qty,
+                    $order[$i]->amount,
+                    'COD'
+                );    
+            //    $this->updateInventory($order[$i]->product_code, $order[$i]->qty);
+            }
+
         return redirect('/cod-confirmation')->send();
     }
+    
+    public function recordSales($menu_id, $qty, $amount, $payment_method)
+    {
+        $trans_no = \Helper::getTransactionNumber();
+        DB::table('tblgross_sale')
+            ->insert([
+                'transaction_no' => $trans_no,
+                'menu_id' => $menu_id,
+                'qty' => $qty,
+                'amount' => $amount,
+                'order_type' => 'Online',
+                'payment_method' => $payment_method,
+                'created_at' => date('Y-m-d h:m:s'),
+                'updated_at' => date('Y-m-d h:m:s')
+            ]);
+    }
+
+    public function getOrderDetails($order_no)
+    {
+        return DB::table('tblorders')
+        ->where('order_no', $order_no)
+        ->get();
+    }
+
 
     public function codConfirmation()
     {

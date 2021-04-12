@@ -71,6 +71,7 @@ class GrossSaleCtr extends Controller
                       
             <thead>
                 <tr>
+                    <th style="border: 1px solid;">Transaction #</th>     
                     <th style="border: 1px solid;">Description</th>     
                     <th style="border: 1px solid;">Category</th>
                     <th style="border: 1px solid;">Qty</th>    
@@ -86,6 +87,7 @@ class GrossSaleCtr extends Controller
                 
                     $output .='
                     <tr>                             
+                    <td style="border: 1px solid; padding:10px;">'. $data->transaction_no .'</td>
                     <td style="border: 1px solid; padding:10px;">'. $data->description .'</td>
                     <td style="border: 1px solid; padding:10px;">'. $data->category.'</td>  
                     <td style="border: 1px solid; padding:10px;">'. $data->qty .'</td>  

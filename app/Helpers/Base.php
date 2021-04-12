@@ -30,6 +30,20 @@ class Base
       return DB::table('tblshipping_address')->where('user_id', Auth::id())->first();
    }
 
+   public static function getTransactionNumber()
+   {
+       $trans_no = DB::table('tblgross_sale')->max('transaction_no');
+
+       return ++ $trans_no;
+   }
+   
+   public static function getOrderNumber()
+   {
+       $order_no = DB::table('tblorders')->max('order_no');
+
+       return ++ $order_no;
+   }
+
    public static function getPosition()
    {
      return DB::table('tbluser')

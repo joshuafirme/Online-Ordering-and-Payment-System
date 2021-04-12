@@ -26,7 +26,7 @@ $(document).ready(function(){
           }, 
   
           columns:[    
-           {data: 'id', name: 'id'},  
+           {data: 'transaction_no', name: 'transaction_no'},  
            {data: 'description', name: 'description'},   
            {data: 'category', name: 'category'},   
            {data: 'qty', name: 'qty'},   
