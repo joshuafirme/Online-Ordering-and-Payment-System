@@ -69,6 +69,7 @@ Route::get('transaction/cashiering/search/{search_key}', 'Transaction\Cashiering
 Route::post('transaction/cashiering/add', 'Transaction\CashieringCtr@addToTray');
 Route::post('transaction/cashiering/process', 'Transaction\CashieringCtr@process');
 Route::get('transaction/cashiering/remove/{id}', 'Transaction\CashieringCtr@removeFromTray');
+Route::get('transaction/isQtyAvailable/{menu_id}/{qty}', 'Transaction\CashieringCtr@isQtyAvailable');
 
 Route::get('transaction/delivery', 'Transaction\DeliveryCtr@index'); 
 

@@ -14,7 +14,7 @@ class Cashiering extends Model
 
     public function getTray(){
         $res = DB::table($this->table.' as CS')
-        ->select('CS.*', 'description', 'category', 'price', 'qty')
+        ->select('CS.*', 'description', 'category', 'price', 'CS.qty')
         ->leftJoin($this->tbl_menu.' AS M', 'M.id', '=', 'CS.menu_id') 
         ->leftJoin($this->tbl_cat.' AS C', 'C.id', '=', 'M.category_id')  
         ->get();

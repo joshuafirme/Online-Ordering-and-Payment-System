@@ -55,28 +55,45 @@ $(document).ready(function(){
   }
 
 
-  $(document).on('click', '#btn-add', function(){
+  $(document).on('click', '.btn-add', function(){
 
-    var menu_id = $('#id').val();
-    var amount = $('#amount').val();
-    var qty = $('#qty').val();
+    var menu_id = $(this).attr('menu-id');
+    var price= $(this).attr('price');
+    var qty = $('#menu'+menu_id).val();
+    var amount = price * qty; 
 
     console.log(menu_id);
     console.log(amount);
+    console.log(qty);
+
     $.ajax({
-        url:"/transaction/cashiering/add",
-        type:"POST",
-        data:{
-            menu_id:menu_id,
-            amount:amount,
-            qty:qty
-        },
-        success:function(response){
-            console.log(response);
-            $('#tray_table').load('cashiering #tray_table');
-            $('#txt_total_amount').load('cashiering #txt_total_amount');
-        }
-      });
+      url:"/transaction/isQtyAvailable/"+menu_id+"/"+qty,
+      type:"GET",
+      success:function(response){
+         if(response==1)
+         {
+           alert('Not enough qty!');
+         }
+         else{
+          $.ajax({
+            url:"/transaction/cashiering/add",
+            type:"POST",
+            data:{
+                menu_id:menu_id,
+                amount:amount,
+                qty:qty
+            },
+            success:function(response){
+                console.log(response);
+                $('#tray_table').load('cashiering #tray_table');
+                $('#txt_total_amount').load('cashiering #txt_total_amount');
+            }
+          });
+         }
+       
+      }
+    });
+    
   }); 
 
   $(document).on('keyup', '#txt_tendered', function(){
@@ -127,7 +144,7 @@ $(document).ready(function(){
       });
   }); 
 
-  $(document).on('click', '#btn-remove', function(){
+  $(document).on('click', '.btn-remove', function(){
     var id = $(this).attr('delete-id');
     console.log(id);
     $.ajax({

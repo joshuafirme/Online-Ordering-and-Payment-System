@@ -21,8 +21,18 @@ class CashieringCtr extends Controller
 
         return view('transaction/cashiering',[
             'tray' => $this->displayTray(),
-            'totalAmount' => $this->geTotalAmount()
+            'totalAmount' => $this->geTotalAmount(),
+            'menu' => $this->displayMenu()
         ]);
+    }
+
+    public function displayMenu(){
+        $res = DB::table('tblmenu as M')
+        ->select('M.*', 'category')
+        ->leftJoin('tblcategory AS C', 'C.id', '=', 'M.category_id')    
+        ->get();
+
+        return $res;
     }
 
     public function search($search_key){
@@ -67,6 +77,19 @@ class CashieringCtr extends Controller
         }
     }
 
+    public function isQtyAvailable($menu_id, $qty)
+    {
+        $current_stock = DB::table('tblmenu')->where('id', $menu_id)->value('qty');
+
+        if($current_stock < $qty)
+        {
+            return '1';
+        }
+        else{
+            return '0';
+        }
+    }
+
     public function isMenuExists($menu_id){
         $c = DB::table('tblcashiering')->where('menu_id', $menu_id);
         if($c->count() > 0){
@@ -88,8 +111,8 @@ class CashieringCtr extends Controller
         return $c->getTray();
     }
 
-    public function removeFromTray(){
-        DB::table('tblcashiering')->delete();
+    public function removeFromTray($id){
+        DB::table('tblcashiering')->where('id', $id)->delete();
     }
 
     public function process()
@@ -111,8 +134,12 @@ class CashieringCtr extends Controller
                 'order_type' => 'Walk in',
                 'created_at' => date('Y-m-d h:m:s')
             ]);
+
+        \Helper::adjustQty($data->menu_id, $data->qty);
         }
+        
         DB::table('tblcashiering')->delete();
     }
+
 
 }
