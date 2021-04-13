@@ -28,7 +28,7 @@ class CheckoutCtr extends Controller
     public function getCart()
     {
         return DB::table('tblcart as C')
-                ->select('C.*', 'M.*', 'category')
+                ->select('C.*', 'M.*', 'category', 'C.qty')
                 ->leftJoin('tblmenu AS M', 'M.id', '=', 'C.menu_id') 
                 ->leftJoin('tblcategory AS CAT', 'CAT.id', '=', 'M.category_id')   
                 ->where('user_id', Auth::id())

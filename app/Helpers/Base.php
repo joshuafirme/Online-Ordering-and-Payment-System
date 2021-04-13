@@ -84,7 +84,7 @@ class Base
       public static function getMenuByOrderNumber($order_no)
       {
          return DB::table('tblorders as O')
-         ->select('O.*', 'C.*', 'M.*', 'category', 'O.created_at', 'O.amount')
+         ->select('O.*', 'C.*', 'M.*', 'category', 'O.created_at', 'O.amount', 'O.qty')
          ->leftJoin('tblcustomer AS C', 'C.id', '=', 'O.user_id') 
          ->leftJoin('tblmenu AS M', 'M.id', '=', 'O.menu_id')  
          ->leftJoin('tblcategory AS CT', 'CT.id', '=', 'M.category_id')  
@@ -98,4 +98,14 @@ class Base
          ->where('O.order_no', $order_no)
          ->sum('amount');
       }
+
+      
+    public static function adjustQty($menu_id, $qty)
+    {
+        DB::table('tblmenu')
+        ->where('id', $menu_id)
+        ->update([
+            'qty' => DB::raw('qty - '. $qty)
+        ]);
+    }
 }

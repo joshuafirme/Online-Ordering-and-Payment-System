@@ -107,7 +107,7 @@ class PaymentCtr extends Controller
                     $order[$i]->amount,
                     'Gcash'
                 );    
-            //    $this->updateInventory($order[$i]->product_code, $order[$i]->qty);
+                \Helper::adjustQty($order[$i]->menu_id, $order[$i]->qty);
             }
 
             session()->forget('source');
@@ -134,7 +134,7 @@ class PaymentCtr extends Controller
                     $order[$i]->amount,
                     'COD'
                 );    
-            //    $this->updateInventory($order[$i]->product_code, $order[$i]->qty);
+                \Helper::adjustQty($order[$i]->menu_id, $order[$i]->qty);
             }
 
         return redirect('/cod-confirmation')->send();
