@@ -10,11 +10,34 @@
 
                 @foreach ($orders as $data)
                 <div class="col-sm-12 col-md-10 col-md-offset-1">
-                    <table class="table table-hover" style="margin-bottom: 25px;">
+                    <table class="table table-hover" style="margin-bottom: 75px;">
                     <thead>
                     <tr>
                     <th><h4>Order #{{$data->order_no}}</h4></th>
-                    <th></th>
+                    @php
+                        switch ($data->status) {
+                            case 0:
+                                $status = 'Payment pending';
+                                break;
+                            case 1:
+                                $status = 'Pending';
+                                break;
+                            case 2:
+                                $status = 'Preparing';
+                                break;
+                            case 3:
+                                $status = 'Dispatch';
+                                break;
+                            case 4:
+                                $status = 'Delivered';
+                                break;
+                            default:
+                                $status = 'Cancelled';
+                                break;
+                        }
+                        
+                    @endphp
+                    <th>Status: <span style="color: #28A745;">{{ $status }}</span></th>
                         @if($data->payment_method)
                             <th class="text-center">Payment method: <span></span></th>
                             <th class="text-center" style="color: #2375BB;">{{$data->payment_method}}</th>
@@ -74,87 +97,7 @@
               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
           }
          });
-
-         getSubTotal();
-
-         function getSubTotal(){
-            $.ajax({
-                url:"/cart/subtotal",
-                type:"GET",
-                success:function(subtotal)
-                {
-                    if(subtotal > 300){
-                        $('#btn-checkout').attr('disabled', false); 
-                        $('#note').css('display', 'none'); 
-                    }    
-                    else
-                    {
-                        $('#btn-checkout').attr('disabled', true); 
-                        $('#note').css('display', 'block'); 
-                    }     
-                }
-            });
-        }   
-    
-    
-        $(document).on('click', '#btn-inc', function(){
-            let menu_id = $(this).attr('menu-id');
-            let qty = $(this).attr('qty');
-            increaseQty(menu_id, qty);
-            getSubTotal();
-        });
-    
-        function increaseQty(menu_id, qty){
-            $.ajax({
-                url:"/cart/increase-qty/"+menu_id+"/"+qty,
-                type:"POST",
-                success:function(response)
-                {
-                    $('#cart-cont').load('cart #cart-cont'); 
-                    if(qty==0){
-                        removeMenu(menu_id);
-                    }         
-                }
-            });
-        }   
-        
-        $(document).on('click', '#btn-dec', function(){
-            let menu_id = $(this).attr('menu-id');
-            let qty = $(this).attr('qty');
-            decreaseQty(menu_id, qty);
-            getSubTotal();
-        });
-    
-        function decreaseQty(menu_id, qty){
-            $.ajax({
-                url:"/cart/decrease-qty/"+menu_id+"/"+qty,
-                type:"POST",
-                success:function(response)
-                {
-                    $('#cart-cont').load('cart #cart-cont');  
-                    if(qty==0){
-                        removeMenu(menu_id);
-                    }      
-                }
-            });
-        }  
-        
-        $(document).on('click', '.btn-remove', function(){
-            let menu_id = $(this).attr('menu-id');
-            removeMenu(menu_id);
-            getSubTotal();
-        });
-
-        function removeMenu(menu_id){
-            $.ajax({
-                url:"/cart/remove-menu/"+menu_id,
-                type:"POST",
-                success:function(response)
-                {
-                    $('#cart-cont').load('cart #cart-cont');        
-                }
-            });
-        }   
+ 
     
     </script>
 </body>
