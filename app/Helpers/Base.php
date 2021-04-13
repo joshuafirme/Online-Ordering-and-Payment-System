@@ -108,4 +108,19 @@ class Base
             'qty' => DB::raw('qty - '. $qty)
         ]);
     }
+   
+   public static function updateMenuStatus()
+   {
+      DB::table('tblmenu')
+      ->where('qty', 0)
+      ->update([
+         'status' => 'Not Available'
+      ]);
+
+      DB::table('tblmenu')
+      ->where('qty', '>', 0)
+      ->update([
+         'status' => 'Available'
+      ]);    
+   }
 }

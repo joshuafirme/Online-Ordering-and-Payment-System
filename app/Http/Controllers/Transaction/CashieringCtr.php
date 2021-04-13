@@ -29,7 +29,8 @@ class CashieringCtr extends Controller
     public function displayMenu(){
         $res = DB::table('tblmenu as M')
         ->select('M.*', 'category')
-        ->leftJoin('tblcategory AS C', 'C.id', '=', 'M.category_id')    
+        ->leftJoin('tblcategory AS C', 'C.id', '=', 'M.category_id')   
+        ->orderBy('description') 
         ->get();
 
         return $res;
@@ -139,6 +140,11 @@ class CashieringCtr extends Controller
         }
         
         DB::table('tblcashiering')->delete();
+    }
+
+    public function updateStatus()
+    {
+        \Helper::updateMenuStatus();
     }
 
 

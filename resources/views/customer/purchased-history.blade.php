@@ -13,14 +13,14 @@
                     <table class="table table-hover" style="margin-bottom: 25px;">
                     <thead>
                     <tr>
-                    <th>Order #{{$data->order_no}}</th>
+                    <th><h4>Order #{{$data->order_no}}</h4></th>
                     <th></th>
                         @if($data->payment_method)
-                            <th class="text-center">Payment method: </th>
-                            <th class="text-center">{{$data->payment_method}}</th>
+                            <th class="text-center">Payment method: <span></span></th>
+                            <th class="text-center" style="color: #2375BB;">{{$data->payment_method}}</th>
                         @else
-                            <th class="text-center"></th>
                             <th class="text-center"><button class="btn btn-sm btn-success">Pay now ></button></th>
+                            <th class="text-center"><button class="btn btn-sm btn-danger">Cancel</button></th>
                         @endif
                     </tr>
                     </thead>

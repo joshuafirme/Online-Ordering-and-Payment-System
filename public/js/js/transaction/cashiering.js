@@ -133,8 +133,10 @@ $(document).ready(function(){
         success:function(response){
             
           setTimeout(function(){
+            updateStatus();
             $('#tray_table').load('cashiering #tray_table');
             $('#txt_total_amount').load('cashiering #txt_total_amount');
+            $('#menu-cont').load('cashiering #menu-cont');
             $('#txt_change').text('0');
             $('#txt_tendered').val(0);
             clearFields();
@@ -158,6 +160,18 @@ $(document).ready(function(){
         }
       });
   }); 
+
+  updateStatus();
+
+  function updateStatus()
+  {
+    
+    $.ajax({
+      url:"/updateMenuStatus",
+      type:"POST",
+      success:function(){}
+    });
+  }
 
 
   });

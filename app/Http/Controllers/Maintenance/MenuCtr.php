@@ -18,7 +18,7 @@ class MenuCtr extends Controller
     private $module = 'Maintenance';
 
     public function index(){
-
+        \Helper::updateMenuStatus();
         $user = new User;
         $user->isUserAuthorize($this->module);
 
