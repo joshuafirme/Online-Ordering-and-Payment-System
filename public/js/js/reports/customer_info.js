@@ -21,7 +21,8 @@ $(document).ready(function(){
           columns:[    
            {data: 'fullname', name: 'fullname'},   
            {data: 'phone_no', name: 'phone_no'},   
-           {data: 'email', name: 'email'},   
+           {data: 'email', name: 'email'}, 
+           {data: 'total_purchased', name: 'total_purchased'},  
            {data: 'created_at', name: 'created_at'},
           ]
           

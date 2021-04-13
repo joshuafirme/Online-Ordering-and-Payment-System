@@ -41,6 +41,7 @@
                                     <th>Customer Name</th>
                                     <th>Phone Number</th>
                                     <th>Email</th>
+                                    <th>Total purchased</th>
                                     <th>Member Since</th>
                                 </tr>
                             </thead>

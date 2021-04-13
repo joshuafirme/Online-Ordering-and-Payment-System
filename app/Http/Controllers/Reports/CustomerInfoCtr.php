@@ -19,16 +19,31 @@ class CustomerInfoCtr extends Controller
         if(request()->ajax())
         {
             return datatables()->of($this->getCustomer())
+                ->addColumn('total_purchased', function($c)
+                {
+                    $number_of_purchase = $this->getAmountOfPurchase($c->id);
+                    $p = '<span class="text-success">₱'.$number_of_purchase.'</span>';
+                    return $p;
+                })
+                ->rawColumns(['total_purchased'])
                 ->make(true);
         }
 
         return view('reports/customer_info');
     }
 
-    public function getCustomer(){
+    public function getCustomer()
+    {
         return DB::table('tblcustomer')
                 ->select('tblcustomer.*', DB::raw('date(created_at) as created_at'))
                 ->get();
+    }
+
+    public function getAmountOfPurchase($user_id)
+    {
+        return DB::table('tblorders')
+            ->where('user_id', $user_id)
+            ->sum('amount');
     }
     
 }
