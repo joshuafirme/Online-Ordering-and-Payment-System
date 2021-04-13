@@ -42,7 +42,11 @@ class MenuCtr extends Controller
              
                     return $img;
                 })
-                ->rawColumns(['action', 'image'])
+                ->addColumn('price', function($menu)
+                {
+                    return '₱'.$menu->price;
+                })
+                ->rawColumns(['action', 'image', 'price'])
                 ->make(true);
         }
         return view('maintenance/menu',['category' => $this->getCategory()]);

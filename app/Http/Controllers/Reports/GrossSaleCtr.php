@@ -23,6 +23,11 @@ class GrossSaleCtr extends Controller
         if(request()->ajax())
         {
             return datatables()->of($gs)
+                ->addColumn('amount', function($gs)
+                {
+                    return '₱'.$gs->amount;
+                })
+                ->rawColumns(['amount'])
                 ->make(true);
         }
         return view('reports/gross_sale');
