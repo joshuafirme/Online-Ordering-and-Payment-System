@@ -48,7 +48,12 @@ Route::get('/delivery/subtotal-amount/{order_no}', 'Transaction\DeliveryCtr@getO
 Route::get('/delivery/customer-info/{user_id}', 'Transaction\DeliveryCtr@getCustomerInfo_ajax');
 Route::get('/delivery/shipping-info/{user_id}', 'Transaction\DeliveryCtr@getShippingInfo_ajax');
 
-
+/*
+|--------------------------------------------------------------------------
+| Identity Verification
+|--------------------------------------------------------------------------
+*/
+Route::get('/identity-verification', 'IdentityVerificationCtr@index');
 
 
 //GALLERY MAINTENANCE------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -158,6 +163,7 @@ Route::get('menu/category/{category}', 'Customer\HomeCtr@displayMenuByCategory')
 */
 Route::get('profile', 'Customer\ProfileCtr@index');
 Route::post('profile', 'Customer\ProfileCtr@updateInsert');
+Route::post('profile/upload-id', 'Customer\ProfileCtr@uploadID');
 
 /*
 |--------------------------------------------------------------------------

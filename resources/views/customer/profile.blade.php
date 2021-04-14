@@ -191,8 +191,17 @@ h6 {
                               {{ \Session::get('success') }}
                             </div>      
                             @endif
+                            
+                            
                                 <div class="card-block">
-                                    <h6 class="m-b-20 p-b-5 b-b-default f-w-600">Profile Information</h6>
+                                    <h6 class="m-b-20 p-b-5 b-b-default f-w-600">Profile Information
+                                        @if($is_verified==1)
+                                        <span class="badge badge-success" style="background-color: #28A745;">Verified</span>
+                                    @else
+                                        <span class="badge badge-danger">Not Verified</span>
+                                    @endif
+                                    </h6>
+                                    
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <p class="m-b-10 f-w-600">Email</p>
@@ -223,6 +232,12 @@ h6 {
                                         </div>
                                     </div>
                                     <button class="btn btn-sm btn-primary" style="margin-top: 15px;" data-toggle="modal" data-target="#profileModal"><i class="fas fa-edit"></i> Edit</button>
+                                    @if($is_verified==0 || $is_verified==3)
+                                        <button class="btn btn-sm btn-primary" style="margin-top: 15px;" 
+                                        data-toggle="modal" data-target="#identityVerificationModal"><i class="fas fa-user"></i> Identity Verification</button>
+                                    @else
+                                    @endif
+                                    
                                     <ul class="social-link list-unstyled m-t-40 m-b-10">
                                         <li><a href="#!" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="facebook" data-abc="true"><i class="mdi mdi-facebook feather icon-facebook facebook" aria-hidden="true"></i></a></li>
                                         <li><a href="#!" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="twitter" data-abc="true"><i class="mdi mdi-twitter feather icon-twitter twitter" aria-hidden="true"></i></a></li>
@@ -325,10 +340,146 @@ h6 {
   
     </div>
   </div>
+
+  <div class="modal fade" id="identityVerificationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="exampleModalLabel">Identity Verification</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      
+        <div class="modal-body">
+  
+        @if($is_verified==3)
+            <div class="alert alert-warning" role="alert">
+                Your account is now under verification!
+            </div>
+        @else
+        @endif
+  
+          <form action="{{ action('Customer\ProfileCtr@uploadID') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+              <div class="row">
+              
+                <div class="col-md-12">
+                  <p>Upload atleast 1 valid ID</p>
+                </div>
+                
+                @if(count($verification) > 0)
+                @foreach($verification as $data)
+                <div class="col-md-4 mb-3">
+                  <label class="label-small">Select ID Type</label>
+                    <select class="form-control" name="id_type" id="id-type">
+                      <option value="{{ $data->id_type }}" selected>{{ $data->id_type }}</option>
+                      <option value="Senior Citizen ID">Senior Citizen ID</option>
+                      <option value="Senior Citizen ID">PWD ID/Booklet</option>
+                      <option value="Passport">Passport</option>
+                      <option value="Driver's license">Driver's license</option>
+                      <option value="SSS UMID Card">SSS UMID Card</option>
+                      <option value="PhilHealth ID">PhilHealth ID</option>
+                      <option value="TIN">TIN</option>
+                      <option value="Postal ID">Postal ID</option>
+                      <option value="Voter's ID">Voter's ID</option>
+                    </select>
+                  </div> 
+  
+                  <div class="col-md-4 mb-3">
+                    <label class="label-small">ID Number</label>
+                    <input type="text" class="form-control" name="id_number" id="id-number" value="{{ $data->id_number }}" required>
+                  </div>
+  
+                  <div class="col-md-4" style="margin-bottom:50px;">
+                    <label class="label-small">Upload</label>
+                    <input type="file" id="file-valid-id" name="image">
+                  </div>
+  
+                  <div class="col-md-12 m-auto">
+                    <img class="responsive" id="img-valid-id" src="{{ asset('storage/'.$data->image) }}" style="border-style: dashed; border-color: #9E9E9E; width:100%;">
+                  </div>
+  
+                  @endforeach
+                  @else
+                  <div class="col-md-4 mb-3">
+                    <label class="label-small">Select ID Type</label>
+                      <select class="form-control" name="id_type" id="id-type">
+                        <option value="Senior Citizen ID">Senior Citizen ID/Booklet</option>
+                        <option value="PWD ID">PWD ID</option>
+                        <option value="Passport">Passport</option>
+                        <option value="Driver's license">Driver's license</option>
+                        <option value="SSS UMID Card">SSS UMID Card</option>
+                        <option value="PhilHealth ID">PhilHealth ID</option>
+                        <option value="TIN">TIN</option>
+                        <option value="Postal ID">Postal ID</option>
+                        <option value="Voter's ID">Voter's ID</option>
+                      </select>
+                    </div> 
+    
+                    <div class="col-md-4">
+                      <label class="label-small">ID Number</label>
+                      <input type="text" class="form-control" name="id_number" id="id-number" required>
+                    </div>
+    
+                    <div class="col-md-4" style="margin-bottom:50px;">
+                      <label class="label-small">Upload</label>
+                      <input type="file" id="file-valid-id" name="image">
+                    </div>
+    
+                    <div class="col-md-12" style="margin: auto;">
+                      <img class="responsive" id="img-valid-id" 
+                      style="border-style: dashed; border-color: #9E9E9E; background: #fff; width:100%;">
+                    </div>
+                    @endif
+  
+              </div>
+  
+        </div>
+        <div class="modal-footer"> 
+            <button class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
+            @if($is_verified==0)  
+                <button class="btn btn-sm btn-success" id="btn-upload"><i class="fas fa-upload"></i> Upload</button> 
+            @else
+            @endif
+        </form>
+          </div>
+  
+      </div>
+    </div>
+  </div>
+
   <!-- jQuery 2.0.2 -->
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
   <!-- jQuery UI 1.10.3 -->
   <script src="{{asset('js/jquery-ui-1.10.3.min.js')}}" type="text/javascript"></script>
   <!-- Bootstrap -->
   <script src="{{asset('js/bootstrap.min.js')}}" type="text/javascript"></script>
+
+  <script>
+       function readURL(input) {
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        
+        reader.onload = function(e) {
+          $('#img-valid-id').attr('src', e.target.result);
+        }
+        
+        reader.readAsDataURL(input.files[0]); // convert to base64 string
+      }
+    }
+    
+    $("#file-valid-id").change(function() {
+      console.log('upload');
+      readURL(this);
+    });
+
+    function disabledInputs(){
+      $("#id-type").attr('disabled', true);
+      $("#id-number").attr('disabled', true);
+      $("#file-valid-id").attr('disabled', true);
+      $("#btn-upload").attr('disabled', true);
+      $('#verification-info').css('display', 'block');
+    }
+  </script>
 </body>

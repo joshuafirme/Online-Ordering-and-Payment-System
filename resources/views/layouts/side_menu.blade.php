@@ -9,6 +9,7 @@
         $position=Helper::getPosition();
     @endphp
     @if($position=='Admin')
+
     <li class="treeview">
         <a href="#">
             <i class="fa fa-bar-chart-o"></i>
@@ -35,6 +36,12 @@
                 </ul>
             </li>
         </ul>
+    </li>
+
+    <li>
+        <a href="{{ url('/identity-verification') }}">
+            <i class="fa fa-user"></i> <span>Identity Verification</span>
+        </a>
     </li>
 
     <li class="treeview">

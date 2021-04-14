@@ -143,6 +143,7 @@ class CheckoutCtr extends Controller
                 ->update([
                     'municipality' => $data['municipality'],
                     'brgy' => $data['brgy'],
+                    'flr_bldg_blk' => $data['flr_bldg_blk'],
                     'nearest_landmark' => $data['nearest_landmark']
                 ]);
         }else{
@@ -151,6 +152,7 @@ class CheckoutCtr extends Controller
                     'user_id' => Auth::id(),
                     'municipality' => $data['municipality'],
                     'brgy' => $data['brgy'],
+                    'flr_bldg_blk' => $data['flr_bldg_blk'],
                     'nearest_landmark' => $data['nearest_landmark']
                 ]);
         }
