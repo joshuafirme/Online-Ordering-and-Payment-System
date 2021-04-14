@@ -46,7 +46,7 @@
                 <!-- /.sidebar -->
             </aside>
 
-            @yield('dashboard')
+            @yield('content')
 
 
         <!-- jQuery 2.0.2 -->

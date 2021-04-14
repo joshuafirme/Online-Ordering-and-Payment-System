@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('dashboard')
+@section('content')
 
    
    <!-- Right side column. Contains the navbar and content of the page -->
