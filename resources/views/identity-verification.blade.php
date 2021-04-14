@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.reports')
 
 @section('content')
 
@@ -8,12 +8,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Reports
+            Identity Verification
             <small>Control panel</small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">Best Seller</li>
+            <li class="active">Identity Verification</li>
         </ol>
     </section>
 
@@ -32,38 +32,24 @@
         <div class="row">
             <div class="col-xs-12">
                 <div class="box">
-                    <div class="box-header">
-                        <h3 class="box-title">Best Seller</h3>   
-                        
-                        <div class="row">
-                            <div style="margin-top: 5px;">
-                                <div class="col-sm-2">
-                                    <input type="date" class="form-control" id="date_from" value="{{ date('Y-m-d') }}">
-                                </div>
-                                <div> 
-                                    --
-                                </div>
-                                <div class="col-sm-2" style="margin-top: -20px; margin-left: 10px;">
-                                <input type="date" class="form-control" id="date_to" value="{{ date('Y-m-d') }}">
-                                </div> 
-                            </div>  
-                        </div>
-
-                    </div><!-- /.box-header -->
-                    
-            
-                    
                     <div class="box-body table-responsive">
-                        <table id="best-seller-table" class="table table-bordered table-hover">
+                        <h4>For validation</h4>
+
+                        <table id="identity-verification-table" class="table table-bordered table-hover" width="100%">
                             <thead>
                                 <tr>
-                                    <th>Description</th>
-                                    <th>Category</th>
-                                    <th>Number of Purchase</th>
-                                    <th>Order Type</th>
+                                    <th>Fullname</th>   
+                                    <th>Phone Number</th>   
+                                    <th>Email</th>   
+                                    <th>ID Type</th>   
+                                    <th>ID Number</th>        
+                                    <th>Status</th>   
+                                    <th>Action</th> 
                                 </tr>
                             </thead>
                         </table>
+                    
+
                     </div>
                 </div>
             </div>
@@ -72,5 +58,50 @@
 
     </section><!-- /.content -->
 
-
+    <div class="modal fade" id="uploadDetailsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="exampleModalLabel">Identity Verification</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form action="{{ action('IdentityVerificationCtr@approve') }}" method="POST">
+              @csrf
+            
+            <div class="row">
+    
+              <input type="hidden" name="user_id" id="user_id">
+    
+                <div class="col-md-6">
+                    <label class="label-small text-muted" >ID Type</label>
+                    <p id="id-type"></p>
+                </div>
+                
+                <div class="col-md-6">
+                    <label class="label-small text-muted" >ID Number</label>
+                    <p id="id-number"></p>
+                </div>
+    
+                <div class="col-md-12 m-auto">
+                    <img class="responsive" id="img-valid-id" 
+                    style="border-style: dashed; border-color: #9E9E9E; background: #fff; width:100%;">
+                  </div>
+    
+            </div>
+        
+      
+          </div>
+          <div class="modal-footer"> 
+            <button id="btn-decline" class="btn btn-sm btn-danger">Decline</button>
+            <button id="btn-approve" class="btn btn-sm btn-success">Approve</button>
+          </div>
+        </form>
+        </div>
+      </div>
+    </div>
+    
+    
 @endsection

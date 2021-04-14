@@ -232,7 +232,7 @@ h6 {
                                         </div>
                                     </div>
                                     <button class="btn btn-sm btn-primary" style="margin-top: 15px;" data-toggle="modal" data-target="#profileModal"><i class="fas fa-edit"></i> Edit</button>
-                                    @if($is_verified==0 || $is_verified==3)
+                                    @if($is_verified==0 || $is_verified==2)
                                         <button class="btn btn-sm btn-primary" style="margin-top: 15px;" 
                                         data-toggle="modal" data-target="#identityVerificationModal"><i class="fas fa-user"></i> Identity Verification</button>
                                     @else

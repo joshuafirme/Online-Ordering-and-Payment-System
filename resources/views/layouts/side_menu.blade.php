@@ -38,7 +38,7 @@
         </ul>
     </li>
 
-    <li>
+        <li>
         <a href="{{ url('/identity-verification') }}">
             <i class="fa fa-user"></i> <span>Identity Verification</span>
         </a>

@@ -62,5 +62,8 @@
         <script src="{{asset('js/js/reports/customer_info.js')}}"></script>
         <script src="{{asset('js/js/reports/best_seller.js')}}"></script>
 
+        
+        <script src="{{asset('js/js/identity-verification.js')}}" type="text/javascript"></script>
+
     </body>
 </html>
