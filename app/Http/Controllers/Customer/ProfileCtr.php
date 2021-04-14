@@ -11,7 +11,10 @@ class ProfileCtr extends Controller
     public function index()
     {
         if(Auth::check()){
-            return view('customer.profile');
+            return view('customer.profile', [
+                'verification' => $this->identityVerification(),
+                'is_verified' => $this->isAccountVerified()
+                ]);
         }
         else{
             return Redirect::to('/customer/customer-login'); 
@@ -61,5 +64,55 @@ class ProfileCtr extends Controller
                 ->where('user_id', Auth::id())->get();
 
         return $row->count() > 0 ? true : false;
+    }
+
+    public function identityVerification()
+    {
+        return DB::table('tbl_identity_verification')->where('user_id', Auth::id())->get();
+    }
+
+    public function isAccountVerified()
+    {
+        return DB::table('tblcustomer')->where('id', Auth::id())->value('is_verified');
+    }
+
+    public function uploadID()
+    {
+        $data = Input::all();
+
+        DB::table('tblcustomer')
+            ->where('id', Auth::id())
+            ->update([
+                'is_verified' => 3
+            ]);
+
+            DB::table('tbl_identity_verification')
+            ->insert([
+                'user_id' => Auth::id(),
+                'id_type' => $data['id_type'],
+                'id_number' => $data['id_number']
+            ]);
+
+        if(request()->hasFile('image')){
+            request()->validate([
+                'image' => 'file|image|max:3000',
+            ]);
+        }
+
+        $this->storeImage(Auth::id());
+
+        return redirect('/profile')->with('success', 'You have successfully uploaded your ID');
+    }
+
+    public function storeImage($user_id)
+    {
+        if(request()->has('image'))
+        {
+            DB::table('tbl_identity_verification')
+            ->where('user_id', $user_id)
+            ->update([
+                'image' => request()->image->store('customer-id-uploads', 'public'),
+            ]);
+        }
     }
 }

@@ -158,6 +158,7 @@ Route::get('menu/category/{category}', 'Customer\HomeCtr@displayMenuByCategory')
 */
 Route::get('profile', 'Customer\ProfileCtr@index');
 Route::post('profile', 'Customer\ProfileCtr@updateInsert');
+Route::post('profile/upload-id', 'Customer\ProfileCtr@uploadID');
 
 /*
 |--------------------------------------------------------------------------
