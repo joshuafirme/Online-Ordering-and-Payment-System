@@ -56,6 +56,7 @@ Route::get('/delivery/shipping-info/{user_id}', 'Transaction\DeliveryCtr@getShip
 Route::get('/identity-verification', 'IdentityVerificationCtr@index');
 Route::get('/showUploadDetails/{user_id}', 'IdentityVerificationCtr@showUploadDetails');
 Route::post('/identity-verification/approve', 'IdentityVerificationCtr@approve');
+Route::post('/identity-verification/decline', 'IdentityVerificationCtr@decline');
 
 
 //GALLERY MAINTENANCE------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

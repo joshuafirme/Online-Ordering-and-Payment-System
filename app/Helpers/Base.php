@@ -123,4 +123,10 @@ class Base
          'status' => 'Available'
       ]);    
    }
+
+   public static function isVerified()
+   {
+      $res=DB::table('tblcustomer')->where('id', Auth::id())->value('is_verified'); 
+      return $res==1 ? true : false;
+   }
 }
