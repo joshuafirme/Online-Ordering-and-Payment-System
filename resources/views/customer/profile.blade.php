@@ -353,7 +353,7 @@ h6 {
       
         <div class="modal-body">
   
-        @if($is_verified==3)
+        @if($is_verified==2)
             <div class="alert alert-warning" role="alert">
                 Your account is now under verification!
             </div>

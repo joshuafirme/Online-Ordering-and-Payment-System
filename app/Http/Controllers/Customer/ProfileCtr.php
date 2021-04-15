@@ -83,7 +83,7 @@ class ProfileCtr extends Controller
         DB::table('tblcustomer')
             ->where('id', Auth::id())
             ->update([
-                'is_verified' => 3
+                'is_verified' => 2
             ]);
 
             DB::table('tbl_identity_verification')
