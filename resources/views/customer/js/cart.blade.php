@@ -47,16 +47,31 @@
 
     function addToCart(menu_id, amount){
         $.ajax({
-            url:"/cart/add",
-            type:"POST",
-            data:{
-                menu_id:menu_id,
-                amount:amount
-            },
-            success:function(response){
-                $('#confirmationModal').modal('toggle');
-            }
+          url:"/transaction/isQtyAvailable/"+menu_id+"/"+1,
+                type:"GET",
+                success:function(response){
+                    if(response==1)
+                    {
+                      alert('Not enough stock!');
+                    }
+                    else
+                    {
+                      $.ajax({
+                        url:"/cart/add",
+                        type:"POST",
+                        data:{
+                            menu_id:menu_id,
+                            amount:amount
+                        },
+                        success:function(response){
+                            $('#confirmationModal').modal('toggle');
+                        }
+                      });
+                    }
+                }
         });
-    }    
+       
+    }  
+
 
 </script>
