@@ -22,7 +22,7 @@ class PurchasedHistoryCtr extends Controller
 
     public function getCustomerOrders()
     {
-       $order = DB::table('tblorders')->where('user_id', Auth::id())->orderBy('created_at')->get();
+       $order = DB::table('tblorders')->where('user_id', Auth::id())->orderBy('order_no', 'desc')->get();
        return $order->unique('order_no');
     }
 }
