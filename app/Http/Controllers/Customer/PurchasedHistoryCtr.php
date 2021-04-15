@@ -25,4 +25,10 @@ class PurchasedHistoryCtr extends Controller
        $order = DB::table('tblorders')->where('user_id', Auth::id())->orderBy('order_no', 'desc')->get();
        return $order->unique('order_no');
     }
+
+    public function sessionOrderNo($order_no)
+    {
+        \Session::put('ORDER_NO', $order_no);
+        return Helper::getToken($order_no); 
+    }
 }
