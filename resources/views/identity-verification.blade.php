@@ -67,13 +67,9 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body">
-            <form action="{{ action('IdentityVerificationCtr@approve') }}" method="POST">
-              @csrf
-            
+          <div class="modal-body">        
             <div class="row">
     
-              <input type="hidden" name="user_id" id="user_id">
     
                 <div class="col-md-6">
                     <label class="label-small text-muted" >ID Type</label>
@@ -89,16 +85,23 @@
                     <img class="responsive" id="img-valid-id" 
                     style="border-style: dashed; border-color: #9E9E9E; background: #fff; width:100%;">
                   </div>
-    
-            </div>
-        
-      
+            </div>    
           </div>
           <div class="modal-footer"> 
-            <button id="btn-decline" class="btn btn-sm btn-danger">Decline</button>
-            <button id="btn-approve" class="btn btn-sm btn-success">Approve</button>
+            
+            <form action="{{ action('IdentityVerificationCtr@decline') }}" method="POST">
+                @csrf
+                <input type="hidden" name="user_id">
+              <button type="submit" class="btn btn-sm btn-danger">Decline</button>
+            </form>
+
+            <form action="{{ action('IdentityVerificationCtr@approve') }}" method="POST">
+              @csrf
+              <input type="hidden" name="user_id">
+              <button type="submit" class="btn btn-sm btn-success">Approve</button>
+            </form>
+
           </div>
-        </form>
         </div>
       </div>
     </div>

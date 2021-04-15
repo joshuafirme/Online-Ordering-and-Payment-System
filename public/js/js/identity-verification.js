@@ -47,7 +47,7 @@ $(document).ready(function(){
         success:function(data){
               console.log(data);
          // isVerified(cust_id);
-            $('#user_id').val(data[0].user_id);
+            $('input[name="user_id"]').val(data[0].user_id);
             $('#id-type').text(data[0].id_type);
             $('#id-number').text(data[0].id_number);
 

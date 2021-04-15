@@ -63,7 +63,12 @@ class IdentityVerificationCtr extends Controller
     public function decline(Request $request)
     {
         DB::table('tblcustomer')
-                ->where('id', $request->input('user_id'))
+        ->where('id', $request->input('user_id'))
+        ->update([
+            'is_verified' => 0
+        ]);
+        DB::table('tbl_identity_verification')
+                ->where('user_id', $request->input('user_id'))
                 ->delete();
         return \Redirect::to('/identity-verification')->with('success', 'Customer was successfully declined!'); 
     }
