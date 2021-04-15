@@ -75,6 +75,7 @@ class LoginCtr extends Controller
                     'username' => $email,
                     'fullname' => $name,
                     'email' => $email,
+                    'is_verified' => 0,
                     'created_at' => date('Y-m-d')
                 ]);
             

@@ -30,6 +30,7 @@ class SignupCtr extends Controller
             'fullname' => $data['fullname'],
             'phone_no' => $data['phone_no'],
             'password' => \Hash::make($data['password']),
+            'is_verified' => 0,
             'created_at' => date('Y-m-d h:m:s')
         ]);
 
