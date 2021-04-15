@@ -13,8 +13,16 @@ class LoginCtr extends Controller
 {
     public function index()
     {
-        Auth::logout();
-        return view('customer/login');
+        if(Auth::check())
+        {
+            return redirect('/'); 
+        }
+        else
+        {
+            return view('customer/login');
+        }
+  //      Auth::logout();
+  //      return view('customer/login');
     }
 
     public function login()
@@ -63,21 +71,23 @@ class LoginCtr extends Controller
         session()->put('customer-id', $id);
         if($account->count() > 0)
         {
-            $this->putToSession($email, $avatar);
+           // $this->putToSession($email, $avatar);
             return redirect('/')->send();
         }
         else
         {
-            $this->putToSession($email, $avatar);
+           // $this->putToSession($email, $avatar);
 
-            DB::table('tblcustomer')
-                ->insert([
+            $user_id = DB::table('tblcustomer')
+                ->insertGetId([
                     'username' => $email,
                     'fullname' => $name,
                     'email' => $email,
                     'is_verified' => 0,
                     'created_at' => date('Y-m-d')
                 ]);
+
+            session()->put('customer-id', $user_id);
             
             return redirect('/')->send();
         }
