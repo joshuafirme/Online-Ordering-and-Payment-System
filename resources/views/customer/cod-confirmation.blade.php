@@ -19,7 +19,7 @@
                                     <div class="alert alert-success" role="alert">
                                         <p class="text-center m-0">Order Recieved</p>
                                         <p class="text-center m-0">Please have this amount ready on delivery</p>
-                                        <h4 class="text-success text-center">₱{{ number_format(\Session::get('TOTAL_CHECKOUT'),2,'.',',') }}</h4>
+                                        <h4 class="text-success text-center">₱{{ Helper::getPaymentTotalAmount() }}</h4>
                                         <p class="text-center">Back to <a href="{{ url('/') }}">homepage</a></p>
                                       </div>
      

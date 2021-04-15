@@ -124,6 +124,33 @@ class Base
       ]);    
    }
 
+   public static function getToken($order_no)
+    {
+        return DB::table('tblorder_token')
+                ->where('order_no', $order_no)
+                ->value('token');
+    }
+
+    
+    public static function getPaymentTotalAmount()
+    {
+      $shipping_info = self::getShippingInfo()!=null ? self::getShippingInfo()->municipality : "";
+      if($shipping_info=="Balayan")
+      {
+          $s_fee = 50;
+      }
+      elseif($shipping_info=="Tuy"){
+         $s_fee = 100;
+      }else{
+         $s_fee = 50;
+      }
+        $subtotal=DB::table('tblorders')
+               ->where('order_no', \Session::get('ORDER_NO'))
+               ->sum('amount'); 
+         
+         return $subtotal + $s_fee;
+    }
+
    public static function isVerified()
    {
       $res=DB::table('tblcustomer')->where('id', Auth::id())->value('is_verified'); 

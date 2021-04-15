@@ -6,7 +6,7 @@
                     <div class="alert alert-danger alert-dismissible">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                     <h5><i class="icon fa fa-exclamation-circle"></i> </h5>
-                    {{ \Session::get('invalid') }}
+                    {{ \Session::get('invalid') }}You need to verify your account first before proceeding to COD. Please go to your <a href="/profile">profile</a> and verify your account.
                     </div>      
                     @endif
                     <div class="row">
@@ -17,7 +17,7 @@
                                 <a href="/cod" class="btn btn-sm btn-primary" style="width: 200px;">Cash on delivery</a>
 
                                 <p style="margin-top: 40px;">Total Amount to be paid</p>
-                                      <h3 class="text-success">₱{{ number_format(\Session::get('TOTAL_CHECKOUT'),2,'.',',') }}</h3>
+                                      <h3 class="text-success">₱{{ Helper::getPaymentTotalAmount() }}</h3>
                             </div>
                         </div>
                     </div>

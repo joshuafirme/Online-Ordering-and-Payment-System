@@ -42,7 +42,8 @@
                             <th class="text-center">Payment method: <span></span></th>
                             <th class="text-center" style="color: #2375BB;">{{$data->payment_method}}</th>
                         @else
-                            <th class="text-center"><button class="btn btn-sm btn-success">Pay now ></button></th>
+                            <th class="text-center"><button class="btn btn-sm btn-success" 
+                                onclick="putSession({{$data->order_no}})">Pay now ></button></th>
                             <th class="text-center"><button class="btn btn-sm btn-danger">Cancel</button></th>
                         @endif
                     </tr>
@@ -98,6 +99,17 @@
           }
          });
  
+         function putSession(order_no)
+         { 
+            $.ajax({
+                url:"/sessionOrderNo/"+order_no,
+                type:"GET",
+                    success:function(token)
+                    {
+                        window.location.href = "/payment/token="+token;
+                    }  
+            });
+         }
     
     </script>
 </body>

@@ -45,12 +45,7 @@ class PaymentCtr extends Controller
         return $row->count()>0 ? true : false;
     }
 
-    public function getToken()
-    {
-        return DB::table('tblorder_token')
-                ->where('order_no', \Session::get('ORDER_NO'))
-                ->value('token');
-    }
+    
 
     public function gcashPayment()
     {     
@@ -59,7 +54,7 @@ class PaymentCtr extends Controller
             if(empty($source_ss)) {
             $source = Paymongo::source()->create([
                 'type' => 'gcash',
-                'amount' => \Session::get('TOTAL_CHECKOUT'),
+                'amount' => \Helper::getPaymentTotalAmount(),
                 'currency' => 'PHP',
                 'redirect' => [
                     'success' => route('gcashpayment'),
@@ -121,7 +116,6 @@ class PaymentCtr extends Controller
         if(Helper::isVerified())
         {
             DB::table('tblorders')
-            ->where('user_id', Auth::id())
             ->where('order_no',  \Session::get('ORDER_NO'))
             ->update([
                 'payment_method' => 'COD',
@@ -144,7 +138,8 @@ class PaymentCtr extends Controller
         }
         else
         {
-            return redirect('/payment/token='.$this->getToken())->with('invalid', 'You need to verify your account first before proceeding to COD')->send();
+            return redirect('/payment/token='. Helper::getToken(\Session::get('ORDER_NO')))
+            ->with('invalid', '')->send();
         }
        
     }
@@ -164,6 +159,7 @@ class PaymentCtr extends Controller
                 'updated_at' => date('Y-m-d h:m:s')
             ]);
     }
+
 
     public function getOrderDetails($order_no)
     {
