@@ -3,11 +3,11 @@
         
             <a href="{{url('/')}}" class="btn btn-sm"><i class="fas fa-arrow-left fa-2x"></i></a>
 
-            <div class="row" id="cart-cont">
+            <div class="row" id="cart-cont" style="margin: 5px;">
          
 
                 <div class="col-sm-12 col-md-10 col-md-offset-1" style="margin-bottom: 15px;"><h3>Purchased History</h3></div>
-
+                @if($orders->count()>0)
                 @foreach ($orders as $data)
                 <div class="col-sm-12 col-md-10 col-md-offset-1">
                     <table class="table table-hover" style="margin-bottom: 75px;">
@@ -85,6 +85,13 @@
              
                     </div>
                 @endforeach
+                @else
+                <div class="col-sm-12 col-md-10 col-md-offset-1">
+                    <div class="alert alert-danger" style="margin-top: 20px;" role="alert">
+                        You have no purchased yet.
+                    </div>
+                </div>
+                @endif
           
 
                     
