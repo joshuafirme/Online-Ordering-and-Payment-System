@@ -33,7 +33,7 @@
                             <button class="btn btn-sm" id="btn-dec" menu-id="{{ $data->menu_id }}" qty="{{ $data->qty - 1 }}"
                                 onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"><i class="fas fa-minus"></i></button>
   
-                              <input class="quantity" min="0" id="item-qty" name="quantity" type="number" style="width: 40px;" value="{{ $data->qty }}" readonly>
+                              <input class="quantity" min="0" id="item-qty{{$data->menu_id}}" name="quantity" type="number" style="width: 40px;" value="{{ $data->qty }}" readonly>
   
                               <button class="btn btn-sm" id="btn-inc" menu-id="{{ $data->menu_id }}" qty="{{ $data->qty + 1 }}"
                                 onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"><i class="fas fa-plus"></i></button>
@@ -124,7 +124,22 @@
         $(document).on('click', '#btn-inc', function(){
             let menu_id = $(this).attr('menu-id');
             let qty = $(this).attr('qty');
-            increaseQty(menu_id, qty);
+            $.ajax({
+            url:"/transaction/isQtyAvailable/"+menu_id+"/"+qty,
+                    type:"GET",
+                    success:function(response){
+                        if(response==1)
+                        {
+                            $('#item-qty'+menu_id).val(--qty);
+                            alert('Not enough stock!');
+                        }
+                        else
+                        {
+                            increaseQty(menu_id, qty);
+                        }
+                    }
+            });
+         
             getSubTotal();
         });
     
