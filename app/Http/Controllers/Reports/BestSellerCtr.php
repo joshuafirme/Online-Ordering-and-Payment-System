@@ -55,6 +55,6 @@ class BestSellerCtr extends Controller
             ->whereBetween(DB::raw('DATE(S.created_at)'), [$date_from, $date_to])
             ->leftJoin('tblmenu as M', 'M.id', '=', 'S.menu_id')
             ->where('M.description', $desc)
-            ->sum('qty');
+            ->sum('S.qty');
     }
 }
