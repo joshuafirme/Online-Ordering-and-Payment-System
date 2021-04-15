@@ -23,8 +23,12 @@
     .login-form form {
     	margin-bottom: 15px;
         background: #f7f7f7;
-        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+        box-shadow: 1px 10px 10px 10px rgba(0, 0, 0, 0.3);
         padding: 30px;
+        border-radius: 6px;
+        text-align: center;
+        margin-left: 100%;
+        margin-right: -110%;
     }
     .login-form h2 {
         margin: 0 0 15px;
@@ -62,7 +66,7 @@
     button,a{
         border-radius: 50px !important;
     }
-    body {
+    bosdy {
     background-image: url("/img/davids_grill_logo.jpg");
      /* Full height */
     height: 100%;
