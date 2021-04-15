@@ -24,7 +24,8 @@ $(document).ready(function()
             {data: 'order_no', name: 'order_no'},
             {data: 'fullname', name: 'fullname'},
             {data: 'phone_no', name: 'phone_no'},
-            {data: 'email', name: 'email'},    
+            {data: 'email', name: 'email'},   
+            {data: 'payment_method', name: 'payment_method'},     
             {data: 'created_at', name: 'created_at'},
             {data: 'action', name: 'action',orderable: false},
             ]
@@ -50,6 +51,7 @@ $(document).ready(function()
             {data: 'fullname', name: 'fullname'},
             {data: 'phone_no', name: 'phone_no'},
             {data: 'email', name: 'email'},    
+            {data: 'payment_method', name: 'payment_method'},     
             {data: 'created_at', name: 'created_at'},
             {data: 'action', name: 'action',orderable: false},
             ]
@@ -74,7 +76,7 @@ $(document).ready(function()
             {data: 'order_no', name: 'order_no'},
             {data: 'fullname', name: 'fullname'},
             {data: 'phone_no', name: 'phone_no'},
-            {data: 'email', name: 'email'},    
+            {data: 'email', name: 'email'},        
             {data: 'created_at', name: 'created_at'},
             {data: 'action', name: 'action',orderable: false},
             ]
@@ -99,7 +101,8 @@ $(document).ready(function()
             {data: 'order_no', name: 'order_no'},
             {data: 'fullname', name: 'fullname'},
             {data: 'phone_no', name: 'phone_no'},
-            {data: 'email', name: 'email'},    
+            {data: 'email', name: 'email'},  
+            {data: 'payment_method', name: 'payment_method'},       
             {data: 'created_at', name: 'created_at'},
             {data: 'action', name: 'action',orderable: false},
             ]
@@ -131,7 +134,8 @@ $(document).ready(function()
             {data: 'order_no', name: 'order_no'},
             {data: 'fullname', name: 'fullname'},
             {data: 'phone_no', name: 'phone_no'},
-            {data: 'email', name: 'email'},    
+            {data: 'email', name: 'email'},  
+            {data: 'payment_method', name: 'payment_method'},       
             {data: 'created_at', name: 'created_at'},
             {data: 'updated_at', name: 'updated_at'},
             {data: 'action', name: 'action',orderable: false},

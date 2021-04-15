@@ -42,6 +42,7 @@
                             <th>Customer Name</th>                                                           
                             <th>Phone No</th>        
                             <th>Email</th>
+                            <th>Payment method</th>
                             <th>Date time placed</th>
                             <th>Action</th>
                           
