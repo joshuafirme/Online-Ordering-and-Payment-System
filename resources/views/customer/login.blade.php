@@ -27,8 +27,8 @@
         padding: 30px;
         border-radius: 6px;
         text-align: center;
-        margin-left: 100%;
-        margin-right: -110%;
+        margin-left: 110%;
+        margin-right: -120%;
     }
     .login-form h2 {
         margin: 0 0 15px;
@@ -114,7 +114,7 @@
         
     <div class="form-group">
         <a href="{{ url('user-login/google') }}" class="btn btn-primary btn-block btn-google">Google Log in</a>
-        <a class="signup-link" href="{{ url('/signup') }}">Don't have an account? <span >Sign up</span></a>
+        <a class="signup-link" href="{{ url('/signup') }}">Don't have an account? <span >Sign up now.</span></a>
     </div>  
     </form>
 </div>
