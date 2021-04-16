@@ -30,6 +30,11 @@ class Base
       return DB::table('tblshipping_address')->where('user_id', Auth::id())->first();
    }
 
+   public static function countDeliveryNotif()
+   {
+      return DB::table('tblorders')->distinct('order_no')->whereIn('status', [0, 1, 2])->count();
+   }
+
    public static function countPending()
    {
       return DB::table('tblorders')->distinct('order_no')->where('status', 1)->count();

@@ -27,8 +27,6 @@ class DeliveryCtr extends Controller
                     $button = ' <a class="btn btn-sm btn-primary btn-show-order" order-no="'. $o->order_no .'" user-id="'. $o->user_id .'" 
                     data-toggle="modal" data-target="#orderModal">Show order</a>';
 
-                //    $button .= ' <a class="btn btn-sm btn-success btn-prepare-order" order-no="'. $o->order_no .'" user-id="'. $o->user_id .'">Prepare</a>';
-
                     $button .= ' <a class="btn btn-sm btn-danger btn-cancel-order" order-no="'. $o->order_no .'" user-id="'. $o->user_id .'" 
                     data-toggle="modal" data-target="#cancelModal">Cancel</a>';
        
@@ -60,11 +58,6 @@ class DeliveryCtr extends Controller
                 ->addColumn('action', function($o){
                     $button = ' <a class="btn btn-sm btn-primary btn-show-order" order-no="'. $o->order_no .'" user-id="'. $o->user_id .'" 
                     data-toggle="modal" data-target="#orderModal">Show order</a>';
-
-                 //   $button .= ' <a class="btn btn-sm btn-success btn-prepare-order" order-no="'. $o->order_no .'" user-id="'. $o->user_id .'">Prepare</a>';
-
-                 //   $button .= ' <a class="btn btn-sm btn-danger btn-cancel-order" order-no="'. $o->order_no .'" user-id="'. $o->user_id .'" 
-                 //   data-toggle="modal" data-target="#cancelModal">Cancel</a>';
        
                     return $button;
                 })
@@ -94,11 +87,6 @@ class DeliveryCtr extends Controller
                 ->addColumn('action', function($o){
                     $button = ' <a class="btn btn-sm btn-primary btn-show-order" order-no="'. $o->order_no .'" user-id="'. $o->user_id .'" 
                     data-toggle="modal" data-target="#orderModal">Show order</a>';
-
-                 //   $button .= ' <a class="btn btn-sm btn-success btn-prepare-order" order-no="'. $o->order_no .'" user-id="'. $o->user_id .'">Prepare</a>';
-
-                 //   $button .= ' <a class="btn btn-sm btn-danger btn-cancel-order" order-no="'. $o->order_no .'" user-id="'. $o->user_id .'" 
-                 //   data-toggle="modal" data-target="#cancelModal">Cancel</a>';
        
                     return $button;
                 })
@@ -128,11 +116,6 @@ class DeliveryCtr extends Controller
                 ->addColumn('action', function($o){
                     $button = ' <a class="btn btn-sm btn-primary btn-show-order" order-no="'. $o->order_no .'" user-id="'. $o->user_id .'" 
                     data-toggle="modal" data-target="#orderModal">Show order</a>';
-
-                 //   $button .= ' <a class="btn btn-sm btn-success btn-prepare-order" order-no="'. $o->order_no .'" user-id="'. $o->user_id .'">Prepare</a>';
-
-                 //   $button .= ' <a class="btn btn-sm btn-danger btn-cancel-order" order-no="'. $o->order_no .'" user-id="'. $o->user_id .'" 
-                 //   data-toggle="modal" data-target="#cancelModal">Cancel</a>';
        
                     return $button;
                 })
@@ -163,11 +146,6 @@ class DeliveryCtr extends Controller
                 ->addColumn('action', function($o){
                     $button = ' <a class="btn btn-sm btn-primary btn-show-order" order-no="'. $o->order_no .'" user-id="'. $o->user_id .'" 
                     data-toggle="modal" data-target="#orderModal">Show order</a>';
-
-                 //   $button .= ' <a class="btn btn-sm btn-success btn-prepare-order" order-no="'. $o->order_no .'" user-id="'. $o->user_id .'">Prepare</a>';
-
-                 //   $button .= ' <a class="btn btn-sm btn-danger btn-cancel-order" order-no="'. $o->order_no .'" user-id="'. $o->user_id .'" 
-                 //   data-toggle="modal" data-target="#cancelModal">Cancel</a>';
        
                     return $button;
                 })

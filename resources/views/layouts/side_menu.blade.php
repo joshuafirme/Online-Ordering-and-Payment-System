@@ -13,7 +13,7 @@
     <li class="treeview">
         <a href="#">
             <i class="fa fa-bar-chart-o"></i>
-            <span>Transaction</span>
+            <span>Transaction <span class="badge badge-success">{{ \Helper::countDeliveryNotif()!=0 ? \Helper::countDeliveryNotif() : "" }}</span></span>
             <i class="fa fa-angle-left pull-right"></i>
         </a>
         <ul class="treeview-menu">
