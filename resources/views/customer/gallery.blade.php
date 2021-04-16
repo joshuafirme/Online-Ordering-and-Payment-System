@@ -8,22 +8,25 @@
      <link href="{{asset('css/font-awesome.min.css')}}" rel="stylesheet" type="text/css" />
      <!-- Ionicons -->
      <link href="{{asset('css/ionicons.min.css')}}" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="{{asset('css/main.css')}}">
+    <link rel="stylesheet" href="{{asset('css/main2.css')}}">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Chettan+2:wght@600;800&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/332a215f17.js" crossorigin="anonymous"></script>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/332a215f17.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap" rel="stylesheet">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    
 </head>
 <body>
 
     <div class ="beefandpork">
         <div class="heading">
             <h1>David's Grill Restaurant</h1>
-            <h2>&mdash; Gallery &mdash;</h2>
         </div>
 
-    </div>
+                </div>
+                @include('customer.layouts.topnav')
+                </div>
+            </div>
 
     <a href="{{url('/')}}" class="btn btn-sm" style="color: #005B96; margin:25px;"><i class="fas fa-arrow-left fa-2x"></i></a>
 

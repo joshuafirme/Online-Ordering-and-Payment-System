@@ -26,5 +26,6 @@
         </div>
 
                 </div>
+                @include('customer.layouts.topnav')
                 </div>
             </div>

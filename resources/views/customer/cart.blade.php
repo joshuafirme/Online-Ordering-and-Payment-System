@@ -6,6 +6,8 @@
             <div class="row" id="cart-cont">
                 <div class="col-sm-12 col-md-10 col-md-offset-1">
                     <h4 class="mb-4">Cart (<span>{{ $cartCount }}</span> items)</h4>
+                    
+                    @if(count($cart) > 0)
                     <table class="table table-hover">
                     <thead>
                     <tr>
@@ -17,7 +19,6 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @if(count($cart) > 0)
                     @foreach ($cart as $data)
                     <tr>
                         <td class="col-md-6">
@@ -160,7 +161,7 @@
         $(document).on('click', '#btn-dec', function(){
             let menu_id = $(this).attr('menu-id');
             let qty = $(this).attr('qty');
-            decreaseQty(menu_id, qty);
+            decreaseQty(menu_id, q+ty);
             getSubTotal();
         });
     
