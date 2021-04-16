@@ -27,7 +27,7 @@
         <div class="small-box bg-aqua">
             <div class="inner">
                 <h3>
-                    150
+                    {{ $newOrders }}
                 </h3>
                 <p>
                     New Orders
@@ -45,7 +45,7 @@
         <div class="small-box bg-green">
             <div class="inner">
                 <h3>
-                    53
+                    {{ $walkInSales }}
                 </h3>
                 <p>
                     Total walk-in sales totay
@@ -63,7 +63,7 @@
         <div class="small-box bg-yellow">
             <div class="inner">
                 <h3>
-                    44
+                    {{ $registeredCustomer }}
                 </h3>
                 <p>
                     User Registrations
@@ -81,7 +81,7 @@
         <div class="small-box bg-red">
             <div class="inner">
                 <h3>
-                    65
+                    {{ $onlineSales }}
                 </h3>
                 <p>
                     Total online sales totay
