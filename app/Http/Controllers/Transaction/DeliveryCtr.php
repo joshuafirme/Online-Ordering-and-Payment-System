@@ -159,7 +159,7 @@ class DeliveryCtr extends Controller
     {
         if(request()->ajax())
         {
-            return datatables()->of($this->getPreparingOrders())
+            return datatables()->of($this->getCancelledOrders())
                 ->addColumn('action', function($o){
                     $button = ' <a class="btn btn-sm btn-primary btn-show-order" order-no="'. $o->order_no .'" user-id="'. $o->user_id .'" 
                     data-toggle="modal" data-target="#orderModal">Show order</a>';
