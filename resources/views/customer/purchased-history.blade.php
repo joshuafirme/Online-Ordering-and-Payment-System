@@ -4,6 +4,17 @@
             <a href="{{url('/')}}" class="btn btn-sm"><i class="fas fa-arrow-left fa-2x"></i></a>
 
             <div class="row" id="cart-cont" style="margin: 5px;">
+
+                <div class="col-sm-12 col-md-10 col-md-offset-1" style="margin-bottom: 15px;">
+                    @if(\Session::has('success'))
+                    <div class="alert alert-success alert-dismissible">
+                      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                      <h5><i class="icon fa fa-check-circle"></i> </h5>
+                      {{ \Session::get('success') }}
+                    </div>      
+                    @endif
+                </div>
+
          
 
                 <div class="col-sm-12 col-md-10 col-md-offset-1" style="margin-bottom: 15px;"><h3>Purchased History</h3></div>
@@ -41,10 +52,17 @@
                         @if($data->payment_method)
                             <th class="text-center">Payment method: <span></span></th>
                             <th class="text-center" style="color: #2375BB;">{{$data->payment_method}}</th>
-                        @else
-                            <th class="text-center"><button class="btn btn-sm btn-success" 
-                                onclick="putSession({{$data->order_no}})">Pay now ></button></th>
-                            <th class="text-center"><button class="btn btn-sm btn-danger">Cancel</button></th>
+                        @elseif($data->status!=-1)
+                        <th class="text-center">
+                            <button class="btn btn-sm btn-success" 
+                                onclick="putSession({{$data->order_no}})">Pay now >
+                            </button>
+                        </th>
+                        <th class="text-center">
+                            <button class="btn btn-sm btn-danger" id="btn-cancel" order-no="{{$data->order_no}}"
+                                data-toggle="modal" data-target="#cancelModal">Cancel
+                            </button>
+                        </th>
                         @endif
                     </tr>
                     </thead>
@@ -97,8 +115,32 @@
                     
             </div>
 
+     <!--Confirm cancel Modal-->
+  <div class="modal fade" id="cancelModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Confirmation</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+        <form action="{{ action('Customer\PurchasedHistoryCtr@cancelOrder') }}" method="POST">
+            @csrf
+            <input type="hidden" name="order_no">
+            <p id="confirm-msg"></p>
+            </div>
+            <div class="modal-footer">
+            <button class="btn btn-sm btn-outline-dark" type="submit">Yes</button>
+            <button class="btn btn-sm btn-danger" data-dismiss="modal">Cancel</button>
+        </form>
+        </div>
+      </div>
     </div>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script>
         $.ajaxSetup({
             headers: {
@@ -117,6 +159,12 @@
                     }  
             });
          }
+
+         $(document).on('click', '#btn-cancel', function(){
+            let order_no = $(this).attr('order-no');
+            $('#confirm-msg').text("Are you sure do you want to cancel order #"+order_no);
+            $('input[name="order_no"]').val(order_no);
+        });
     
     </script>
 </body>

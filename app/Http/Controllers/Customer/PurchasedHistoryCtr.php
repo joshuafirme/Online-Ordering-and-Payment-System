@@ -22,8 +22,21 @@ class PurchasedHistoryCtr extends Controller
 
     public function getCustomerOrders()
     {
-       $order = DB::table('tblorders')->where('user_id', Auth::id())->orderBy('order_no', 'desc')->get();
+       $order = DB::table('tblorders')
+        ->where('user_id', Auth::id())
+        ->orderBy('order_no', 'desc')->get();
        return $order->unique('order_no');
+    }
+
+    public function cancelOrder(Request $data)
+    {
+        DB::table('tblorders')
+            ->where('order_no', $data['order_no'])
+            ->update([
+                'status' => -1
+            ]);
+
+        return Redirect::to('/purchased-history')->with('success', 'Order #'.$data['order_no'].' was successfully cancelled.'); 
     }
 
     public function sessionOrderNo($order_no)

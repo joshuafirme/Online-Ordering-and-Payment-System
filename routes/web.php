@@ -175,6 +175,7 @@ Route::post('profile/upload-id', 'Customer\ProfileCtr@uploadID');
 */
 Route::get('/purchased-history', 'Customer\PurchasedHistoryCtr@index');
 Route::get('/sessionOrderNo/{order_no}', 'Customer\PurchasedHistoryCtr@sessionOrderNo');
+Route::post('/purchased-history/cancel-order', 'Customer\PurchasedHistoryCtr@cancelOrder');
 
 /*
 |--------------------------------------------------------------------------
