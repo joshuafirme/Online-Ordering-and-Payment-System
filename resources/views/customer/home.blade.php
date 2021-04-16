@@ -427,12 +427,12 @@
         $('.desc-loading4').removeClass('loading');
         $('.desc-loading4 button').css('display','block');
         $('.desc-loading4 a').css('display','block');
-      },1300);
+      },1000);
 
       setTimeout(function(){
         $('.img-cont').removeClass('loading');
         $('.img').css('display','block');
-      },1800);
+      },1500);
     }   
   </script>
 @include('customer.js.cart')
