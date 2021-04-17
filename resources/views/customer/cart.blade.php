@@ -100,9 +100,9 @@
           }
          });
 
-         getSubTotal();
+         validateSubTotal();
 
-         function getSubTotal(){
+         function validateSubTotal(){
             $.ajax({
                 url:"/cart/subtotal",
                 type:"GET",
@@ -125,6 +125,7 @@
         $(document).on('click', '#btn-inc', function(){
             let menu_id = $(this).attr('menu-id');
             let qty = $(this).attr('qty');
+            
             $.ajax({
             url:"/transaction/isQtyAvailable/"+menu_id+"/"+qty,
                     type:"GET",
@@ -137,11 +138,11 @@
                         else
                         {
                             increaseQty(menu_id, qty);
+                            validateSubTotal();
                         }
                     }
             });
          
-            getSubTotal();
         });
     
         function increaseQty(menu_id, qty){
@@ -162,7 +163,7 @@
             let menu_id = $(this).attr('menu-id');
             let qty = $(this).attr('qty');
             decreaseQty(menu_id, qty);
-            getSubTotal();
+            validateSubTotal();
         });
     
         function decreaseQty(menu_id, qty){
@@ -182,7 +183,7 @@
         $(document).on('click', '.btn-remove', function(){
             let menu_id = $(this).attr('menu-id');
             removeMenu(menu_id);
-            getSubTotal();
+            validateSubTotal();
         });
 
         function removeMenu(menu_id){
