@@ -16,7 +16,7 @@
                                 <a href="/gcash-payment" class="btn btn-sm btn-primary" style="width: 200px;">Gcash</a>
                                 <a href="/cod" class="btn btn-sm btn-primary" style="width: 200px;">Cash on delivery</a>
 
-                                <p style="margin-top: 40px;">Total Amount to be paid</p>
+                                <p style="margin-top: 40px;">Total Amount to be paid (Shipping fee included)</p>
                                       <h3 class="text-success">₱{{ Helper::getPaymentTotalAmount() }}</h3>
                             </div>
                         </div>
