@@ -10,7 +10,7 @@ class HomeCtr extends Controller
 {
     public function index()
     {
-      //  dd($this->countMaxOrders());
+        Helper::updateMenuStatus();
         Auth::loginUsingId(Session::get('customer-id'));
         return view('customer/home');
     }
