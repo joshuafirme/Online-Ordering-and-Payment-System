@@ -161,7 +161,7 @@
         $(document).on('click', '#btn-dec', function(){
             let menu_id = $(this).attr('menu-id');
             let qty = $(this).attr('qty');
-            decreaseQty(menu_id, q+ty);
+            decreaseQty(menu_id, qty);
             getSubTotal();
         });
     
