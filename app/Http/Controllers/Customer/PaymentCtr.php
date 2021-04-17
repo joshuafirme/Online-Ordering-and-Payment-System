@@ -12,8 +12,8 @@ class PaymentCtr extends Controller
 {
     public function index()
     { 
-      //  dd($this->getToken());
-     // session()->forget('source');   
+     //   dd(session()->get('source'));
+      session()->forget('source');   
         if(Auth::check())
         {
             if($this->isTokenValid())
@@ -48,67 +48,89 @@ class PaymentCtr extends Controller
     
 
     public function gcashPayment()
-    {     
-        $source_ss = session()->get('source');   
+    {  
+        $source_ss = session()->get('source'); 
 
-            if(empty($source_ss)) {
-            $source = Paymongo::source()->create([
-                'type' => 'gcash',
-                'amount' => \Helper::getPaymentTotalAmount(),
-                'currency' => 'PHP',
-                'redirect' => [
-                    'success' => route('gcashpayment'),
-                    'failed' => route('gcashpayment')
-                ]
-            ]);
+            if(empty($source_ss)) 
+            {
+                $source = $this->makeStatusChargable();
                 $source_ss = [
+                    'source_id' => $source->id,            
+                    'amount' => $source->amount,
+                    'status' => $source->status           
+                ];
+                session()->put('source', $source_ss);    
+
+                return redirect($source->getRedirect()['checkout_url']); 
+            }
+            else
+            {
+                if($source_ss['status'] !== 'pending')
+                {      
+                    $source = $this->makeStatusChargable();
+                    
+                    $source_ss = [
                         'source_id' => $source->id,            
                         'amount' => $source->amount,
                         'status' => $source->status           
-                ];
-                session()->put('source', $source_ss);
-    
-    
-            return redirect($source->getRedirect()['checkout_url']);      
+                    ];
+                    session()->put('source', $source_ss);    
+                    return redirect($source->getRedirect()['checkout_url']); 
+                }                 
+                    $this->makePayment($source_ss);           
             }
-            else{
-                Paymongo::payment()
-                ->create([
-                    'amount' => $source_ss['amount'],
+    }
+
+    public function makeStatusChargable()
+    {
+        return Paymongo::source()->create([
+                    'type' => 'gcash',
+                    'amount' => \Helper::getPaymentTotalAmount(),
                     'currency' => 'PHP',
-                    'description' => 'Davids Grill Test Payment',
-                    'statement_descriptor' => 'Test',
-                    'source' => [
-                        'id' => $source_ss['source_id'],
-                        'type' => 'source'
+                    'redirect' => [
+                        'success' => route('gcashpayment'),
+                        'failed' => route('gcashpayment')
                     ]
                 ]);
-    
-                DB::table('tblorders')
-                ->where('user_id', Auth::id())
-                ->where('order_no',  \Session::get('ORDER_NO'))
-                ->update([
-                    'payment_method' => 'GCash',
-                    'status' => 1,
-                ]);
-    
-                
-                $order = $this->getOrderDetails(\Session::get('ORDER_NO'));
-    
-                for($i = 0; $i < $order->count(); $i++){
-                    $this->recordSales(
-                        $order[$i]->menu_id,
-                        $order[$i]->qty,
-                        $order[$i]->amount,
-                        'Gcash'
-                    );    
-                    \Helper::adjustQty($order[$i]->menu_id, $order[$i]->qty);
-                }
-    
-                session()->forget('source');
-                return redirect('/after-payment')->send();
-            }
-     
+    }
+
+    public function makePayment($source_ss)
+    {
+        Paymongo::payment()
+        ->create([
+            'amount' => $source_ss['amount'],
+            'currency' => 'PHP',
+            'description' => 'Davids Grill Test Payment',
+            'statement_descriptor' => 'Test',
+            'source' => [
+                'id' => $source_ss['source_id'],
+                'type' => 'source'
+            ]
+        ]);
+
+        DB::table('tblorders')
+        ->where('user_id', Auth::id())
+        ->where('order_no',  \Session::get('ORDER_NO'))
+        ->update([
+            'payment_method' => 'GCash',
+            'status' => 1,
+        ]);
+
+        
+        $order = $this->getOrderDetails(\Session::get('ORDER_NO'));
+
+        for($i = 0; $i < $order->count(); $i++){
+            $this->recordSales(
+                $order[$i]->menu_id,
+                $order[$i]->qty,
+                $order[$i]->amount,
+                'Gcash'
+            );    
+            \Helper::adjustQty($order[$i]->menu_id, $order[$i]->qty);
+        }
+
+        session()->forget('source');
+        return redirect('/after-payment')->send();
     }
 
     public function cashOnDelivery()
