@@ -32,7 +32,7 @@ class Base
 
    public static function countDeliveryNotif()
    {
-      return DB::table('tblorders')->distinct('order_no')->whereIn('status', [0, 1, 2])->count();
+      return DB::table('tblorders')->distinct('order_no')->whereIn('status', [1, 2, 3])->count();
    }
 
    public static function countPending()
