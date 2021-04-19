@@ -12,18 +12,22 @@ class HomeCtr extends Controller
     {
         Helper::updateMenuStatus();
         Auth::loginUsingId(Session::get('customer-id'));
-        return view('customer/home');
+        return view('customer.home');
     }
 
     public function displayMenu()
     {
-        return DB::table('tblmenu as M')
-                ->select('M.*', 'category')
-                ->distinct('GS.menu_id')
-                ->leftJoin('tblcategory AS C', 'C.id', '=', 'M.category_id')
-                ->leftJoin('tblgross_sale AS GS', 'GS.menu_id', '=', 'M.id')
-                ->orderBy('GS.amount',  'desc')
-                ->get();
+        $res = DB::table('tblgross_sale as S')
+        ->select('S.menu_id', 'S.order_type', 'M.description', 'M.price', 'M.preparation_time', 'category','M.image')
+        ->leftJoin('tblmenu as M', 'M.id', '=', 'S.menu_id')
+        ->leftJoin('tblcategory as C', 'C.id', '=', 'M.category_id')  
+        ->groupBy('S.menu_id', 'S.order_type', 'M.description', 'category','M.price', 'M.preparation_time', 'M.image')
+        ->having(DB::raw('SUM(S.qty)'), '>', 4)
+        ->orderBy(DB::raw('SUM(S.qty)'), 'desc')
+        ->limit(9)
+        ->get();
+
+    return $res->unique('menu_id');
     }
 
     public function countMaxOrders()

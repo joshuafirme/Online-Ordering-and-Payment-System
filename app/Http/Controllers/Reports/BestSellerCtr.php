@@ -17,17 +17,14 @@ class BestSellerCtr extends Controller
         $user->isUserAuthorize($this->module);
 
         
-        $best_seller = $this->getItems($request->date_from, $request->date_to);
-      
-        session()->put('date-from', $request->date_from);
-        session()->put('date-to', $request->date_to);
+        $best_seller = $this->getItems();
 
         if(request()->ajax())
         {
             return datatables()->of($best_seller)
             ->addColumn('qty', function($best_seller)
             {
-                $number_of_purchase = $this->getNumberOfPurchase($best_seller->description, session()->get('date-from'), session()->get('date-to'));
+                $number_of_purchase = $this->getNumberOfPurchase($best_seller->menu_id);
                 $p = '<span class="text-success">'.$number_of_purchase.'</span>';
                 return $p;
             })
@@ -38,23 +35,25 @@ class BestSellerCtr extends Controller
         return view('reports/best_seller');
     }
 
-    public function getItems($date_from, $date_to){
+    public function getItems(){
         $res = DB::table('tblgross_sale as S')
-            ->select('S.*', 'M.description', 'category')
+            ->select('S.menu_id', 'S.order_type', 'M.description', 'category')
             ->leftJoin('tblmenu as M', 'M.id', '=', 'S.menu_id')
             ->leftJoin('tblcategory as C', 'C.id', '=', 'M.category_id')  
-            ->whereBetween(DB::raw('DATE(S.created_at)'), [$date_from, $date_to])
-            ->orderBy('S.qty', 'desc')
+            ->groupBy('S.menu_id', 'S.order_type', 'M.description', 'category')
+            ->having(DB::raw('SUM(S.qty)'), '>', 4)
+            ->orderBy(DB::raw('SUM(S.qty)'), 'desc')
+            ->limit(9)
             ->get();
 
-        return $res->unique('description');
+        return $res->unique('menu_id');
     }
 
-    public function getNumberOfPurchase($desc, $date_from, $date_to){
+    public function getNumberOfPurchase($menu_id)
+    {
         return DB::table('tblgross_sale as S')
-            ->whereBetween(DB::raw('DATE(S.created_at)'), [$date_from, $date_to])
             ->leftJoin('tblmenu as M', 'M.id', '=', 'S.menu_id')
-            ->where('M.description', $desc)
+            ->where('S.menu_id', $menu_id)
             ->sum('S.qty');
     }
 }
