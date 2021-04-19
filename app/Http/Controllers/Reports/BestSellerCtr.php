@@ -35,7 +35,8 @@ class BestSellerCtr extends Controller
         return view('reports/best_seller');
     }
 
-    public function getItems(){
+    public function getItems()
+    {
         $res = DB::table('tblgross_sale as S')
             ->select('S.menu_id', 'S.order_type', 'M.description', 'category')
             ->leftJoin('tblmenu as M', 'M.id', '=', 'S.menu_id')

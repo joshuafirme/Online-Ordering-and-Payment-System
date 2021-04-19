@@ -18,10 +18,10 @@ class HomeCtr extends Controller
     public function displayMenu()
     {
         $res = DB::table('tblgross_sale as S')
-        ->select('S.menu_id', 'S.order_type', 'M.description', 'M.price', 'M.preparation_time', 'category','M.image')
+        ->select('S.menu_id', 'S.order_type', 'M.description', 'M.price', 'M.preparation_time', 'category','M.image', 'M.status')
         ->leftJoin('tblmenu as M', 'M.id', '=', 'S.menu_id')
         ->leftJoin('tblcategory as C', 'C.id', '=', 'M.category_id')  
-        ->groupBy('S.menu_id', 'S.order_type', 'M.description', 'category','M.price', 'M.preparation_time', 'M.image')
+        ->groupBy('S.menu_id', 'S.order_type', 'M.description', 'category','M.price', 'M.preparation_time', 'M.image', 'M.status')
         ->having(DB::raw('SUM(S.qty)'), '>', 4)
         ->orderBy(DB::raw('SUM(S.qty)'), 'desc')
         ->limit(9)
