@@ -41,7 +41,12 @@
     $(document).on('click', '.add_to_cart', function(){
         let menu_id = $(this).attr('menu-id');
         let amount = $(this).attr('amount');
-        addToCart(menu_id, amount);
+        @if(Auth::check())     
+          addToCart(menu_id, amount);   
+        @else
+          window.location.href = "/customer/customer-login"; 
+        @endif
+               
         cartCount();
     });
 
