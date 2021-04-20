@@ -15,7 +15,7 @@ class CashieringCtr extends Controller
     private $module = 'Transaction';
 
     public function index(){
-
+        dd($this->isQtyAvailable(27, 1));
         $user = new User;
         $user->isUserAuthorize($this->module);
 
@@ -81,7 +81,7 @@ class CashieringCtr extends Controller
     public function isQtyAvailable($menu_id, $qty)
     {
         $current_stock = DB::table('tblmenu')->where('id', $menu_id)->value('qty');
-
+     //   dd($current_stock);
         if($current_stock < $qty)
         {
             return '1';

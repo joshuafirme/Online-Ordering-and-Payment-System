@@ -5,6 +5,11 @@ use DB, Auth;
 
 class Base
 {
+   public static function isAuth()
+   {
+      return Auth::check() ? '1' : '0';
+   }
+
    public static function getName()
    {
       return DB::table('tblcustomer')->where('id', Auth::id())->value('fullname');

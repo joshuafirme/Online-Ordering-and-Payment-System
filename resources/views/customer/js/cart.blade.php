@@ -39,13 +39,25 @@
 
 
     $(document).on('click', '.add_to_cart', function(){
-        let menu_id = $(this).attr('menu-id');
+        var menu_id = $(this).attr('menu-id');
         let amount = $(this).attr('amount');
-        @if(Auth::check())     
-          addToCart(menu_id, amount);   
-        @else
-          window.location.href = "/customer/customer-login"; 
-        @endif
+          console.log(menu_id);
+          console.log(amount);
+
+          $.ajax({
+          url:"/authCheck",
+                type:"GET",
+                success:function(response){
+                    if(response==1)
+                    {             
+                      addToCart(menu_id, amount);   
+                    }
+                    else
+                    {  
+                      window.location.href = "/customer/customer-login"; 
+                    }
+                }
+        });
                
         cartCount();
     });
@@ -55,7 +67,7 @@
           url:"/transaction/isQtyAvailable/"+menu_id+"/"+1,
                 type:"GET",
                 success:function(response){
-                    if(response==1)
+                    if(response=='1')
                     {
                       alert('Not enough stock!');
                     }

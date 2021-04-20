@@ -158,6 +158,7 @@ Route::get('menu/combo_meals', 'Customer\homeCtr@combo_meals_view');
 */
 Route::get('menu', 'Customer\HomeCtr@displayMenu');
 Route::get('menu/category/{category}', 'Customer\HomeCtr@displayMenuByCategory');
+Route::get('/authCheck', 'Customer\HomeCtr@authCheck');
 
 /*
 |--------------------------------------------------------------------------

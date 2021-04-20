@@ -388,10 +388,10 @@
               {
                 @if(Auth::check())
                 cards += '<div class="desc-loading4 loading"><button class="btn btn-sm pl-3 pr-3 add_to_cart" style="display:none;background-color:#005B96; color:#fff; border-radius:50px;"';
-                cards += 'menu-id="'+data[i].id+'" amount="'+data[i].price+'">Add to tray</button></div>';
+                cards += ' menu-id="'+data[i].id+'" amount="'+data[i].price+'">Add to tray</button></div>';
                 @else
                 cards += '<div class="desc-loading4 loading"><a href="/customer/customer-login" class="btn btn-sm pl-3 pr-3 add_to_cart" style="display:none;background-color:#005B96; color:#fff; border-radius:50px;"';
-                cards += 'menu-id="'+data[i].id+'" amount="'+data[i].price+'">Add to tray</a></div>';
+                cards += ' menu-id="'+data[i].id+'" amount="'+data[i].price+'">Add to tray</a></div>';
                 @endif
               }else{
                 cards += '<span style="color:#AA0000;">Not available</span>';
