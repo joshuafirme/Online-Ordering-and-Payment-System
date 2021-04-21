@@ -146,8 +146,8 @@
           <div class="update-success-validation mr-auto ml-3" style="display: none">
             <label class="label text-success">Items packed successfully</label>    
           </div> 
-          {{--<button class="btn btn-outline-dark btn-sm" id="btn-gen-sales-inv"><span class='fa fa-print'></span> Generate Sales Invoice</button> --}}
-          <button style="color: #fff" class="btn btn-sm btn-success" id="btn-process">Prepare</button>
+          {{--<button class="btn btn-outline-dark btn-sm" id="btn-gen-sales-inv"><span class='fa fa-print'></span> Generate Sales Invoice</button>
+          <button style="color: #fff" class="btn btn-sm btn-success" id="btn-process">Prepare</button>--}}
        
         </div>
   
