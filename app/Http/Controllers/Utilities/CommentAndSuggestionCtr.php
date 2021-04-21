@@ -20,6 +20,6 @@ class CommentAndSuggestionCtr extends Controller
 
    public function getCommentAndSuggestion(){
 
-    return DB::table('tblcomment_and_suggestion')->get();   
+    return DB::table('tblcomment_and_suggestion')->orderBy('id', 'desc')->get();   
    }
 }
