@@ -99,6 +99,12 @@ class ProfileCtr extends Controller
             ]);
         }
 
+        if(request()->hasFile('selfie_with_id')){
+            request()->validate([
+                'selfie_with_id' => 'file|image|max:3000',
+            ]);
+        }
+
         $this->storeImage(Auth::id());
 
         return redirect('/profile')->with('success', 'You have successfully uploaded your ID');
@@ -106,12 +112,13 @@ class ProfileCtr extends Controller
 
     public function storeImage($user_id)
     {
-        if(request()->has('image'))
+        if(request()->has('image') && request()->has('selfie_with_id'))
         {
             DB::table('tbl_identity_verification')
             ->where('user_id', $user_id)
             ->update([
                 'image' => request()->image->store('customer-id-uploads', 'public'),
+                'selfie_with_id' => request()->image->store('customer-id-uploads', 'public'),
             ]);
         }
     }

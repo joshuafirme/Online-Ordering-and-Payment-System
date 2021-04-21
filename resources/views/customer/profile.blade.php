@@ -402,7 +402,7 @@ h6 {
   
                   @endforeach
                   @else
-                  <div class="col-md-4 mb-3">
+                  <div class="col-md-6 mb-3">
                     <label class="label-small">Select ID Type</label>
                       <select class="form-control" name="id_type" id="id-type">
                         <option value="Senior Citizen ID">Senior Citizen ID/Booklet</option>
@@ -417,18 +417,28 @@ h6 {
                       </select>
                     </div> 
     
-                    <div class="col-md-4">
+                    <div class="col-md-6" style="margin-bottom:15px;">
                       <label class="label-small">ID Number</label>
                       <input type="text" class="form-control" name="id_number" id="id-number" required>
                     </div>
     
-                    <div class="col-md-4" style="margin-bottom:50px;">
-                      <label class="label-small">Upload</label>
+                    <div class="col-md-6" style="margin-bottom:50px;">
+                      <label class="label-small">Front ID</label>
                       <input type="file" id="file-valid-id" name="image">
                     </div>
+
+                    <div class="col-md-6">
+                      <label class="label-small">Selfie with ID</label>
+                      <input type="file" id="file-selfie-with-id" name="selfie_with_id">
+                    </div>
     
-                    <div class="col-md-12" style="margin: auto;">
+                    <div class="col-md-12" style="margin: auto; padding-bottom:20px;">
                       <img class="responsive" id="img-valid-id" 
+                      style="border-style: dashed; border-color: #9E9E9E; background: #fff; width:100%;">
+                    </div>
+
+                    <div class="col-md-12" style="margin: auto;">
+                      <img class="responsive" id="img-selfie-with-id" 
                       style="border-style: dashed; border-color: #9E9E9E; background: #fff; width:100%;">
                     </div>
                     @endif
@@ -457,29 +467,48 @@ h6 {
   <script src="{{asset('js/bootstrap.min.js')}}" type="text/javascript"></script>
 
   <script>
-       function readURL(input) {
-      if (input.files && input.files[0]) {
-        var reader = new FileReader();
-        
-        reader.onload = function(e) {
-          $('#img-valid-id').attr('src', e.target.result);
+       function readURLValidID(input) 
+       {
+          if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            
+            reader.onload = function(e) {
+              $('#img-valid-id').attr('src', e.target.result);
+            }
+            
+            reader.readAsDataURL(input.files[0]); // convert to base64 string
+          }
         }
-        
-        reader.readAsDataURL(input.files[0]); // convert to base64 string
-      }
-    }
-    
-    $("#file-valid-id").change(function() {
-      console.log('upload');
-      readURL(this);
-    });
 
-    function disabledInputs(){
-      $("#id-type").attr('disabled', true);
-      $("#id-number").attr('disabled', true);
-      $("#file-valid-id").attr('disabled', true);
-      $("#btn-upload").attr('disabled', true);
-      $('#verification-info').css('display', 'block');
-    }
+        function readURLSelfieWithID(input) 
+       {
+          if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            
+            reader.onload = function(e) {
+              $('#img-selfie-with-id').attr('src', e.target.result);
+            }
+            
+            reader.readAsDataURL(input.files[0]); // convert to base64 string
+          }
+        }
+    
+      $("#file-valid-id").change(function() 
+      {
+        readURLValidID(this);
+      });
+
+      $("#file-selfie-with-id").change(function() 
+      {
+        readURLSelfieWithID(this);
+      });
+
+      function disabledInputs(){
+        $("#id-type").attr('disabled', true);
+        $("#id-number").attr('disabled', true);
+        $("#file-valid-id").attr('disabled', true);
+        $("#btn-upload").attr('disabled', true);
+        $('#verification-info').css('display', 'block');
+      }
   </script>
 </body>
