@@ -15,7 +15,7 @@ class CashieringCtr extends Controller
     private $module = 'Transaction';
 
     public function index(){
-        dd($this->isQtyAvailable(27, 1));
+      //  dd($this->isQtyAvailable(27, 1));
         $user = new User;
         $user->isUserAuthorize($this->module);
 
