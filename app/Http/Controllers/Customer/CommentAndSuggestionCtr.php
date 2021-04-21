@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use View;
 use Illuminate\Support\Facades\DB;
 use Session;
-use Redirect;
+use Redirect, Helper;
 
 class CommentAndSuggestionCtr extends Controller
 {
@@ -15,10 +15,11 @@ class CommentAndSuggestionCtr extends Controller
         return View::make('customer.comment-and-suggestion');
     }
 
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         DB::table('tblcomment_and_suggestion')
             ->insert([
-                'fullname' => $this->getCustomerName()[0],
+                'fullname' => Helper::getName()!=null ? Helper::getName() : "Visitor",
                 'comment' => $request->input('comment'),
                 'suggestion' => $request->input('suggestion'),
                 'created_at' => date('Y-m-d h:m:s'),
@@ -27,12 +28,4 @@ class CommentAndSuggestionCtr extends Controller
 
         return Redirect::to('customer/comment-and-suggestion')->with('success', 'Your comment and suggestion has been sent!');
     }
-
-    public function getCustomerName(){
-        return DB::table('tblcustomer')
-                ->where('email', Session::get('email'))
-                ->pluck('fullname');
-    }
-
-
 }
