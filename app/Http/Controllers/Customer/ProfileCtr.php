@@ -118,7 +118,7 @@ class ProfileCtr extends Controller
             ->where('user_id', $user_id)
             ->update([
                 'image' => request()->image->store('customer-id-uploads', 'public'),
-                'selfie_with_id' => request()->image->store('customer-id-uploads', 'public'),
+                'selfie_with_id' => request()->selfie_with_id->store('customer-id-uploads', 'public'),
             ]);
         }
     }

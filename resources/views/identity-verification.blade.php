@@ -81,8 +81,13 @@
                     <p id="id-number"></p>
                 </div>
     
-                <div class="col-md-12 m-auto">
+                <div class="col-md-12 m-auto" style="margin-bottom: 20px;">
                     <img class="responsive" id="img-valid-id" 
+                    style="border-style: dashed; border-color: #9E9E9E; background: #fff; width:100%;">
+                  </div>
+
+                  <div class="col-md-12 m-auto">
+                    <img class="responsive" id="img-selfie-with-id" 
                     style="border-style: dashed; border-color: #9E9E9E; background: #fff; width:100%;">
                   </div>
             </div>    

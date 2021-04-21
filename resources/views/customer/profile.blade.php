@@ -370,7 +370,7 @@ h6 {
                 
                 @if(count($verification) > 0)
                 @foreach($verification as $data)
-                <div class="col-md-4 mb-3">
+                <div class="col-md-6 mb-3" style="margin-bottom:30px;">
                   <label class="label-small">Select ID Type</label>
                     <select class="form-control" name="id_type" id="id-type">
                       <option value="{{ $data->id_type }}" selected>{{ $data->id_type }}</option>
@@ -386,18 +386,18 @@ h6 {
                     </select>
                   </div> 
   
-                  <div class="col-md-4 mb-3">
+                  <div class="col-md-6 mb-3">
                     <label class="label-small">ID Number</label>
                     <input type="text" class="form-control" name="id_number" id="id-number" value="{{ $data->id_number }}" required>
                   </div>
   
-                  <div class="col-md-4" style="margin-bottom:50px;">
-                    <label class="label-small">Upload</label>
-                    <input type="file" id="file-valid-id" name="image">
-                  </div>
   
-                  <div class="col-md-12 m-auto">
+                  <div class="col-md-12 m-auto" style="margin-bottom:20px;">
                     <img class="responsive" id="img-valid-id" src="{{ asset('storage/'.$data->image) }}" style="border-style: dashed; border-color: #9E9E9E; width:100%;">
+                  </div>
+
+                  <div class="col-md-12 m-auto">
+                    <img class="responsive" id="img-selfie-with-id" src="{{ asset('storage/'.$data->selfie_with_id) }}" style="border-style: dashed; border-color: #9E9E9E; width:100%;">
                   </div>
   
                   @endforeach
@@ -422,7 +422,7 @@ h6 {
                       <input type="text" class="form-control" name="id_number" id="id-number" required>
                     </div>
     
-                    <div class="col-md-6" style="margin-bottom:50px;">
+                    <div class="col-md-6" style="margin-bottom:30px;">
                       <label class="label-small">Front ID</label>
                       <input type="file" id="file-valid-id" name="image">
                     </div>

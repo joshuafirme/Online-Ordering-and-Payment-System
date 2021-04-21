@@ -51,9 +51,13 @@ $(document).ready(function(){
             $('#id-type').text(data[0].id_type);
             $('#id-number').text(data[0].id_number);
 
-            var img_source = '../../storage/'+data[0].image;
+            var img_id = '../../storage/'+data[0].image;
     
-            $('#img-valid-id').attr('src', img_source);
+            $('#img-valid-id').attr('src', img_id);
+
+            var img_selfie = '../../storage/'+data[0].selfie_with_id;
+    
+            $('#img-selfie-with-id').attr('src', img_selfie);
         }
          
        });
