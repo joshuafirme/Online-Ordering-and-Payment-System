@@ -35,8 +35,31 @@ class PurchasedHistoryCtr extends Controller
             ->update([
                 'status' => -1
             ]);
+        
+        $order = $this->getOrderDetails($data['order_no']);
+
+        for($i = 0; $i < $order->count(); $i++)
+        {
+            $this->adjustQty($order[$i]->menu_id, $order[$i]->qty);
+        }
 
         return Redirect::to('/purchased-history')->with('success', 'Order #'.$data['order_no'].' was successfully cancelled.'); 
+    }
+
+    public function adjustQty($menu_id, $qty)
+    {
+        DB::table('tblmenu')
+        ->where('id', $menu_id)
+        ->update([
+            'qty' => DB::raw('qty + '. $qty)
+        ]);
+    }
+
+    public function getOrderDetails($order_no)
+    {
+        return DB::table('tblorders')
+        ->where('order_no', $order_no)
+        ->get();
     }
 
     public function sessionOrderNo($order_no)

@@ -29,7 +29,7 @@ body{
 
 .heading{
   background:linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)),
-  url(/img/beefandporkbg2.jpg) center/cover fixed no-repeat;
+  url(/img/profile_bg.jpg) center/cover fixed no-repeat;
   font-family: 'Kaushan Script', cursive;
   line-height: 1.5;
   color: #ffffff;
@@ -100,7 +100,7 @@ a:visited {
 
 .contact-form i.fas{
   font-size: 22px; 
-  padding: 3%;
+  padding: 30px;
   background-color: none;
   border-radius: 80%;
   margin: 2%;
@@ -116,8 +116,11 @@ a:visited {
   }
      
 .contact-form{
-  display: grid;
-  grid-template-columns: auto auto;
+  /*display: grid;
+  grid-template-columns: auto auto;*/
+    display: block;
+    width: 100%;
+    text-align: center;
   }
 
 #social-icons{
@@ -240,13 +243,13 @@ textarea::placeholder{
        <p>How can we help you? Message us now.</p>
    <div class="contact-form">
    <!-- First grid -->
-   <div>
+   <div style="align-content: center;">
    <a href="https://www.google.com/maps/@13.9507422,120.7023993,3a,75y,182.85h,75.63t/data=!3m6!1e1!3m4!1sI4yVXq7rO51Bwegq7aw3Xg!2e0!7i13312!8i6656" target="_blank">
-   <i class="fas fa-location-arrow"></i><span class="form-info">  Brgy. Sambat, Balayan Batangas</span><br>
+   <i  class="fas fa-location-arrow"></i><span class="form-info">  Brgy. Sambat, Balayan Batangas</span><br>
    </a>
-   <i class="fas fa-phone" > </i><span class="form-info">  +63 953 139 7371</span><br>
+   <i style="margin-left: -80px;" class="fas fa-phone" > </i><span class="form-info">  +63 953 139 7371</span><br>
    <a href = "mailto: davidsgrillrestaurant@gmail.com" target="_blank">
-   <i class="fas fa-envelope"></i><span class="form-info">  davidsgrillrestaurant@gmail.com</span><br>
+   <i  class="fas fa-envelope"></i><span class="form-info">  davidsgrillrestaurant@gmail.com</span><br>
    </a>            
                 
  <section id="social-icons">
@@ -255,7 +258,7 @@ textarea::placeholder{
  </section>
    </div>
               
-   <!-- second grid -->
+   <!-- second grid 
    <div>        
 
        <input type="text" name="firstname" id="firstname" placeholder="First Name" required>
@@ -265,7 +268,7 @@ textarea::placeholder{
        <textarea name="Message" name="message" id="message" placeholder="Type Here" rows="5" required></textarea><br>
        <button type="submit" class="submit" id="btn-send">Send Message</button> 
      
-   </div>
+   </div>-->
    </div>
    </div>
  </section> 

@@ -207,6 +207,7 @@ $(document).ready(function()
             html +=    '<th>Category</th>';
             html +=    '<th>Preparation Time</th> ';
             html +=    '<th>Price</th>';
+            html +=    '<th>Qty</th>';
             html +=    '<th>Amount</th> '    ;   
             html +='</tr>';
             html +='</thead>';
@@ -222,6 +223,7 @@ $(document).ready(function()
                 html +=        '<td>'+data[i].category+'</td>';
                 html +=        '<td>'+data[i].preparation_time+'</td>';
                 html +=        '<td>₱'+data[i].price+'</td>';
+                html +=        '<td>'+data[i].qty+'</td>';
                 html +=        '<td>₱'+data[i].amount+'</td>'; 
                 html +=    '</tr> ' ;
                
@@ -232,7 +234,8 @@ $(document).ready(function()
             html +=        '<td></td>';
             html +=        '<td></td>';
             html +=        '<td></td>';
-            html +=        '<td>Subtotal:</td>';
+            html +=        '<td></td>';
+            html +=        '<td style="text-align:right;">Subtotal:</td>';
             html +=        '<td>';
             html +=         '<b>₱ <span id="txt_subtotal"></span></b>';
             html +=        '</td> '  ;
@@ -242,7 +245,8 @@ $(document).ready(function()
             html +=      '<td></td>';
             html +=      '<td></td>';
             html +=      '<td></td>';
-            html +=      '<td>Shipping Fee:</td>';
+            html +=      '<td></td>';
+            html +=      '<td style="text-align:right;">Shipping Fee:</td>';
             html +=      '<td>'
             html +=        '₱ <span id="txt_shipping_fee"></span>';
             html +=      '</td>'   ;
@@ -251,7 +255,8 @@ $(document).ready(function()
             html +=    '<td></td>';
             html +=    '<td></td>';
             html +=   ' <td></td>';
-            html +=    '<td>Total Amount:</td>';
+            html +=        '<td></td>';
+            html +=    '<td style="text-align:right;">Total Amount:</td>';
             html +=     '<td>';
             html +=       '<b>₱ <span id="txt_total"></span></b>';
             html +=    '</td>'   ;

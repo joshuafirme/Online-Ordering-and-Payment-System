@@ -220,7 +220,30 @@ class DeliveryCtr extends Controller
                     'updated_at' => date('Y-m-d h:m:s')
                 ]);
 
+        $order = $this->getOrderDetails($data['order-no']);
+
+        for($i = 0; $i < $order->count(); $i++)
+        {
+            $this->adjustQty($order[$i]->menu_id, $order[$i]->qty);
+        }
+
         return redirect('/delivery/pending')->with('success', 'Order #'.$data['order-no'].' was successfully cancelled');
+    }
+
+    public function adjustQty($menu_id, $qty)
+    {
+        DB::table('tblmenu')
+        ->where('id', $menu_id)
+        ->update([
+            'qty' => DB::raw('qty + '. $qty)
+        ]);
+    }
+
+    public function getOrderDetails($order_no)
+    {
+        return DB::table('tblorders')
+        ->where('order_no', $order_no)
+        ->get();
     }
 
 
@@ -228,7 +251,7 @@ class DeliveryCtr extends Controller
     public function showOrders($order_no)
     {
         return DB::table('tblorders as O')
-                ->select('O.*', 'C.*', 'M.*', 'category', 'O.created_at', 'O.amount')
+                ->select('O.*', 'C.*', 'M.*', 'category', 'O.created_at', 'O.amount', 'O.qty')
                 ->leftJoin('tblcustomer AS C', 'C.id', '=', 'O.user_id') 
                 ->leftJoin('tblmenu AS M', 'M.id', '=', 'O.menu_id')  
                 ->leftJoin('tblcategory AS CT', 'CT.id', '=', 'M.category_id')  
