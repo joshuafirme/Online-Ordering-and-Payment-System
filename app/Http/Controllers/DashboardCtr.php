@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Redirect, DB;
+use Redirect, DB, Helper;
 
 class DashboardCtr extends Controller
 {

@@ -99,7 +99,7 @@
         <div class="small-box bg-green">
             <div class="inner">
                 <h3>
-                    {{ $onlineSales }}
+                    {{ Helper::countPending() }}
                 </h3>
                 <p>
                     Pending
@@ -117,7 +117,7 @@
         <div class="small-box bg-green">
             <div class="inner">
                 <h3>
-                    {{ $onlineSales }}
+                    {{ Helper::countPreparing() }}
                 </h3>
                 <p>
                     Preparing
@@ -135,7 +135,7 @@
         <div class="small-box bg-green">
             <div class="inner">
                 <h3>
-                    {{ $onlineSales }}
+                    {{ Helper::countDispatch() }}
                 </h3>
                 <p>
                     Dispatch
@@ -153,7 +153,7 @@
         <div class="small-box bg-green">
             <div class="inner">
                 <h3>
-                    {{ $onlineSales }}
+                    {{ Helper::countDelivered() }}
                 </h3>
                 <p>
                     Delivered
@@ -161,6 +161,24 @@
             </div>
             <div class="icon">
                 <i class="fa fa-check-circle"></i>
+            </div>
+            <a href="#" class="small-box-footer">
+            </a>
+        </div>
+    </div><!-- ./col -->
+    <div class="col-lg-3 col-xs-6" style="margin-top: 15px;">
+        <!-- small box -->
+        <div class="small-box bg-green">
+            <div class="inner">
+                <h3>
+                    {{ Helper::countCancelled() }}
+                </h3>
+                <p>
+                    Cancelled
+                </p>
+            </div>
+            <div class="icon">
+                <i class="fa fa-cross"></i>
             </div>
             <a href="#" class="small-box-footer">
             </a>

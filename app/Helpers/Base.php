@@ -55,6 +55,16 @@ class Base
       return DB::table('tblorders')->distinct('order_no')->where('status', 3)->count();
    }
 
+   public static function countDelivered()
+   {
+      return DB::table('tblorders')->distinct('order_no')->where('status', 4)->where('updated_at', date('Y-m-d'))->count();
+   }
+
+   public static function countCancelled()
+   {
+      return DB::table('tblorders')->distinct('order_no')->where('status', -1)->where('updated_at', date('Y-m-d'))->count();
+   }
+
    public static function getTransactionNumber()
    {
        $trans_no = DB::table('tblgross_sale')->max('transaction_no');
