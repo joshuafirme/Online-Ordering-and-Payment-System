@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Utilities\User;
 use Redirect;
-
+use App\Utilities\AuditTrail;
 class LoginCtr extends Controller
 {
     public function index(){
@@ -22,6 +22,10 @@ class LoginCtr extends Controller
         {
             session()->put('emp-username', $username);
             session()->put('is-login', 'yes');
+            
+            $audit = new AuditTrail;
+            $audit->recordAction('Login', 'Logged in');
+
             return Redirect::to('dashboard');
         }
         else{
@@ -43,7 +47,11 @@ class LoginCtr extends Controller
         }
     }
 
-    public function logout(){
+    public function logout()
+    {
+        $audit = new AuditTrail;
+        $audit->recordAction('Logout', 'Logged out');
+
         session()->forget('emp-username');
         session()->put('is-login', 'no');
 
