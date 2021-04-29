@@ -101,6 +101,13 @@
                 transform: translateX(100%);
             }
         }
+
+        @media only screen and (max-width: 990px) {
+          #cart {
+            margin-left: 40px;
+            margin-bottom: 15px;
+          }
+        }
 </style>
 </head>
 <body>
@@ -110,14 +117,21 @@
 
 <!---====Category Section=====-->
 
-<h2 class="title-text" style="margin-left: 40px;color: #3B3B3B;">Select Category
-  @if(Auth::check())
-  <a href="{{ url('/cart') }}">
-    <i class="fas fa-shopping-cart fa-lg" style="color: #005B96;"></i><span style="font-size: 16px; margin-left: -10px; background-color:#28A745;" class="cart-badge">
-      <h5 id="cart_count" style="margin-left: 7px;"></h5></span>
-  </a>
-  @endif
-</h2>
+<div class="row">
+  <div class="col-xs-12 col-lg-10">
+    <h2 class="title-text" style="margin-left: 40px;color: #3B3B3B;">Select Category</h2>
+  </div>
+  <div class="col-lg-2">
+    @if(Auth::check())
+    <a href="{{ url('/cart') }}" id="cart">
+      <i class="fas fa-shopping-cart fa-2x" style="color: #005B96;"></i><span style="font-size: 16px; margin-left: -10px; background-color:#28A745;" class="cart-badge">
+        <h5 id="cart_count" style="margin-left: 7px;"></h5></span>
+    </a>
+    @endif
+  </div>
+
+</div>
+
 
 
 
