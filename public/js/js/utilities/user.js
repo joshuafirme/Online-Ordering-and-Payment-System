@@ -24,6 +24,7 @@ $(document).ready(function(){
            {data: 'username', name: 'username'},   
            {data: 'role', name: 'role'},     
            {data: 'contact_no', name: 'contact_no'},
+           {data: 'status', name: 'status'},
            {data: 'action', name: 'action'},
           ]
           
@@ -48,6 +49,7 @@ $(document).ready(function(){
               $('#password').val(response[0].password);
               $('#role').val(response[0].role);
               $('#contact_no').val(response[0].contact_no);
+              $('#status').val(response[0].is_active);
           }
       });
     

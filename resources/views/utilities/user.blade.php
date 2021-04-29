@@ -45,6 +45,7 @@
                                     <th>Username</th>
                                     <th>Role</th>
                                     <th>Contact Number</th>
+                                    <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>

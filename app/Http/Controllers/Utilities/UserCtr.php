@@ -23,10 +23,18 @@ class UserCtr extends Controller
                 ->addColumn('action', function($user){
                     $button = ' <a class="btn btn-sm btn-primary" id="btn-edit-user" edit-id="'. $user->id .'" 
                     data-toggle="modal" data-target="#editModal"><i class="fa fa-edit"></i></a>';
-                    $button .= '<a class="btn btn-sm" id="btn-delete-user" delete-id="'. $user->id .'"><i style="color:#DC3545;" class="fa fa-trash-o"></i></a>';
+                   // $button .= '<a class="btn btn-sm" id="btn-delete-user" delete-id="'. $user->id .'"><i style="color:#DC3545;" class="fa fa-trash-o"></i></a>';
                     return $button;
                 })
-                ->rawColumns(['action'])
+                ->addColumn('status', function($user){
+                    if($user->is_active==1){
+                        return '<span class="badge" style="background-color:#28A745;">Active</span>';
+                    }
+                    else{
+                        return '<span class="badge">Inactive</span>';
+                    }
+                })
+                ->rawColumns(['action', 'status'])
                 ->make(true);
         }
         return view('utilities/user');
@@ -41,6 +49,7 @@ class UserCtr extends Controller
                     'username' => $request->input('username'),
                     'password' => $request->input('password'),
                     'role' => $request->input('role'),
+                    'is_active' => 1,
                     'contact_no' => $request->input('contact_no'),
                     'created_at' => date('Y-m-d h:m:s'),
                 ]);
@@ -56,6 +65,7 @@ class UserCtr extends Controller
                 'username' => $request->input('username'),
                 'password' => $request->input('password'),
                 'role' => $request->input('role'),
+                'is_active' => $request->input('status'),
                 'contact_no' => $request->input('contact_no'),
                 'updated_at' => date('Y-m-d h:m:s'),
             ]);

@@ -48,7 +48,6 @@
                <label class="col-form-label">Contact Number</label>
                <input type="text" class="form-control" name="contact_no" required>
              </div>
-
  
            </div>
          </div>
@@ -118,6 +117,15 @@
                 <label class="col-form-label">Contact Number</label>
                 <input type="text" class="form-control" name="contact_no" id="contact_no" required>
               </div>
+
+              
+             <div class="col-md-6" style="margin-top: 15px;">
+              <label class="col-form-label">Status</label>
+              <select class="form-control" name="status" id="status">
+                <option value="1">Active</option>
+                <option value="0">Inactive</option>
+              </select>
+            </div>
  
   
             </div>

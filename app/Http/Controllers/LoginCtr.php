@@ -18,19 +18,28 @@ class LoginCtr extends Controller
         $username = $request->input('username');
         $password = $request->input('password');
 
+  
         if($this->isAuthUser($username, $password))
         {
-            session()->put('emp-username', $username);
-            session()->put('is-login', 'yes');
-            
-            $audit = new AuditTrail;
-            $audit->recordAction('Login', 'Logged in');
-
-            return Redirect::to('dashboard');
+            if($this->isActive($username))
+            {
+                session()->put('emp-username', $username);
+                session()->put('is-login', 'yes');
+                
+                $audit = new AuditTrail;
+                $audit->recordAction('Login', 'Logged in');
+    
+                return Redirect::to('dashboard');
+            }
+            else{
+                return Redirect::to('/user-login')->with('invalid', 'Invalid login, because your account is inactive!'); 
+            }
+           
         }
         else{
             return Redirect::to('/user-login')->with('invalid', 'Invalid username or password'); 
         }
+        
     }
 
     public function isAuthUser($username, $password){
@@ -46,6 +55,21 @@ class LoginCtr extends Controller
             return false;
         }
     }
+
+    public function isActive($username){
+        $status = DB::table('tbluser')
+            ->where('username', $username)
+            ->where('is_active', 1)
+            ->value('is_active');
+        
+        if($status == 1){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
 
     public function logout()
     {

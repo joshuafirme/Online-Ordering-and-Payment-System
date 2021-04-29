@@ -151,6 +151,11 @@ Route::get('menu/value_meals', 'Customer\homeCtr@value_meals_view');
 Route::get('menu/sizzling_plates', 'Customer\homeCtr@sizzling_plates_view');
 Route::get('menu/combo_meals', 'Customer\homeCtr@combo_meals_view');
 
+
+Route::get('/getBrgyList/{municipality}', 'Customer\ProfileCtr@getBrgyList');
+Route::get('/getShippingInfo', 'Customer\ProfileCtr@getShippingInfo');
+
+
 /*
 |--------------------------------------------------------------------------
 | Home
@@ -168,6 +173,7 @@ Route::get('/authCheck', 'Customer\HomeCtr@authCheck');
 Route::get('profile', 'Customer\ProfileCtr@index');
 Route::post('profile', 'Customer\ProfileCtr@updateInsert');
 Route::post('profile/upload-id', 'Customer\ProfileCtr@uploadID');
+
 
 /*
 |--------------------------------------------------------------------------
