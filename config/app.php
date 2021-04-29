@@ -233,6 +233,7 @@ return [
 
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
         'Helper' => App\Helpers\Base::class,
+        'BrgyAPI' => App\Helpers\BrgyAPI::class,
 
     ],
 

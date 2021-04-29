@@ -478,7 +478,7 @@ function initMunicipality()
     var municipality =$('select[name=municipality]').val();
 
     if(municipality){       
-        getBrgy('municipality');
+        getBrgy(municipality);
     }
 }
 

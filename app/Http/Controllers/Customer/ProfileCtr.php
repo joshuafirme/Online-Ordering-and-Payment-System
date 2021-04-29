@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Customer;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use DB, Auth, Helper, Redirect, Input;
+use DB, Auth, Helper, Redirect, Input, BrgyAPI;
 
 class ProfileCtr extends Controller
 {
@@ -20,6 +20,16 @@ class ProfileCtr extends Controller
             return Redirect::to('/customer/customer-login'); 
         }
 
+    }
+
+    public function getBrgyList($municipity)
+    {
+        return BrgyAPI::getBrgyList($municipity);
+    }
+
+    public function getShippingInfo()
+    {
+        return Helper::getShippingInfo();
     }
 
     public function updateInsert()
