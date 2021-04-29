@@ -34,7 +34,6 @@
   }
     #menu-cont{
         height: 480px;
-        width: 100%;
         overflow-y: scroll;
     }
 </style>
@@ -69,95 +68,77 @@
                 <div class="box">
                     <div class="box-body table-responsive">
 
-                        <div class="row" id="menu-cont">
-                            @foreach ($menu as $data)
-                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
-                                <div class="dif-cate-box">
-                  
-                                    <div class="img-box">
-                                        @if ($data->image)
-                                            <img src="{{ asset('storage/'.$data->image) }}" class="img loading" alt="" style="height:300px;">
-                                        @else
-                                            <img src="../../storage/img-placeholder.png" class="img loading" alt="" style="height:300px;">
-                                        @endif
+                        <div class="row">
+                            <div class="col-xs-12 col-lg-6"  id="menu-cont">
+                                <div class="row">
+                                    @foreach ($menu as $data)
+                                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                        <div class="dif-cate-box">
+                          
+                                            <div class="img-box">
+                                                @if ($data->image)
+                                                    <img src="{{ asset('storage/'.$data->image) }}" class="img loading" alt="" style="height:250px;">
+                                                @else
+                                                    <img src="../../storage/img-placeholder.png" class="img loading" alt="" style="height:250px;">
+                                                @endif
+                                                
+                                            </div>
+                                            <div style="padding:10px;" class="menu-description">
+                                                <p class="desc m-0" style="font-family: lavenda, sans-serif; font-size:14px; color: #3B3B3B;">{{$data->description}}</p>
+                                                <p class="desc" style="font-family: lavenda, sans-serif; font-size:20px; color: #FFC000;">₱{{$data->price}}</p>
+                                                <p class="desc" style="font-family: lavenda, sans-serif; font-size:14px;">Available qty: {{$data->qty}}</p>
+                                                <p class="desc" style="font-family: lavenda, sans-serif; font-size:14px; color: #28A745;">Preparation time: {{$data->preparation_time}}</p>
+                                                
+                                                @if ($data->status=='Available')
+                                                    <button class="btn btn-sm pl-3 pr-3 btn-add" style="background-color:#005B96; color:#fff; border-radius:50px;"
+                                                    menu-id="{{$data->id}}" price="{{$data->price}}">Add to tray</button>
+                                                    <span style=" margin-left:15px;">Qty:<input id="menu{{$data->id}}" type="number" style="width: 50px;" min="1" value="1"></span>
+                                                @else
+                                                <button class="btn btn-sm pl-3 pr-3 btn-add" style="background-color:#fff; color:#AA0000; border-radius:50px;"
+                                                disabled>Not available</button> 
+                                                @endif
+           
+                                            </div>
                                         
+                                        </div>
                                     </div>
-                                    <div style="padding:10px;" class="menu-description">
-                                        <p class="desc m-0" style="font-family: lavenda, sans-serif; font-size:20px; color: #3B3B3B;">{{$data->description}}</p>
-                                        <p class="desc" style="font-family: lavenda, sans-serif; font-size:20px; color: #FFC000;">₱{{$data->price}}</p>
-                                        <p class="desc" style="font-family: lavenda, sans-serif; font-size:20px;">Available qty: {{$data->qty}}</p>
-                                        <p class="desc" style="font-family: lavenda, sans-serif; font-size:16px; color: #28A745;">Preparation time: {{$data->preparation_time}}</p>
-                                        
-                                        @if ($data->status=='Available')
-                                            <button class="btn btn-sm pl-3 pr-3 btn-add" style="background-color:#005B96; color:#fff; border-radius:50px;"
-                                            menu-id="{{$data->id}}" price="{{$data->price}}">Add to tray</button>
-                                            <span style=" margin-left:15px;">Qty:<input id="menu{{$data->id}}" type="number" style="width: 50px;" min="1" value="1"></span>
-                                        @else
-                                        <button class="btn btn-sm pl-3 pr-3 btn-add" style="background-color:#fff; color:#AA0000; border-radius:50px;"
-                                        disabled>Not available</button> 
-                                        @endif
-   
-                                    </div>
-                                
+                                    @endforeach
                                 </div>
+                           
+                            
                             </div>
-                            @endforeach
+                            <div class="col-xs-12  col-lg-6">
+                                <h3>Tray</h3>
+                                <table id="tray_table" class="table table-borderless table-hover" style="width: 100%; margin-bottom:50px;">
+                                    <thead>
+                                        <tr>
+                                            <th>Description</th>
+                                            <th>Category</th>
+                                            <th>Price</th>
+                                            <th>Qty</th>
+                                            <th>Amount</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($tray as $data)
+                                        <tr>
+                                            <th>{{ $data->description }}</th>
+                                            <th>{{ $data->category }}</th>
+                                            <th>{{ $data->price }}</th>
+                                            <th>{{ $data->qty }}</th>
+                                            <th>{{ $data->amount }}</th>
+                                            <th><button class="btn-remove" delete-id="{{$data->id}}" style="color:#AA0000;">&times;</button></th>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
                             
                         </div>
-
                         <hr>
 
-                        {{--<table id="" class="table table-borderless table-hover" style="width: 100%; margin-bottom:20px;">
-                            <thead>
-                                <tr>
-                                    <th colspan="2">Search<input type="text" class="form-control" id="txt_search"></th>
-                                    <th colspan="3"><button class="btn btn-sm btn-primary" id="btn-add"><i class="fa fa-plus"></i> Add</button></th>
-                                </tr>
-                                <tr>
-                                    <th>Qty</th>
-                                    <th>Description</th>
-                                    <th>Category</th>
-                                    <th>Price</th>
-                                    <th>Amount</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <input type="hidden" id="id">
-                                    <th><input type="number" min="0" class="form-control" value="1" id="qty"></th>
-                                    <th><input type="text" class="form-control" readonly id="description"></th>
-                                    <th><input type="text" class="form-control" readonly id="category"></th>
-                                    <th><input type="text" class="form-control" readonly id="price"></th>
-                                    <th><input type="text" class="form-control" readonly id="amount"></th>
-                                </tr>
-                            </tbody>    
-                        </table>--}}
-
-                        <h3>Tray</h3>
-                        <table id="tray_table" class="table table-borderless table-hover" style="width: 100%; margin-bottom:50px;">
-                            <thead>
-                                <tr>
-                                    <th>Description</th>
-                                    <th>Category</th>
-                                    <th>Price</th>
-                                    <th>Qty</th>
-                                    <th>Amount</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($tray as $data)
-                                <tr>
-                                    <th>{{ $data->description }}</th>
-                                    <th>{{ $data->category }}</th>
-                                    <th>{{ $data->price }}</th>
-                                    <th>{{ $data->qty }}</th>
-                                    <th>{{ $data->amount }}</th>
-                                    <th><button class="btn-remove" delete-id="{{$data->id}}" style="color:#AA0000;">&times;</button></th>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                      
 
                        <div class="row">
                         <div class="col-lg-6">
@@ -194,7 +175,7 @@
                             <button class="btn btn-sm btn-success" style="margin-top: 10px" id="btn-process">Process</button>
                         </div>
                         <div class="col-lg-6 mt-xs-2">
-                            <img src="{{ asset('img/qr.png') }}" width="300px;" alt="">
+                            <img src="{{ asset('img/qr.png') }}" width="250px;" alt="">
                         </div>
                        </div>
 
