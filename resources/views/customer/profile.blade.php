@@ -293,7 +293,7 @@ h6 {
                  <label class="col-form-label" style="margin-top: 10px;">Municipality</label>
                  @php
                     $municipality = Helper::getShippingInfo()!=null ? Helper::getShippingInfo()->municipality : "";
-                    $mun_arr = array("Balayan", "Tuy");
+                    $mun_arr = array("BALAYAN", "TUY");
                  @endphp
                  <select class="form-control" name="municipality" required> 
                     @if(in_array($municipality, $mun_arr))
@@ -310,8 +310,10 @@ h6 {
  
                <div class="col-md-6">    
                  <label class="col-form-label" style="margin-top: 10px;">Barangay</label>
-                 <input type="text" class="form-control" name="brgy" 
-                 value="{{ Helper::getShippingInfo()!=null ? Helper::getShippingInfo()->brgy : "" }}" required>
+
+                 <select class="form-control" name="brgy">
+                      
+                 </select>
                </div>
 
                <div class="col-md-12">    
@@ -467,48 +469,86 @@ h6 {
   <script src="{{asset('js/bootstrap.min.js')}}" type="text/javascript"></script>
 
   <script>
-       function readURLValidID(input) 
-       {
-          if (input.files && input.files[0]) {
-            var reader = new FileReader();
+    $(document).ready(function()
+    {
+      initMunicipality();
+
+function initMunicipality()
+{
+    var municipality =$('select[name=municipality]').val();
+
+    if(municipality){       
+        getBrgy('municipality');
+    }
+}
+
+$('select[name=municipality]').change(function () {
+      var municipality = $(this).val();
+        
+      getBrgy(municipality);
+      
+});            
+      
+function getBrgy(municipality_name) 
+{
+  $.ajax({
+          url: '/getBrgyList/'+municipality_name,
+          tpye: 'GET',
+          success:function(data){
+              $('select[name=brgy]').empty();
+              for (var i = 0; i < data['barangay_list'].length; i++) 
+              {
+                  $('select[name=brgy]').append('<option value="' + data['barangay_list'][i] + '">' + data['barangay_list'][i] + '</option>');
+              }
             
-            reader.onload = function(e) {
-              $('#img-valid-id').attr('src', e.target.result);
-            }
-            
-            reader.readAsDataURL(input.files[0]); // convert to base64 string
+      
           }
+        });
+}
+
+   function readURLValidID(input) 
+   {
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        
+        reader.onload = function(e) {
+          $('#img-valid-id').attr('src', e.target.result);
         }
-
-        function readURLSelfieWithID(input) 
-       {
-          if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            
-            reader.onload = function(e) {
-              $('#img-selfie-with-id').attr('src', e.target.result);
-            }
-            
-            reader.readAsDataURL(input.files[0]); // convert to base64 string
-          }
-        }
-    
-      $("#file-valid-id").change(function() 
-      {
-        readURLValidID(this);
-      });
-
-      $("#file-selfie-with-id").change(function() 
-      {
-        readURLSelfieWithID(this);
-      });
-
-      function disabledInputs(){
-        $("#id-type").attr('disabled', true);
-        $("#id-number").attr('disabled', true);
-        $("#file-valid-id").attr('disabled', true);
-        $("#btn-upload").attr('disabled', true);
-        $('#verification-info').css('display', 'block');
+        
+        reader.readAsDataURL(input.files[0]); // convert to base64 string
       }
+    }
+
+    function readURLSelfieWithID(input) 
+   {
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        
+        reader.onload = function(e) {
+          $('#img-selfie-with-id').attr('src', e.target.result);
+        }
+        
+        reader.readAsDataURL(input.files[0]); // convert to base64 string
+      }
+    }
+
+  $("#file-valid-id").change(function() 
+  {
+    readURLValidID(this);
+  });
+
+  $("#file-selfie-with-id").change(function() 
+  {
+    readURLSelfieWithID(this);
+  });
+
+  function disabledInputs(){
+    $("#id-type").attr('disabled', true);
+    $("#id-number").attr('disabled', true);
+    $("#file-valid-id").attr('disabled', true);
+    $("#btn-upload").attr('disabled', true);
+    $('#verification-info').css('display', 'block');
+  }
+    });
   </script>
 </body>

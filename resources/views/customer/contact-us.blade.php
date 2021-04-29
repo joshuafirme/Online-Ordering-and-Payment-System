@@ -241,6 +241,7 @@ textarea::placeholder{
    <div class="container">
      <h2>Contact Us</h2>
        <p>How can we help you? Message us now.</p>
+       <p>Please contact us for ordering bulk orders and so on.</p>
    <div class="contact-form">
    <!-- First grid -->
    <div style="align-content: center;">

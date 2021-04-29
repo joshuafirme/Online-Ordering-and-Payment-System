@@ -48,7 +48,7 @@
                     {{ $walkInSales }}
                 </h3>
                 <p>
-                    Total walk-in sales totay
+                    Total walk-in sales today
                 </p>
             </div>
             <div class="icon">
@@ -84,7 +84,7 @@
                     {{ $onlineSales }}
                 </h3>
                 <p>
-                    Total online sales totay
+                    Total online sales today
                 </p>
             </div>
             <div class="icon">
