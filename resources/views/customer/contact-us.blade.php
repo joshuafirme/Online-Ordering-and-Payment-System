@@ -245,7 +245,7 @@ textarea::placeholder{
    <div class="contact-form">
    <!-- First grid -->
    <div style="align-content: center;">
-   <a href="https://www.google.com/maps/@13.9507422,120.7023993,3a,75y,182.85h,75.63t/data=!3m6!1e1!3m4!1sI4yVXq7rO51Bwegq7aw3Xg!2e0!7i13312!8i6656" target="_blank">
+   <a href="https://www.google.com/maps/place/Be4+Gasoline+Station/@13.9502202,120.7031964,17z/data=!4m5!3m4!1s0x33bdbdda103f9e43:0x9c59aab80393f777!8m2!3d13.9506107!4d120.7024025" target="_blank">
    <i  class="fas fa-location-arrow"></i><span class="form-info">  Brgy. Sambat, Balayan Batangas</span><br>
    </a>
    <i style="margin-left: -80px;" class="fas fa-phone" > </i><span class="form-info">  +63 953 139 7371</span><br>
