@@ -504,7 +504,24 @@ function getBrgy(municipality_name)
       
           }
         });
+  
 }
+
+
+getUserBrgy();
+
+function getUserBrgy() 
+{
+  $.ajax({
+          url: '/getUserBrgy',
+          tpye: 'GET',
+          success:function(data){
+              $("select[name=brgy] option[value="+data+"]").attr('selected','selected');
+              console.log('selected');
+          }
+        });
+  
+  }
 
    function readURLValidID(input) 
    {

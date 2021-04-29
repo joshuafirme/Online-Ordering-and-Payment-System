@@ -153,7 +153,7 @@ Route::get('menu/combo_meals', 'Customer\homeCtr@combo_meals_view');
 
 
 Route::get('/getBrgyList/{municipality}', 'Customer\ProfileCtr@getBrgyList');
-Route::get('/getShippingInfo', 'Customer\ProfileCtr@getShippingInfo');
+Route::get('/getUserBrgy', 'Customer\ProfileCtr@getUserBrgy');
 
 
 /*

@@ -27,9 +27,9 @@ class ProfileCtr extends Controller
         return BrgyAPI::getBrgyList($municipity);
     }
 
-    public function getShippingInfo()
+    public function getUserBrgy()
     {
-        return Helper::getShippingInfo();
+        return Helper::getShippingInfo()->brgy;
     }
 
     public function updateInsert()

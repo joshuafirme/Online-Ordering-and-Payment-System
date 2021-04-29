@@ -89,7 +89,7 @@
                                 <Label class="label-small">Municipality</Label>
                                 @php
                                     $municipality = Helper::getShippingInfo()!=null ? Helper::getShippingInfo()->municipality : "";
-                                    $mun_arr = array("Balayan", "Tuy");
+                                    $mun_arr = array("BALAYAN", "TUY");
                                 @endphp
                                 <select style="margin-bottom: 10px;" class="form-control" name="municipality" id="municipality" required> 
                                     @if(in_array($municipality, $mun_arr))
@@ -104,8 +104,10 @@
                                 </select>
                 
                                 <Label class="label-small">Barangay</Label>
-                                <input style="margin-bottom: 10px;" type="text" class="form-control mb-3" name="brgy" 
-                                value="{{ Helper::getShippingInfo()!=null ? Helper::getShippingInfo()->brgy : "" }}" required>
+
+                                <select class="form-control" name="brgy">
+                                    
+                                </select>
                 
                                 <Label class="label-small">Subd/Blk/Bldg</Label>
                                 <input style="margin-bottom: 10px;" type="text" class="form-control mb-3" placeholder="flr/blk/bldg" name="flr_bldg_blk"
@@ -140,11 +142,58 @@
     </div>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
     <script>
-        $(document).on('change', '#municipality', function(){
-            let municipality = $(this).val();
-            computeTotal(municipality);
-            getShippingFee(municipality);
+          initMunicipality();
+
+function initMunicipality()
+{
+    var municipality =$('select[name=municipality]').val();
+
+    if(municipality){       
+        getBrgy(municipality);
+    }
+}
+
+$('select[name=municipality]').change(function () {
+      var municipality = $(this).val();
+        computeTotal(municipality);
+        getShippingFee(municipality);
+        getBrgy(municipality);
+      
+});            
+      
+function getBrgy(municipality_name) 
+{
+  $.ajax({
+          url: '/getBrgyList/'+municipality_name,
+          tpye: 'GET',
+          success:function(data){
+              $('select[name=brgy]').empty();
+              for (var i = 0; i < data['barangay_list'].length; i++) 
+              {
+                  $('select[name=brgy]').append('<option value="' + data['barangay_list'][i] + '">' + data['barangay_list'][i] + '</option>');
+              }
+            
+      
+          }
         });
+  
+}
+
+
+getUserBrgy();
+
+function getUserBrgy() 
+{
+  $.ajax({
+          url: '/getUserBrgy',
+          tpye: 'GET',
+          success:function(data){
+              $("select[name=brgy] option[value="+data+"]").attr('selected','selected');
+              console.log('selected');
+          }
+        });
+  
+  }
 
         let municipality = $( "#municipality" ).find(":selected").text();
         computeTotal(municipality);
