@@ -24,7 +24,7 @@
  <div class="row">
     <div class="col-lg-3 col-xs-6">
         <!-- small box -->
-        <div class="small-box bg-aqua">
+        <a href="/delivery/pending" class="small-box bg-aqua">
             <div class="inner">
                 <h3>
                     {{ $newOrders }}
@@ -38,11 +38,11 @@
             </div>
             <a href="#" class="small-box-footer">
             </a>
-        </div>
+        </a>
     </div><!-- ./col -->
     <div class="col-lg-3 col-xs-6">
         <!-- small box -->
-        <div class="small-box bg-aqua">
+        <a href="/reports/gross_sale" class="small-box bg-aqua">
             <div class="inner">
                 <h3>
                     {{ $walkInSales }}
@@ -56,11 +56,11 @@
             </div>
             <a href="#" class="small-box-footer">
             </a>
-        </div>
+        </a>
     </div><!-- ./col -->
     <div class="col-lg-3 col-xs-6">
         <!-- small box -->
-        <div class="small-box bg-aqua">
+        <a href="/reports/customer-info" class="small-box bg-aqua">
             <div class="inner">
                 <h3>
                     {{ $registeredCustomer }}
@@ -74,11 +74,11 @@
             </div>
             <a href="#" class="small-box-footer">
             </a>
-        </div>
+        </a>
     </div><!-- ./col -->
     <div class="col-lg-3 col-xs-6">
         <!-- small box -->
-        <div class="small-box bg-aqua">
+        <a href="/reports/gross_sale" class="small-box bg-aqua">
             <div class="inner">
                 <h3>
                     {{ $onlineSales }}
@@ -92,11 +92,11 @@
             </div>
             <a href="#" class="small-box-footer">
             </a>
-        </div>
+        </a>
     </div><!-- ./col -->
     <div class="col-lg-3 col-xs-6" style="margin-top: 15px;">
         <!-- small box -->
-        <div class="small-box bg-green">
+        <a href="/delivery/pending" class="small-box bg-green">
             <div class="inner">
                 <h3>
                     {{ Helper::countPending() }}
@@ -110,11 +110,11 @@
             </div>
             <a href="#" class="small-box-footer">
             </a>
-        </div>
+        </a>
     </div><!-- ./col -->
     <div class="col-lg-3 col-xs-6" style="margin-top: 15px;">
         <!-- small box -->
-        <div class="small-box bg-green">
+        <a href="/delivery/preparing" class="small-box bg-green">
             <div class="inner">
                 <h3>
                     {{ Helper::countPreparing() }}
@@ -128,11 +128,11 @@
             </div>
             <a href="#" class="small-box-footer">
             </a>
-        </div>
+        </a>
     </div><!-- ./col -->
     <div class="col-lg-3 col-xs-6" style="margin-top: 15px;">
         <!-- small box -->
-        <div class="small-box bg-green">
+        <a href="/delivery/dispatch" class="small-box bg-green">
             <div class="inner">
                 <h3>
                     {{ Helper::countDispatch() }}
@@ -146,11 +146,11 @@
             </div>
             <a href="#" class="small-box-footer">
             </a>
-        </div>
+        </a>
     </div><!-- ./col -->
     <div class="col-lg-3 col-xs-6" style="margin-top: 15px;">
         <!-- small box -->
-        <div class="small-box bg-green">
+        <a href="/delivery/delivered" class="small-box bg-green">
             <div class="inner">
                 <h3>
                     {{ Helper::countDelivered() }}
@@ -164,11 +164,11 @@
             </div>
             <a href="#" class="small-box-footer">
             </a>
-        </div>
+        </a>
     </div><!-- ./col -->
     <div class="col-lg-3 col-xs-6" style="margin-top: 15px;">
         <!-- small box -->
-        <div class="small-box bg-green">
+        <a href="/delivery/cancelled" class="small-box bg-red">
             <div class="inner">
                 <h3>
                     {{ Helper::countCancelled() }}
@@ -182,7 +182,7 @@
             </div>
             <a href="#" class="small-box-footer">
             </a>
-        </div>
+        </a>
     </div><!-- ./col -->
 </div><!-- /.row -->
 
