@@ -6,7 +6,7 @@
     <title>David's Grill</title>
     <link rel="stylesheet" href="{{asset('css/main.css')}}">
     <link href="https://fonts.googleapis.com/css2?family=Baloo+Chettan+2:wght@600;800&display=swap" rel="stylesheet">
-    {{--<script src="https://kit.fontawesome.com/332a215f17.js" crossorigin="anonymous"></script>--}}
+    <script src="https://kit.fontawesome.com/332a215f17.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
@@ -109,7 +109,18 @@
 @include('customer.layouts.header')
 
 <!---====Category Section=====-->
-<h2 class="title-text" style="margin-left: 40px;color: #3B3B3B;">Select Category</h2>
+
+<h2 class="title-text" style="margin-left: 40px;color: #3B3B3B;">Select Category
+  @if(Auth::check())
+  <a href="{{ url('/cart') }}">
+    <i class="fas fa-shopping-cart fa-lg" style="color: #005B96;"></i><span style="font-size: 16px; margin-left: -10px; background-color:#28A745;" class="cart-badge">
+      <h5 id="cart_count" style="margin-left: 7px;"></h5></span>
+  </a>
+  @endif
+</h2>
+
+
+
 
 <div id="secondary-slider" class="splide mb-2" style="padding-left: 40px; padding-right: 40px;">
   <div class="splide__arrows">

@@ -25,12 +25,6 @@
     <div class="heading">
         <h1>David's Grill Restaurant</h1>
         <h2>&mdash; Our Menu &mdash;</h2>
-        @if(Auth::check())
-            <a href="{{ url('/cart') }}">
-                <i class="fas fa-shopping-cart" style="color: #fff;"></i><span style="margin-left: -10px;" class="cart-badge" id="cart_count"></span>
-            </a>
-        @endif
-
     </div>
   </div>
       
