@@ -156,8 +156,8 @@ function initMunicipality()
 $('select[name=municipality]').change(function () {
       var municipality = $(this).val();
         computeTotal(municipality);
-        getShippingFee(municipality);
         getBrgy(municipality);
+        getShippingFee(municipality);
       
 });            
       

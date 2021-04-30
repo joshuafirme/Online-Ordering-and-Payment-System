@@ -61,11 +61,11 @@ class CheckoutCtr extends Controller
     public function getShippingFee()
     {     
         $shipping_info = Helper::getShippingInfo()!=null ? Helper::getShippingInfo()->municipality : "";
-        if($shipping_info=="Balayan")
+        if($shipping_info=="BALAYAN")
         {
             return 50;
         }
-        elseif($shipping_info=="Tuy"){
+        elseif($shipping_info=="TUY"){
             return 100;
         }else{
             return 50;
@@ -82,11 +82,11 @@ class CheckoutCtr extends Controller
 
     public function getShippingFee_ajax($municipality)
     {     
-        if($municipality=='Balayan')
+        if($municipality=='BALAYAN')
         {
             return '50';
         }
-        elseif($municipality=='Tuy'){
+        elseif($municipality=='TUY'){
             return '100';
         }else{
             return '50';

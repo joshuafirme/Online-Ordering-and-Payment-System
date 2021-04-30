@@ -517,7 +517,6 @@ function getUserBrgy()
           tpye: 'GET',
           success:function(data){
               $("select[name=brgy] option[value="+data+"]").attr('selected','selected');
-              console.log('selected');
           }
         });
   
