@@ -43,6 +43,8 @@ class User extends Model
                 break; 
             case 'Receptionist':
                 return array('Transaction', 'Dashboard');
+            case 'Delivery Man':
+                return array('Transaction', 'Dashboard');
                 break;    
           }
     }

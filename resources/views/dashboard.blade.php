@@ -2,6 +2,9 @@
 
 @section('content')
 
+    @php
+    $position=Helper::getPosition();
+    @endphp
    
    <!-- Right side column. Contains the navbar and content of the page -->
    <aside class="right-side">
@@ -22,6 +25,7 @@
 
  <!-- Small boxes (Stat box) -->
  <div class="row">
+    @if($position!='Delivery Man')
     <div class="col-lg-3 col-xs-6">
         <!-- small box -->
         <a href="/delivery/pending" class="small-box bg-aqua">
@@ -130,6 +134,7 @@
             </a>
         </a>
     </div><!-- ./col -->
+    @else
     <div class="col-lg-3 col-xs-6" style="margin-top: 15px;">
         <!-- small box -->
         <a href="/delivery/dispatch" class="small-box bg-green">
@@ -184,6 +189,7 @@
             </a>
         </a>
     </div><!-- ./col -->
+    @endif
 </div><!-- /.row -->
 
 

@@ -40,7 +40,8 @@
                 <select class="form-control" name="role" required>  
                     <option value="Admin">Admin</option>       
                     <option value="Cashier">Cashier</option>  
-                    <option value="Receptionist">Receptionist</option>     
+                    <option value="Receptionist">Receptionist</option>  
+                    <option value="Delivery Man">Delivery Man</option>     
                 </select>
               </div>
  
