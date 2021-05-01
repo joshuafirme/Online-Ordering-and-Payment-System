@@ -275,10 +275,10 @@ class DeliveryCtr extends Controller
                         ->where('user_id', $user_id)
                         ->value('municipality');
 
-        if($shipping_info=="Balayan")
+        if($shipping_info=="BALAYAN")
         {
             return 50;
-        }elseif($shipping_info=="Tuy"){
+        }elseif($shipping_info=="TUY"){
             return 100;
         }else{
             return 0;
