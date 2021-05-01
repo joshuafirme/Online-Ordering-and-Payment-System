@@ -134,6 +134,60 @@
             </a>
         </a>
     </div><!-- ./col -->
+    <div class="col-lg-3 col-xs-6" style="margin-top: 15px;">
+        <!-- small box -->
+        <a href="/delivery/dispatch" class="small-box bg-green">
+            <div class="inner">
+                <h3>
+                    {{ Helper::countDispatch() }}
+                </h3>
+                <p>
+                    Dispatch
+                </p>
+            </div>
+            <div class="icon">
+                <i class="fa fa-truck"></i>
+            </div>
+            <a href="#" class="small-box-footer">
+            </a>
+        </a>
+    </div><!-- ./col -->
+    <div class="col-lg-3 col-xs-6" style="margin-top: 15px;">
+        <!-- small box -->
+        <a href="/delivery/delivered" class="small-box bg-green">
+            <div class="inner">
+                <h3>
+                    {{ Helper::countDelivered() }}
+                </h3>
+                <p>
+                    Delivered
+                </p>
+            </div>
+            <div class="icon">
+                <i class="fa fa-check-circle"></i>
+            </div>
+            <a href="#" class="small-box-footer">
+            </a>
+        </a>
+    </div><!-- ./col -->
+    <div class="col-lg-3 col-xs-6" style="margin-top: 15px;">
+        <!-- small box -->
+        <a href="/delivery/cancelled" class="small-box bg-red">
+            <div class="inner">
+                <h3>
+                    {{ Helper::countCancelled() }}
+                </h3>
+                <p>
+                    Cancelled
+                </p>
+            </div>
+            <div class="icon">
+                <i class="fa fa-cross"></i>
+            </div>
+            <a href="#" class="small-box-footer">
+            </a>
+        </a>
+    </div><!-- ./col -->
     @else
     <div class="col-lg-3 col-xs-6" style="margin-top: 15px;">
         <!-- small box -->

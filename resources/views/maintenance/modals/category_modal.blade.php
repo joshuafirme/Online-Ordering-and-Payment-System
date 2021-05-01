@@ -70,7 +70,7 @@
 
             <div class="col-md-12" style="margin-bottom: 10px;">
               <label class="col-form-label">Image</label>
-              <input type="file" accept="image/x-png,image/gif,image/jpeg" name="image" required>
+              <input type="file" accept="image/x-png,image/gif,image/jpeg" name="image">
             </div>
 
             <div class="col-md-12" style="margin-bottom: 15px;">    
