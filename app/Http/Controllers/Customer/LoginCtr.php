@@ -15,7 +15,7 @@ class LoginCtr extends Controller
     {
         if(Auth::check())
         {
-            return redirect('/'); 
+            return redirect('/home'); 
         }
         else
         {
@@ -31,7 +31,7 @@ class LoginCtr extends Controller
 
         if(Auth::attempt(['username' => $data['username'], 'password' => $data['password']]))
         {
-            return Redirect::to('/'); 
+            return Redirect::to('/home'); 
         }
         else{
             return Redirect::to('/customer/customer-login')->with('invalid', 'Invalid username or password'); 
@@ -42,7 +42,7 @@ class LoginCtr extends Controller
     {
         Auth::logout();
         Session::forget('customer-id');
-        Redirect::to('/')->send(); 
+        Redirect::to('/home')->send(); 
     }
 
     public function redirectToGoogle()
@@ -72,7 +72,7 @@ class LoginCtr extends Controller
         if($account->count() > 0)
         {
            // $this->putToSession($email, $avatar);
-            return redirect('/')->send();
+            return redirect('/home')->send();
         }
         else
         {
@@ -89,7 +89,7 @@ class LoginCtr extends Controller
 
             session()->put('customer-id', $user_id);
             
-            return redirect('/')->send();
+            return redirect('/home')->send();
         }
     }
 
@@ -104,7 +104,7 @@ class LoginCtr extends Controller
     public function isLoggedIn(){
         if(session()->get('is-customer-logged') == 'yes'){
    
-            return Redirect::to('/'); 
+            return Redirect::to('/home'); 
         }
         else{
             return Redirect::to('/user-login'); 

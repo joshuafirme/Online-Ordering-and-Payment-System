@@ -237,7 +237,7 @@ textarea::placeholder{
 
   <!-- contact section -->
  <section id="contact-section">    
-     <a href="{{url('/')}}" class="btn btn-sm" style="color: #fff; margin:15px;"><i class="fas fa-arrow-left fa-2x"></i></a>
+     <a href="{{url('/home')}}" class="btn btn-sm" style="color: #fff; margin:15px;"><i class="fas fa-arrow-left fa-2x"></i></a>
    <div class="container">
      <h2>Contact Us</h2>
        <p>How can we help you? Message us now.</p>

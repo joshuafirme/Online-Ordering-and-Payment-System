@@ -28,8 +28,6 @@
                 </div>
             </div>
 
-    <a href="{{url('/')}}" class="btn btn-sm" style="color: #005B96; margin:25px;"><i class="fas fa-arrow-left fa-2x"></i></a>
-
         <div class="container">
           <!---=======Gallery Section======-->
         <section id="gallery">

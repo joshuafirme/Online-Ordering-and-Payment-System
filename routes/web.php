@@ -13,7 +13,7 @@
 //use App\Utilities\User;
 
 
-Route::get('/', 'Customer\HomeCtr@index');
+Route::get('/home', 'Customer\HomeCtr@index');
 
 Route::get('dashboard', 'DashboardCtr@index');
 
@@ -124,7 +124,7 @@ Route::get('utilities/audit-trail', 'Utilities\AuditTrailCtr@index');
 | Login
 |--------------------------------------------------------------------------
 */
-Route::get('customer/customer-login', 'Customer\loginCtr@index');
+Route::get('customer/customer-login', 'Customer\LoginCtr@index');
 Route::post('do-login', 'Customer\LoginCtr@login');
 Route::get('do-logout', 'Customer\LoginCtr@logout');
 

@@ -20,7 +20,7 @@
                                         <p class="text-center m-0">Order Recieved</p>
                                         <p class="text-center m-0">Please have this amount ready on delivery</p>
                                         <h4 class="text-success text-center">₱{{ Helper::getPaymentTotalAmount() }}</h4>
-                                        <p class="text-center">Back to <a href="{{ url('/') }}">homepage</a></p>
+                                        <p class="text-center">Back to <a href="{{ url('/home') }}">homepage</a></p>
                                       </div>
      
                                 </div>

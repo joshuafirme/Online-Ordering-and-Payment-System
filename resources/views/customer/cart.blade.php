@@ -1,8 +1,5 @@
 @include('customer.layouts.header2')
 
-        
-            <a href="{{url('/')}}" class="btn btn-sm"><i class="fas fa-arrow-left fa-2x"></i></a>
-
             <div class="row" id="cart-cont">
                 <div class="col-sm-12 col-md-10 col-md-offset-1">
                     <h4 class="mb-4">Cart (<span>{{ $cartCount }}</span> items)</h4>

@@ -20,7 +20,7 @@
                                     <div class="alert alert-success" role="alert">
                                         <h4 class="text-center m-0">Your payment of ₱<b>{{ Helper::getPaymentTotalAmount() }}</b>
                                             was successfully paid! Order is being processed...</h4>
-                                        <p class="text-center">Continue <a href="{{ url('/') }}">homepage</a></p>
+                                        <p class="text-center">Continue <a href="{{ url('/home') }}">homepage</a></p>
                                       </div>
      
                                 </div>

@@ -1,5 +1,4 @@
 @include('customer.layouts.header2')
-    <a href="{{url('/')}}" class="btn btn-sm"><i class="fas fa-arrow-left fa-2x"></i></a>
 
         <div class="container m-xs-2">
             <div class="page-content page-container" id="page-content">
